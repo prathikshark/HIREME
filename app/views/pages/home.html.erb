@@ -1,0 +1,13 @@
+<h1>home<h1>
+<% if current_user %>
+    <p>Hello<%= current_user.email%></p>
+    <p>Welcome</p>
+    <p>You are a [<%=current_user.role %>]</p>
+  
+   <%= button_to 'LogOut',destroy_user_session_path,method: :delete%>
+
+<% else %>
+    <p>Please Sign-In</p>
+    <%= link_to 'SignIn',new_user_registration_path%>
+    <%= link_to 'LogIn',new_user_session_path%>
+<% end %>
