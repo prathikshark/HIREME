@@ -1,6 +1,7 @@
+
 .main {
   position: fixed;
-  top: 50%;
+  top: 56%;
   left: 50%;
   transform: translate(-50%, -50%);
   height: 90vh;
@@ -32,6 +33,7 @@ input {
   border: 1px solid #ccc; 
   border-radius: 3px;
   box-sizing: border-box;
+  height: 40px;
 }
 
 input[type="submit"] {
@@ -46,4 +48,39 @@ input[type="submit"]:hover {
 
 .actions {
   text-align: center;
+}
+
+nav{
+  background-color: #e0b20d;
+}
+
+
+.navbar-brand{
+  font-weight: 1000;
+  margin-right:100px;
+
+}
+.nav-link{
+  color:black;
+  font-weight: 500;
+}
+
+.nav-item {
+margin-right: 3px; 
+}
+
+.nav-link:last-child {
+margin-right: 25px;
+}
+.login-btn {
+width: 5vw;
+text-align: center;
+padding: 8px 16px;
+background-color: white;
+color: black;
+border-radius: 4px;
+}
+.login-btn:hover {
+  background-color: black;
+  color: white; 
 }
