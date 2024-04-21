@@ -1,6 +1,5 @@
-<style>
+<%= javascript_include_tag 'registration' %>
 
-</style>
 <div class="main">
  <div class="container">
   <div class="form-container">
@@ -41,6 +40,16 @@
       <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
     </div>
 
+    <div id="worker-fields">
+      <%= f.fields_for :worker, @user.worker || @user.build_worker do |w| %>
+        <%= w.text_field :SSnumber, placeholder: 'SSN' %>
+        <%= w.number_field :age, placeholder: 'Age' %>
+        <%= w.select :gender, ['Male', 'Female', 'Other'], prompt: 'Select gender' %>
+        <%= w.file_field :profile_picture %>
+      <% end %>
+    </div>
+
+    
     <div class="actions">
       <%= f.submit "Sign up" %>
     </div>

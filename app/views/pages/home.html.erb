@@ -3,9 +3,20 @@
     <p>Hello <%= current_user.email %></p>
     <p>Welcome</p>
     <p>You are a [<%= current_user.role %>]</p>
+
+    <% if current_user.worker %>
+        <p> [<%= current_user.worker.age %>] mmmm</p>
+        <p> [<%= current_user.worker.SSnumber %>] mmmm</p>
+        <p> [<%= current_user.worker.gender %>] mmmm</p>
+            <% if current_user.worker.profile_picture.attached? %>
+        <%= image_tag current_user.worker.profile_picture %>
+    <% else %>
+        <p>No profile picture available</p>
+    <% end %>
+
+  <% else %>
+    <p>No worker record found for this user</p>
+  <% end %>
     <%= button_to 'Log Out', destroy_user_session_path, method: :delete %>
-<% else %>
-  <p>Please Sign In</p>
-  <%= link_to 'Sign In', new_user_registration_path %>
-  <%= link_to 'Log In', new_user_session_path %>
+ 
 <% end %>

@@ -7,6 +7,9 @@ class User < ApplicationRecord
   enum role:[:customer,:worker,:admin]
   after_initialize :set_default_role, :if => :new_record?
 
+  has_one :worker, inverse_of: :user
+  accepts_nested_attributes_for :worker
+
   def set_default_role
     self.role||=:customer
   end

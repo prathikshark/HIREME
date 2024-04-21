@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  SSnumber: MyString
+  gender: MyString
+  age: 1
+  profile_picture: MyString
+  user: one
+
+two:
+  SSnumber: MyString
+  gender: MyString
+  age: 1
+  profile_picture: MyString
+  user: two

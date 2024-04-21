@@ -1,3 +1,5 @@
+<%= javascript_include_tag 'registration' %>
+
 <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #f3c623;">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">HireMe</a>
@@ -19,7 +21,7 @@
           <%= link_to 'Contact Us',new_user_session_path,class:"nav-link" %>
         </li>
         <li class="nav-item">
-          <%= link_to 'Apply for Job',new_user_session_path,class:"nav-link" %>
+          <%= link_to 'Apply for Job',new_user_registration_path,class:"nav-link",id:"apply-for-job" %>
         </li>
       </ul>
       <ul class="navbar-nav">
