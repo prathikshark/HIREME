@@ -1,3 +1,4 @@
+@import 'jquery-ui/datepicker';
 
 .main {
   position: fixed;
@@ -70,9 +71,9 @@ margin-right: 3px;
 }
 
 .nav-link:last-child {
-margin-right: 25px;
+margin-right: 20px;
 }
-.login-btn {
+.log-btn {
 width: 5vw;
 text-align: center;
 padding: 8px 16px;
@@ -80,7 +81,7 @@ background-color: white;
 color: black;
 border-radius: 4px;
 }
-.login-btn:hover {
+.log-btn:hover {
   background-color: black;
   color: white; 
 }

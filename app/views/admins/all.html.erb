@@ -1,0 +1,14 @@
+<h1>All Admins</h1>
+<ul>
+  <% @admins.each do |admin| %>
+    
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">Admin</h5> 
+            <p class="card-text"><%= admin.name %></p>
+            <p class="card-text"><%= admin.email %></p>
+            <%= link_to 'Edit', admins_all_path %>
+            </div>
+    </div>
+  <% end %>
+</ul>
