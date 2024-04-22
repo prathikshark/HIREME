@@ -3,7 +3,7 @@
 <% end %>
 
 <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-  <%= link_to "Sign up", new_registration_path(resource_name) %><br />
+  <%= link_to "Sign up", new_registration_path(resource_name), id: "sign-up" %><br />
 <% end %>
 
 <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
@@ -23,3 +23,22 @@
     <%= button_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider), data: { turbo: false } %><br />
   <% end %>
 <% end %>
+
+<!--
+<script>
+  $(document).ready(function () {
+    $("#sign-up").on("click", function (e) {
+
+
+      $.ajax({
+        type: "get",
+        url: "/users/sign_up",
+        dataType: "html",
+        success: function (response) {
+          $(document).find("#worker-fields").hide()
+        }
+      });
+    });
+  });
+</script>
+-->

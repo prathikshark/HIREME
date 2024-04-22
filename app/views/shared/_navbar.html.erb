@@ -21,7 +21,7 @@
         </li>
         <% if !current_user %>
         <li class="nav-item">
-          <%= link_to 'Apply for Job',new_user_registration_path,class:"nav-link",id:"apply-for-job" %>
+          <%= link_to 'Apply for Job',new_user_registration_path,  params: {apply_for_job: true}, class:"nav-link", id:"apply-for-job" %>
         </li>
         <% end %>
       </ul>

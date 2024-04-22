@@ -1,0 +1,27 @@
+<h1>All Admins</h1>
+    <%= render partial: "modal",locals:{data: "Add admin"}  %>
+    <ul>
+      <% @admins.each do |admin| %>
+        
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">Admin</h5> 
+                <p class="card-text"><%= admin.name %></p>
+                <p class="card-text"><%= admin.email %></p>
+                <%= render partial: "modal",locals:{data: "Edit"} %>
+            </div>
+        </div>
+      <% end %>
+</ul>
+
+
+<script>
+
+  const myModal = document.getElementById('myModal')
+const myInput = document.getElementById('myInput')
+
+myModal.addEventListener('shown.bs.modal', () => {
+  myInput.focus()
+})
+
+</script>
