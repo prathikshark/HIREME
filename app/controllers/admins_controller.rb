@@ -16,7 +16,7 @@ class AdminsController < ApplicationController
          if @admin.save
             flash[:notice]="Admin added"
          else
-            flash[:alert]="Could bot add admin"
+            flash[:alert]="Could not add admin"
          end
     end
 

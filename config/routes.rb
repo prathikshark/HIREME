@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   resources :admins, only: [:index,:new,:create,:edit,:update] 
   get 'admins/list', to: 'admins#admin_list'
   
-  resources :worker
+  resources :workers
 
  
   get "up" => "rails/health#show", as: :rails_health_check

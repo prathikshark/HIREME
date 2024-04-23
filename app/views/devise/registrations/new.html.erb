@@ -4,10 +4,10 @@
  <div class="container">
   <div class="form-container">
    <h2>Sign up</h2>
- <%= link_to 'Login as employe?', new_user_session_path(role: 'worker'), method: :get, id: 'login-worker-link' %>
-    <%= link_to 'Login as customer?', new_user_session_path(role: 'customer'), method: :get, id: 'login-customer-link', style: 'display: none;' %>
+    <%= link_to 'Signup as employe?', new_user_registration_path(role: 'customer'), method: :get, id: 'signup-worker-link' %>
+    <%= link_to 'Signup as customer?', new_user_registration_path(role: 'worker'), method: :get, id: 'signup-customer-link', style: 'display: none;' %>
 
-    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+     <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
         <%= render "devise/shared/error_messages", resource: resource %>
         
         <div class="field">
