@@ -1,5 +1,6 @@
+<%= render partial: "modal",locals:{data: "Add admin"}  %>
 <h1>All Admins</h1>
-    <%= render partial: "modal",locals:{data: "Add admin"}  %>
+<button type="button" id="myInput" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Admin</button>
     <ul>
       <% @admins.each do |admin| %>
         
@@ -8,7 +9,7 @@
                 <h5 class="card-title">Admin</h5> 
                 <p class="card-text"><%= admin.name %></p>
                 <p class="card-text"><%= admin.email %></p>
-                <%= render partial: "modal",locals:{data: "Edit"} %>
+                <button type="button" id="myInput" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Edit</button>
             </div>
         </div>
       <% end %>
@@ -18,10 +19,11 @@
 <script>
 
   const myModal = document.getElementById('myModal')
-const myInput = document.getElementById('myInput')
+  const myInput = document.getElementById('myInput')
 
-myModal.addEventListener('shown.bs.modal', () => {
-  myInput.focus()
-})
+  myModal.addEventListener('shown.bs.modal', () => {
+    myInput.focus()
+  })
 
 </script>
+

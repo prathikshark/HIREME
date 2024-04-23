@@ -4,15 +4,15 @@
     <p>Welcome</p>
     <p>You are a [<%= current_user.role %>]</p>
 
-    <% if current_user.worker %>
-        <p> [<%= current_user.worker.age %>] mmmm</p>
-        <p> [<%= current_user.worker.SSnumber %>] mmmm</p>
-        <p> [<%= current_user.worker.gender %>] mmmm</p>
-            <% if current_user.worker.profile_picture.attached? %>
-        <%= image_tag current_user.worker.profile_picture %>
-    <% else %>
-        <p>No profile picture available</p>
-    <% end %>
+  <% if current_user.worker %>  
+          <% if current_user.worker.profile_picture.attached? %>
+              <%= image_tag current_user.worker.profile_picture ,class: "img"%>
+          <% else %>
+             <p>No profile picture available</p>
+          <% end %>
+          <p> age[<%= current_user.worker.age %>] </p>
+          <p>SSnum [<%= current_user.worker.SSnumber %>] </p>
+          <p>gender [<%= current_user.worker.gender %>] </p>
 
   <% else %>
     <p>No worker record found for this user</p>

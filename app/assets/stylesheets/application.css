@@ -1,4 +1,4 @@
-@import 'jquery-ui/datepicker';
+@import "jquery-ui/datepicker";
 
 .main {
   position: fixed;
@@ -20,7 +20,7 @@
 }
 
 h2 {
-  color: #333; 
+  color: #333;
   text-align: center;
 }
 
@@ -31,57 +31,66 @@ h2 {
 input {
   width: 100%;
   padding: 10px;
-  border: 1px solid #ccc; 
+  border: 1px solid #ccc;
   border-radius: 3px;
   box-sizing: border-box;
   height: 40px;
 }
 
 input[type="submit"] {
-  background-color: #f3c623; 
+  background-color: #f3c623;
   color: #fff;
   cursor: pointer;
 }
 
 input[type="submit"]:hover {
-  background-color: #e0b20d; 
+  background-color: #e0b20d;
 }
 
 .actions {
   text-align: center;
 }
 
-nav{
+nav {
   background-color: #e0b20d;
 }
 
-
-.navbar-brand{
+.navbar-brand {
   font-weight: 1000;
-  margin-right:100px;
-
+  margin-right: 100px;
 }
-.nav-link{
-  color:black;
+.nav-link {
+  color: black;
   font-weight: 500;
 }
 
 .nav-item {
-margin-right: 3px; 
+  margin-right: 3px;
 }
 
 .nav-link:last-child {
-margin-right: 20px;
+  margin-right: 20px;
 }
 .log-btn {
-width: 5vw;
-text-align: center;
-padding: 8px 16px;
-background-color: white;
-color: black;
-border-radius: 4px;
+  width: 5vw;
+  text-align: center;
+  padding: 8px 16px;
+  background-color: white;
+  color: black;
+  border-radius: 4px;
 }
 .log-btn:hover {
   background-color: black;
-  color: white; 
+  color: white;
+}
+.img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+
+.radio {
+  height: 15px;
+  width: 15px;
+  display: block;
 }

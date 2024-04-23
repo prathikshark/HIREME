@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   before_create :check_if_admin_is_active
+  
   after_initialize :set_default_role, :if => :new_record?
 
   # Include default devise modules. Others available are:

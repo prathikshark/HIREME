@@ -1,0 +1,12 @@
+<h1>All Skills</h1>
+<% @skills.each do |skill| %>
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">skill</h5> 
+
+        <p class="card-text">Skill: <%= skill.skill_type %></p>
+
+     
+    </div>
+  </div>
+<% end %>

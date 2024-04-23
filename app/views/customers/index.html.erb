@@ -1,0 +1,14 @@
+<h1>All Customers</h1>
+<% @customers.each do |customer| %>
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">customer</h5> 
+
+        <p class="card-text">Name: <%= customer.name %></p>
+        <p class="card-text">Email: <%= customer.email %></p>
+        <p class="card-text">Phone: <%= customer.phone %></p>
+        <p class="card-text">Address: <%= customer.address %></p>
+     
+    </div>
+  </div>
+<% end %>

@@ -1,22 +1,16 @@
 <h1>All workers</h1>
-<% @users.each do |user| %>
+<% @workers.each do |worker| %>
   <div class="card">
     <div class="card-body">
       <h5 class="card-title">Worker</h5> 
-      <p class="card-text">Name: <%= user %></p>
 
-      <% if user.worker %>
-        <p class="card-text">Name: <%= user.name %></p>
-        <p class="card-text">Email: <%= user.email %></p>
-        <p class="card-text">Phone: <%= user.phone %></p>
-        <p class="card-text">Address: <%= user.address %></p>
-        <p class="card-text">Age: <%= user.worker.age %></p>
-        <p class="card-text">gender: <%= user.worker.gender %></p>
+        <p class="card-text">Name: <%= worker.name %></p>
+        <p class="card-text">Email: <%= worker.email %></p>
+        <p class="card-text">Phone: <%= worker.phone %></p>
+        <p class="card-text">Address: <%= worker.address %></p>
+        <p class="card-text">Age: <%= worker.worker.age %></p>
+        <p class="card-text">gender: <%= worker.worker.gender %></p>
 
-
-      <% else %>
-        <p class="card-text">No worker details available</p>
-      <% end %>
     </div>
   </div>
 <% end %>

@@ -5,6 +5,7 @@
   <div class="form-container">
 
     <h2>Log in</h2>
+ 
     <%= link_to 'Login as employe?', new_user_session_path(role: 'worker'), method: :get, id: 'login-worker-link' %>
     <%= link_to 'Login as customer?', new_user_session_path(role: 'customer'), method: :get, id: 'login-customer-link', style: 'display: none;' %>
 

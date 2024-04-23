@@ -1,0 +1,39 @@
+<%= render partial: "modal" %>
+
+<h1><%= @user.name %></h1>
+<% if current_user.worker.profile_picture.attached? %>
+    <%= image_tag current_user.worker.profile_picture ,class: "img"%>
+<% else %>
+    <p>No profile picture available</p>
+<% end %>
+<p> name: <%= @user.name %></p>
+<p> email:<%= @user.email %> </p>
+<p> address: <%= @user.address %> </p>
+<p> phone: <%= @user.phone %> </p>
+<p> age: <%= @user.worker.age %> </p>
+<p>SSnum: <%= @user.worker.SSnumber %></p>
+<p>gender: <%= @user.worker.gender %> </p>
+
+<div class="skill-container">
+    <h3> Skills </h3>
+    <button type="button" id="myInput" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Add</button>
+    <% for worker_skill in @user.worker.worker_skills%>
+        <p><%= worker_skill.skill.skill_type%></p>
+        <p><%= worker_skill.experience%></p>
+        <p><%= worker_skill.wage%></p>
+        <p><%= worker_skill.rating%></p>
+        <br/>
+<% end%>
+
+</div>
+
+<script>
+
+  const myModal = document.getElementById('myModal')
+  const myInput = document.getElementById('myInput')
+
+  myModal.addEventListener('shown.bs.modal', () => {
+    myInput.focus()
+  })
+
+</script>

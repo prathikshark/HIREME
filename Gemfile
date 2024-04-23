@@ -69,3 +69,5 @@ end
 gem 'devise'
 gem 'nested_form'
 gem 'sassc-rails'
+
+gem 'mysql2'

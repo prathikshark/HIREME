@@ -8,7 +8,9 @@ Rails.application.routes.draw do
   get 'admins/list', to: 'admins#admin_list'
   
   resources :workers
-
+  resources :customers
+  resources :skills
+  resources :worker_skills
  
   get "up" => "rails/health#show", as: :rails_health_check
 

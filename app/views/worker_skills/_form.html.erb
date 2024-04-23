@@ -1,0 +1,28 @@
+
+<div class="form-container">
+<%= form_with model: worker_skill, url: worker_skills_path	, method: :post do |f| %>
+      <%= f.fields_for :skill  @worker_skill.skill || @worker_skill.build_skill do |skill_form|%>
+        
+      <% end %>
+
+        <div class="field">
+            <%= f.label :experience %><br />
+            <%= f.text_field :experience, autofocus: true, autocomplete: "experience" %>
+        </div>
+
+        <div class="field">
+            <%= f.label :wage %><br />
+            <%= f.email_field :wage, autofocus: true, autocomplete: "wage" %>
+        </div>
+        
+             <div class="actions">
+                <%= f.submit 'Add' ,id:"submit-btn", "data-bs-dismiss": "modal"%>
+            </div>
+
+    <% end %>
+
+</div>
+
+
+
+

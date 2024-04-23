@@ -27,6 +27,11 @@
       </ul>
       <ul class="navbar-nav">
         <% if current_user %>
+         <% if current_user.role == "worker"%>
+            <li class="nav-item">
+            <%= button_to 'Profile', worker_path(id: current_user.id), method: :get, class: "nav-link "%>
+            </li>
+          <% end %>
            <li class="nav-item">
            <%= button_to 'Log Out', destroy_user_session_path, method: :delete, class: "nav-link log-btn", data: { confirm: 'Are you sure you want to log out?' } %>
            </li>
