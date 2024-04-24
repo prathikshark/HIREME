@@ -1,0 +1,29 @@
+<%= render partial: "modal" %>
+
+<div class="skill-container">
+    <h3> Skills </h3>
+    <button type="button" id="myInput" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Add</button>
+      <% for worker_skill in @user.worker.worker_skills%>
+          <div class="skill-data">
+          <p><strong><%= worker_skill.skill.skill_type%></strong></p>
+          <p>Experience: <%= worker_skill.experience%></p>
+          <p>Wage per hour: <%= worker_skill.wage%></p>
+          <p>Rating: <%= worker_skill.rating%></p>
+          <%= button_to 'Remove', worker_skill_path(id: worker_skill.id) ,method: :delete ,class: 'btn btn-danger' %><br/>
+          <br/>
+          </div>
+
+      <% end%>
+
+</div>
+
+<script>
+
+  const myModal = document.getElementById('myModal')
+  const myInput = document.getElementById('myInput')
+
+  myModal.addEventListener('shown.bs.modal', () => {
+    myInput.focus()
+  })
+
+</script>

@@ -1,6 +1,6 @@
 class CustomersController < ApplicationController
     def index
-      @customers = User.where(role: :customer)
+      @users = User.where(role: :customer)
     end
     
     def new
@@ -8,5 +8,14 @@ class CustomersController < ApplicationController
 
     def create
 
+    end
+
+    def destroy
+      @user=User.find(params[:id]) 
+      if @user && @user.destroy 
+         flash[:notice]="Customer deleted"
+      else
+         flash[:alert]="Could not delete customer"
+      end
     end
 end

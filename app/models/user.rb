@@ -12,7 +12,7 @@ class User < ApplicationRecord
   enum role:[:customer,:worker,:admin]
 
 
-  has_one :worker, inverse_of: :user
+  has_one :worker, inverse_of: :user,dependent: :destroy
   accepts_nested_attributes_for :worker
 
   def set_default_role

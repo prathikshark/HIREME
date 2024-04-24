@@ -1,6 +1,6 @@
 class WorkersController < ApplicationController
     def index
-      @workers = User.where(role: :worker)
+      @users = User.where(role: :worker)
     end
     
     def new
@@ -8,14 +8,20 @@ class WorkersController < ApplicationController
     end
 
     def create
-
     end
     
     def show
-      @user=User.find_by(id: current_user.id)
-      @worker_skill = @user.worker.worker_skills
-
+      @user=User.find_by(id: params[:id])
     end
 
+    def destroy
+      @user=User.find(params[:id]) 
+      if @user && @user.destroy 
+         flash[:notice]="Worker deleted"
+      else
+         flash[:alert]="Could not delete worker"
+      end
+
+    end
     
 end

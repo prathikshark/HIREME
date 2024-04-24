@@ -1,16 +1,21 @@
 <h1>All workers</h1>
-<% @workers.each do |worker| %>
+<% @users.each do |user| %>
   <div class="card">
     <div class="card-body">
       <h5 class="card-title">Worker</h5> 
+        <p class="card-text">Name: <%= user.name %></p>
+        <p class="card-text">Email: <%= user.email %></p>
+        <p class="card-text">Phone: <%= user.phone %></p>
+        <p class="card-text">Address: <%= user.address %></p>
+        <p class="card-text">Age: <%= user.worker.age %></p>
+        <p class="card-text">gender: <%= user.worker.gender %></p>
+        skills:
+        <% user.worker.worker_skills.each do |worker_skill|%>
+            <%= worker_skill.skill.skill_type %>,
+        <% end %>
 
-        <p class="card-text">Name: <%= worker.name %></p>
-        <p class="card-text">Email: <%= worker.email %></p>
-        <p class="card-text">Phone: <%= worker.phone %></p>
-        <p class="card-text">Address: <%= worker.address %></p>
-        <p class="card-text">Age: <%= worker.worker.age %></p>
-        <p class="card-text">gender: <%= worker.worker.gender %></p>
-
+        <%= button_to 'Remove', worker_path(id: user.id),method: :delete ,class: 'btn btn-danger' %><br/>
+        <%= button_to 'View',  worker_path(id: user.id) ,method: :get,class: 'btn btn-primary' %><br/>
     </div>
   </div>
 <% end %>

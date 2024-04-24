@@ -11,3 +11,7 @@
 u1 = User.create(name: "admin1", email: "admin1@hireme.com", password: "admin1", isadmin: true,role: 2)
 u2 = User.create(name: "admin2", email: "admin2@hireme.com", password: "admin2", isadmin: true,role: 2)
 
+s1=Skill.create(skill_type:"cooking")
+s1=Skill.create(skill_type:"Maid")
+s1=Skill.create(skill_type:"care taking")
+s1=Skill.create(skill_type:"driving")
