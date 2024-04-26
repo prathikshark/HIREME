@@ -15,3 +15,4 @@ s1=Skill.create(skill_type:"cooking")
 s1=Skill.create(skill_type:"Maid")
 s1=Skill.create(skill_type:"care taking")
 s1=Skill.create(skill_type:"driving")
+

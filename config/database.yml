@@ -1,36 +1,16 @@
-# MySQL. Versions 5.5.8 and up are supported.
-#
-# Install the MySQL driver
-#   gem install mysql2
-#
-# Ensure the MySQL gem is defined in your Gemfile
-#   gem "mysql2"
-#
-# And be sure to use new-style password hashing:
-#   https://dev.mysql.com/doc/refman/5.7/en/password-hashing.html
-#
 default: &default
-  adapter: mysql2
-  encoding: utf8mb4
+  adapter: sqlite3
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: root
-  password: "@Sumanark123"
-  socket: /tmp/mysql.sock
+  timeout: 5000
 
 development:
   <<: *default
-  database: hire_me_app_development
+  database: db/development.sqlite3
 
-# Warning: The database defined as "test" will be erased and
-# re-generated from your development database when you run "rake".
-# Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: hire_me_app
+  database: db/test.sqlite3
 
-#
 production:
   <<: *default
-  database: hire_me_app_production
-  username: hire_me_app
-  password: <%= ENV["PAYING_GUEST_DATABASE_PASSWORD"] %>
+  database: db/production.sqlite3

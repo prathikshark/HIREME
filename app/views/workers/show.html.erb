@@ -6,22 +6,23 @@
   padding:10px;
 }
 </style>
+
 <%= render partial: "modal" %>
 
 <h1>Profile </h1>
-<% if current_user.worker.profile_picture.attached? %>
-    <%= image_tag current_user.worker.profile_picture ,class: "img"%>
+<% if @worker.profile_picture.attached? %>
+    <%= image_tag @worker.profile_picture ,class: "img"%>
 <% else %>
     <p>No profile picture available</p>
 <% end %>
-<p> <strong> Name:</strong> <%= @user.name %></p>
-<p> <strong> Email:</strong> <%= @user.email %> </p>
-<p> <strong> Address:</strong> <%= @user.address %> </p>
-<p> <strong> Phone:</strong> <%= @user.phone %> </p>
-<p><strong> Age:</strong>  <%= @user.worker.age %> </p>
-<p><strong> SSnumber:</strong>  <%= @user.worker.SSnumber %></p>
-<p><strong> Gender:</strong>  <%= @user.worker.gender %> </p>
-<p><strong>Available from: </strong> <%= @user.worker.from_date %> </p>
-<p><strong>Available till: </strong> <%= @user.worker.to_date %> </p>
+<p> <strong> Name:</strong> <%= @worker.user.name %></p>
+<p> <strong> Email:</strong> <%= @worker.user.email %> </p>
+<p> <strong> Address:</strong> <%= @worker.user.address %> </p>
+<p> <strong> Phone:</strong> <%= @worker.user.phone %> </p>
+<p><strong> Age:</strong>  <%= @worker.age %> </p>
+<p><strong> SSnumber:</strong>  <%= @worker.SSnumber %></p>
+<p><strong> Gender:</strong>  <%= @worker.gender %> </p>
+<p><strong>Available from: </strong> <%= @worker.from_date %> </p>
+<p><strong>Available till: </strong> <%= @worker.to_date %> </p>
 
 <%= render partial:"worker_skills/all_skills_of_worker"%>

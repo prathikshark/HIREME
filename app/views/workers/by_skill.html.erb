@@ -1,0 +1,20 @@
+<h1>All workers</h1>
+<% @workers.each do |worker| %>
+  <div class="card", id= "workers-container">
+    <div class="card-body">
+     
+    <%= render partial: "worker_details",locals: {worker: worker} %>
+    <%= button_to 'View',  worker_path(id: worker.id) ,method: :get,class: 'btn btn-primary' %><br/>
+    <%= button_to 'Add', workers_path ,class: 'btn btn-primary' %>
+    <%= button_to 'Contact', workers_path ,class: 'btn btn-primary' %><br/>
+
+
+    </div>
+</div>
+<% end %>
+
+<style>
+  .card{
+    border: 2px solid black;
+  }
+</style>

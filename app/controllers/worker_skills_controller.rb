@@ -1,5 +1,5 @@
 class WorkerSkillsController < ApplicationController    
-  before_action :check_if_skill_exist, only: [:create]
+  before_action -> { check_if_skill_exist(current_user) }, only: [:create]
 
   def index
     @worker_skills = WorkerSkill.all
@@ -44,15 +44,16 @@ class WorkerSkillsController < ApplicationController
     def worker_skill_params
         params.require(:worker_skill).permit(:id, :wage, :experience)
     end
-    def check_if_skill_exist
-        permitted_values = worker_skill_params()
-        skill_id=permitted_values[:id]
-        skill_present=WorkerSkill.find_by(skill_id: skill_id)
-        if (skill_present)
-          worker_id=Worker.find_by(user_id: current_user.id)
-          flash[:alert]="Skill already exit !"
-          redirect_to worker_path(:worker_id)
-        end
+
+    def check_if_skill_exist(current_user)
+      permitted_values = worker_skill_params()
+      skill_id = permitted_values[:id]
+      skill_present = WorkerSkill.find_by(skill_id: skill_id)
+      worker = Worker.find_by(user_id: current_user.id)
+      if skill_present
+        flash[:alert] = "Skill already exists!"
+        redirect_to worker_path(id: worker.id)
+      end
     end
     
 end

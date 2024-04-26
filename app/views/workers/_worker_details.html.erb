@@ -1,0 +1,15 @@
+    <% if worker.profile_picture.attached? %>
+        <%= image_tag worker.profile_picture ,class: "img"%>
+    <% else %>
+        <p>No profile picture available</p>
+    <% end %>
+    <p class="card-text">Name: <%= worker.user.name %></p>
+    <p class="card-text">Email: <%= worker.user.email %></p>
+    <p class="card-text">Phone: <%= worker.user.phone %></p>
+    <p class="card-text">gender: <%= worker.gender %></p>
+    <p class="card-text">Age: <%= worker.age %></p>
+    skills:
+    <% worker.worker_skills.each do |worker_skill|%>
+        <%= worker_skill.skill.skill_type %>,
+    <% end %>
+ 

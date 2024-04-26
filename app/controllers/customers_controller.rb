@@ -10,6 +10,10 @@ class CustomersController < ApplicationController
 
     end
 
+    def show
+    
+    end
+    
     def destroy
       @user=User.find(params[:id]) 
       if @user && @user.destroy 

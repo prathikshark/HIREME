@@ -1,52 +1,72 @@
-
 <style>
-   .container{
-    margin-top:20px;
+  .container {
+    margin-top: 20px;
     display: flex;
-    flex-direction: row;
-    min-width:1400px;
+    flex-wrap: wrap;
     justify-content: space-evenly;
-}
-.card {
-    margin: 20px; 
-}
+  }
+
+  .card {
+    margin: 20px;
+    width: 26rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .card-body {
+    text-align: center;
+  }
+
+  .card-icon {
+    font-size: 3rem;
+    margin-bottom: 10px;
+  }
+
+  .card-link {
+    margin-top: 10px;
+    text-decoration: none;
+    color: #007bff;
+  }
 </style>
 
 <div class="container">
-    <div class="card" style="width: 18rem;">
-        <div class="card-body">
-            <h5 class="card-title">Admins</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <%= link_to 'All Admins', admins_list_path %>
-            </div>
-    </div>
-
-
-    <div class="card" style="width: 18rem;">
+  <div class="card">
     <div class="card-body">
-        <h5 class="card-title">Worker</h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        <%= link_to 'All workers', workers_path %>
-        </div>
+      <i class="fas fa-user-tie card-icon"></i>
+      <h5 class="card-title">Admins</h5>
+      <p class="card-text">Manage admin users.</p>
+      <p>Number of Admins: <%= @admin_count %></p>
+      <%= link_to 'View All Admins', admins_list_path, class: 'card-link' %>
     </div>
+  </div>
 
-    <div class="card" style="width: 18rem;">
+  <div class="card">
     <div class="card-body">
-        <h5 class="card-title">Customers</h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        <%= link_to 'All customers', customers_path %>
+      <i class="fas fa-hard-hat card-icon"></i>
+      <h5 class="card-title">Workers</h5>
+      <p class="card-text">View and manage worker profiles.</p>
+      <p>Number of Workers: <%= @worker_count %></p>
+      <%= link_to 'View All Workers', workers_path, class: 'card-link' %>
     </div>
-    </div>
+  </div>
 
-    <div class="card" style="width: 18rem;">
+  <div class="card">
     <div class="card-body">
-        <h5 class="card-title">Skills</h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        <%= link_to 'All skills', skills_path %>
+      <i class="fas fa-user card-icon"></i>
+      <h5 class="card-title">Customers</h5>
+      <p class="card-text">Manage customer accounts.</p>
+      <p>Number of Customers: <%= @customer_count %></p>
+      <%= link_to 'View All Customers', customers_path, class: 'card-link' %>
     </div>
+  </div>
+
+  <div class="card">
+    <div class="card-body">
+      <i class="fas fa-tools card-icon"></i>
+      <h5 class="card-title">Skills</h5>
+      <p class="card-text">Manage available skills.</p>
+      <p>Number of Skills: <%= @skill_count %></p>
+      <%= link_to 'View All Skills', skills_path, class: 'card-link' %>
     </div>
-    
+  </div>
 </div>
-
-
-

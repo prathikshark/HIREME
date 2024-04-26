@@ -3,7 +3,7 @@
 <div class="skill-container">
     <h3> Skills </h3>
     <button type="button" id="myInput" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Add</button>
-      <% for worker_skill in @user.worker.worker_skills%>
+      <% for worker_skill in @worker.worker_skills%>
           <div class="skill-data">
           <p><strong><%= worker_skill.skill.skill_type%></strong></p>
           <p>Experience: <%= worker_skill.experience%></p>

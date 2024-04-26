@@ -70,4 +70,4 @@ gem 'devise'
 gem 'nested_form'
 gem 'sassc-rails'
 
-gem 'mysql2'
+gem 'jquery-rails'

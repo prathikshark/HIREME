@@ -1,11 +1,11 @@
 <%= render partial: "modal",locals:{data: "Add admin"}  %>
-<h1>All Admins</h1>
-<button type="button" id="myInput" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Admin</button>
-    <ul>
+<h1 class="heading">All Admins</h1>
+<button type="button" id="myInput" class="btn btn-primary add-btn" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Admin</button>
+    <ul class="container">
       <% @admins.each do |admin| %>
         
         <div class="card" style="width: 18rem;">
-            <div class="card-body">
+            <div class="card-body c">
                 <h5 class="card-title">Admin</h5> 
                 <p class="card-text"><%= admin.name %></p>
                 <p class="card-text"><%= admin.email %></p>

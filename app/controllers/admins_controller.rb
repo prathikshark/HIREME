@@ -1,6 +1,9 @@
 class AdminsController < ApplicationController
     def index
-
+        @admin_count = User.where(role: 'admin').count
+        @worker_count = User.where(role: 'worker').count
+        @customer_count = User.where(role: 'customer').count
+        @skill_count = Skill.count
     end
 
     def admin_list
