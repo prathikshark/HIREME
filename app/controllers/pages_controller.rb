@@ -7,4 +7,8 @@ class PagesController < ApplicationController
 
   def contactus
   end
+
+  def portal
+  end
+  
 end

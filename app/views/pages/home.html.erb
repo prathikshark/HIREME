@@ -1,64 +1,90 @@
 <style>
-    .card-img{
-      width: 18vw;
-      height: 18vw;
-    }
-    .card{
-      border: none;
-      margin: 5px;
-  
-    }
-    .top-container{
-      margin: 40px;
+.card-img{
+    width: 18vw;
+    height: 18vw;
+  }
+  .card{
+    border: none;
+    margin: 5px;
 
-    }
-    .home-heading {
-      display: flex;
-      justify-content: center; 
-      font-size: 55px;
-      font-weight: 500;
-      color: #ad52b7;
+  }
+  .top-container{
+    margin: 27px;
+  }
+  .home-heading {
+    display: flex;
+    justify-content: center; 
+    font-size: 55px;
+    font-weight: 500;
+    color: #ad52b7;
+  }
 
-    }
+  .home-sub-heading {
+    display: flex;
+    justify-content: center; 
+    font-size: 25px;
+    font-weight: 350;
+    color: black;
+  }
+  .book-btn{
+    font-size: 18px;
+    font-weight: 500;
+    color: white;
+    background-color: #ecc94a;
+    width: 5vw;
+    border:none;
+    border-radius: 10px;
+  }
 
-    .home-sub-heading {
-      display: flex;
-      justify-content: center; 
-      font-size: 25px;
-      font-weight: 350;
-      color: #b182b6;
-    }
-    .book-btn{
-      font-size: 18px;
-      font-weight: 500;
-      color: white;
-      background-color: #ecc94a;
-      width: 5vw;
-      border:none;
-      border-radius: 10px;
-    }
-    .book-btn:hover {
-      background-color: white;
-      color: #ad52b7;
-   }
+  .book-btn:hover {
+    background-color: white;
+    color: #ad52b7;
+ }
 
-    .card-title{
-      color: #882393;
-    }
-    .card-text{
-      color: #882393;
-    }
-    .reviews{
-      margin: 20px;
-      background-color: #eae6eb;
-      height: 300px;
-      width: 1300px ;
-    }
+  .card-title{
+    color: #882393;
+  }
+  .card-text{
+    color: black;
+  }
+  .reviews{
+    margin: 20px;
+    background-color: #eae6eb;
+    height: 300px;
+    width: 1300px ;
+  }
+
+  .home-img{
+    width: 1519px;
+}
+.image-container{
+  display: flex;
+  justify-content: center; 
+}
+.inside-img-first-text{
+  color: white;
+  font-size: 30px;
+  font-weight: 480;
+  position: absolute;
+  top: 500px;
+
+  }
+.inside-img-second-text{
+  color: white;
+  font-size: 40px;
+  font-weight: 500;
+  position: absolute;
+  top: 550px;
+}
     
 </style>
 
 <%= render partial: "modal" %>
-
+<div class= "image-container">
+    <img class="home-img" src="<%= asset_path('home bg.png') %>" alt="Card image cap">
+    <p class="inside-img-first-text">Still depending on your watchman to hire a maid?</p>
+    <p class="inside-img-second-text">Explore the smart way to hire a domestic helper!</p>
+</div>
 <div class="top-container">
     <p class="home-heading">"INDIA'S TRUSTED HOME MAKERS"</p>
     <p class="home-sub-heading">Hireme is the simplest way to get your life in order with the right domestic help</p>
@@ -69,6 +95,7 @@
     <img class="card-img" src="<%= asset_path('cook.png') %>" alt="Card image cap">
     <h5 class="card-title">Cooks</h5>
     <p class="card-text">Choose between basic home-style or fancy cooking at affordable rates!.</p>
+    <%= button_to 'Book', portal_path, method: :get, class: "book-btn" %>
     <button type="button" id="myInput" class="book-btn" data-bs-toggle="modal" data-bs-target="#exampleModalCenter" data-skill-id = "1">Book</button>
 </div>
 
@@ -76,21 +103,21 @@
     <img class="card-img" src="<%= asset_path('sweep.png') %>" alt="Card image cap">
     <h5 class="card-title">Maids</h5>
     <p class="card-text">Experienced & verified care maid for everyday home cleaning!.</p>
-    <button type="button" id="myInput" class="book-btn " data-bs-toggle="modal" data-bs-target="#exampleModalCenter" data-skill-id = "2">Book</button>
+    <%= button_to 'Book', portal_path, method: :get, class: "book-btn" %>
 </div>
 
  <div class="card">
     <img class="card-img" src="<%= asset_path('caretaker.png') %>" alt="Card image cap">
     <h5 class="card-title">Care taker</h5>
     <p class="card-text">Experienced & verified care takers for everyday home cleaning!.</p>
-    <button type="button" id="myInput" class="book-btn " data-bs-toggle="modal" data-bs-target="#exampleModalCenter" data-skill-id = "3">Book</button>
+    <%= button_to 'Book', portal_path, method: :get, class: "book-btn" %>
 </div>
 
 <div class="card">
     <img class="card-img" src="<%= asset_path('driver.png') %>" alt="Card image cap">
     <h5 class="card-title">Drivers</h5>
     <p class="card-text">Experienced & verified drivers on your ways!</p>
-    <button type="button" id="myInput" class="book-btn " data-bs-toggle="modal" data-bs-target="#exampleModalCenter" data-skill-id = "4">Book</button>
+    <%= button_to 'Book', portal_path, method: :get, class: "book-btn" %>
 </div>
 
 

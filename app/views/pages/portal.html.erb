@@ -1,0 +1,150 @@
+<style>
+.image-container{
+  display: flex;
+  justify-content: center; 
+}
+
+.form{
+    position: absolute;
+    top: 45% ; 
+    width: 85% ;
+    display: flex;
+    flex-direction: row;
+    transform: translateX(8% );
+    flex-wrap: wrap;
+    border-radius: 10px;
+    background-color: white;
+    justify-content: center;
+}
+
+.field{
+    margin: 10px;
+}
+
+form .field label{
+    background-color: #6e2381;
+    color: white;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 10px 5px;
+}
+.submit-btn{
+  position: relative;
+  top: 40px;
+  left: 5px;
+}
+.home-img{
+    width: 1519px;
+}
+.time{
+    width: 130px;
+}
+#timing_scroll{
+    position: relative;
+    bottom: 10px;
+}
+.service-dropdown{
+    height: 200px;
+}
+
+.bottom-text{
+    display: flex;
+    justify-content: center; 
+    font-size: 55px;
+    font-weight: 500;
+    color: #ad52b7;
+}
+
+.reviews{
+    margin: 20px;
+    background-color: #eae6eb;
+    height: 300px;
+    width: 1300px ;
+  }
+
+</style>
+
+<div class= "image-container">
+    <img class="home-img" src="<%= asset_path('home bg.png') %>" alt="Card image cap">
+</div>
+
+<div class="portal">
+<%= form_with url: workers_by_skill_path, method: :get, id: "filter-form",class: "form", remote: true do |f| %>
+    <div class="field ">
+        <%= f.label :Services  %><br />
+        <%= f.collection_select :id, Skill.all, :id, :skill_type, prompt: true %>
+    </div>
+    <div class="field">
+        <%= f.label :from_date, 'From Date' %><br />
+        <%= f.date_field :from_date, class: 'date form-control' %>
+    </div>
+    <div class="field">
+        <%= f.label :to_date, 'To Date' %><br />
+        <%= f.date_field :to_date, class: 'date form-control', id: 'worker_to_date' %>
+    </div>
+    <div class="field">
+        <%= f.label :day_night  %><br />
+        <%= select_tag :day_night, options_for_select(["Day", "Night"]), class: "form-control", id: "day_night_select" %>
+    </div>
+    <div class="field">
+        <%= f.label :gender  %><br />
+        <%= select_tag :gender, options_for_select(["Male", "Female"]), class: "form-control", id: "gender_select" %>
+    </div>
+    <div class="field">
+        <%= label :hours_per_day, "Hours per Day" %><br />
+        <%= number_field :hours_per_day, nil, class: "form-control", min: 1, id: "hours_per_day_input", placeholder: "hours per day" %>
+    </div>
+    <div class="field">
+        <%= label :timing, "Timing" ,class: "time"%><br />
+        <div id="timing_scroll">
+            <select name="timing" class="field form-control">
+            </select>
+        </div>
+    </div>
+    <div class="field submit-btn">
+        <%= submit_tag "Apply Filters", class: "btn btn-primary apply-btn" %>
+    </div>
+
+<% end %>
+</div>
+
+<div class="bottom-text">
+   <p>We are here for your needs!</p>
+</div>
+<div class="reviews">
+  
+</div>
+
+
+<script>
+document.getElementById('day_night_select').addEventListener('change', function() {
+    const hoursPerDay = parseInt(document.getElementById('hours_per_day_input').value);
+    const dayNight = this.value;
+    const timingSelect = document.querySelector('#timing_scroll select');
+    timingSelect.innerHTML = '';
+  
+    let startHour, endHour;
+  
+    if (dayNight === 'Day') {
+      startHour = 4;
+      endHour = 17;
+    }
+   else if (dayNight === 'Night') {
+      startHour = 18;
+      endHour = 29; 
+    }
+  
+    for (let i = startHour; i <= endHour - hoursPerDay; i++) {
+      const option = document.createElement('option');
+      option.value = i % 24; // Wrap around to 0 if greater than 23
+      option.textContent = `${i % 24}:00 - ${(i + hoursPerDay) % 24}:00`;
+      timingSelect.appendChild(option);
+    }
+  });
+  
+  document.getElementById('hours_per_day_input').addEventListener('input', function() {
+    document.getElementById('day_night_select').dispatchEvent(new Event('change'));
+  });
+
+
+</script>

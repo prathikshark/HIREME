@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   root 'pages#home'
   get 'aboutus', to: 'pages#aboutus'
   get 'contactus', to: 'pages#contactus'
+  get 'portal', to: 'pages#portal'
 
   devise_for :users
 
