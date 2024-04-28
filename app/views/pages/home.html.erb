@@ -26,6 +26,11 @@
     font-weight: 350;
     color: black;
   }
+  .service-container{
+    display: flex;
+    flex-direction: row;
+    margin: 50px;
+  }
   .book-btn{
     font-size: 18px;
     font-weight: 500;
@@ -90,36 +95,36 @@
     <p class="home-sub-heading">Hireme is the simplest way to get your life in order with the right domestic help</p>
 </div>
 
-<div class="container">
+<div class="service-container">
   <div class="card">
     <img class="card-img" src="<%= asset_path('cook.png') %>" alt="Card image cap">
     <h5 class="card-title">Cooks</h5>
     <p class="card-text">Choose between basic home-style or fancy cooking at affordable rates!.</p>
     <%= button_to 'Book', portal_path, method: :get, class: "book-btn" %>
     <button type="button" id="myInput" class="book-btn" data-bs-toggle="modal" data-bs-target="#exampleModalCenter" data-skill-id = "1">Book</button>
-</div>
+   </div>
 
   <div class="card">
     <img class="card-img" src="<%= asset_path('sweep.png') %>" alt="Card image cap">
     <h5 class="card-title">Maids</h5>
     <p class="card-text">Experienced & verified care maid for everyday home cleaning!.</p>
     <%= button_to 'Book', portal_path, method: :get, class: "book-btn" %>
-</div>
+  </div>
 
- <div class="card">
-    <img class="card-img" src="<%= asset_path('caretaker.png') %>" alt="Card image cap">
-    <h5 class="card-title">Care taker</h5>
-    <p class="card-text">Experienced & verified care takers for everyday home cleaning!.</p>
-    <%= button_to 'Book', portal_path, method: :get, class: "book-btn" %>
-</div>
+  <div class="card">
+      <img class="card-img" src="<%= asset_path('caretaker.png') %>" alt="Card image cap">
+      <h5 class="card-title">Care taker</h5>
+      <p class="card-text">Experienced & verified care takers for everyday home cleaning!.</p>
+      <%= button_to 'Book', portal_path, method: :get, class: "book-btn" %>
+    </div>
 
-<div class="card">
-    <img class="card-img" src="<%= asset_path('driver.png') %>" alt="Card image cap">
-    <h5 class="card-title">Drivers</h5>
-    <p class="card-text">Experienced & verified drivers on your ways!</p>
-    <%= button_to 'Book', portal_path, method: :get, class: "book-btn" %>
+  <div class="card">
+      <img class="card-img" src="<%= asset_path('driver.png') %>" alt="Card image cap">
+      <h5 class="card-title">Drivers</h5>
+      <p class="card-text">Experienced & verified drivers on your ways!</p>
+      <%= button_to 'Book', portal_path, method: :get, class: "book-btn" %>
+  </div>
 </div>
-
 
 <div class="reviews">
   

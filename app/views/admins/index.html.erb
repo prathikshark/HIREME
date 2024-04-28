@@ -1,8 +1,9 @@
 <style>
-  .container {
+  .admin-container {
     margin-top: 20px;
     display: flex;
     flex-wrap: wrap;
+    flex-direction: row;
     justify-content: space-evenly;
   }
 
@@ -25,48 +26,57 @@
   .card-link {
     margin-top: 10px;
     text-decoration: none;
-    color: #007bff;
+    font-size: 17px;
+    color: #aa0789;
   }
+  .worker-container {
+  margin: 20px;
+  justify-self: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-gap: 20px;
+}
+
+.c {
+  border-radius: 7px;
+  padding: 20px;
+  text-align: center;
+  align-items: center;
+  box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.1);
+}
+
 </style>
 
-<div class="container">
-  <div class="card">
-    <div class="card-body">
+<div class="worker-container">
+  <div class="c">
       <i class="fas fa-user-tie card-icon"></i>
       <h5 class="card-title">Admins</h5>
       <p class="card-text">Manage admin users.</p>
       <p>Number of Admins: <%= @admin_count %></p>
       <%= link_to 'View All Admins', admins_list_path, class: 'card-link' %>
-    </div>
   </div>
 
-  <div class="card">
-    <div class="card-body">
+  <div class="c">
       <i class="fas fa-hard-hat card-icon"></i>
       <h5 class="card-title">Workers</h5>
       <p class="card-text">View and manage worker profiles.</p>
       <p>Number of Workers: <%= @worker_count %></p>
       <%= link_to 'View All Workers', workers_path, class: 'card-link' %>
-    </div>
   </div>
 
-  <div class="card">
-    <div class="card-body">
+  <div class="c">
       <i class="fas fa-user card-icon"></i>
       <h5 class="card-title">Customers</h5>
       <p class="card-text">Manage customer accounts.</p>
       <p>Number of Customers: <%= @customer_count %></p>
       <%= link_to 'View All Customers', customers_path, class: 'card-link' %>
-    </div>
   </div>
 
-  <div class="card">
-    <div class="card-body">
+  <div class="c">
       <i class="fas fa-tools card-icon"></i>
       <h5 class="card-title">Skills</h5>
       <p class="card-text">Manage available skills.</p>
       <p>Number of Skills: <%= @skill_count %></p>
       <%= link_to 'View All Skills', skills_path, class: 'card-link' %>
-    </div>
   </div>
 </div>

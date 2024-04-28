@@ -7,9 +7,8 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  
-
-  enum role:[:customer,:worker,:admin]
+    
+enum role: [:customer, :worker, :admin]
 
 
   has_one :worker, inverse_of: :user,dependent: :destroy

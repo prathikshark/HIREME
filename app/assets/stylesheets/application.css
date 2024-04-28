@@ -11,14 +11,14 @@ body{
   overflow-y: auto;
 }
 
-/* .container {
+.container {
   background-color: #fff;
   padding: 20px;
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   width: 400px;
   margin: 0 auto; /* Center the container horizontally */
-} */
+}
 
 
 h2 {
@@ -67,6 +67,7 @@ nav {
   font-weight: 1000;
   margin-right: 100px;
 }
+
 #me{
   color: #f3c623;
 }
@@ -121,7 +122,7 @@ nav {
   background-color: #242424;
   color: white;
   border: 1px solid white;
-  /* box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.2); */
+  box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.2);
   z-index: 9999;
   text-align: center;
   word-wrap: break-word;
@@ -142,22 +143,67 @@ nav {
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   grid-gap: 20px;
 }
-.c{
-  border-radius:7px;
-  padding: 20px;
-  text-align: center;
-  align-items: center;
-  box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.1);
 
-}
 .heading{
   position: relative;
   left: 44vw;
 }
 
-.add-btn{
+.add-admin-btn{
   position: relative;
   left: 47vw;
   border:none;
+}
+.yellow-btn{
 
+  background-color: #f3c623;
+  border: 2px solid white;
+  color:white;
+}
+
+.yellow-btn:hover {
+  color:white;
+  background-color: #e0b20d;
+}
+
+.purple-btn {
+  color:white;
+  background-color: #ad52b7;
+  border: 2px solid white;
+}
+
+.purple-btn:hover {
+  color:white;
+  background-color: #9a26a7;
+}
+.button-row {
+  margin-top: 5px;
+  display: flex;
+  justify-content: center;
+  gap: 10px; 
+}
+
+
+.worker-container {
+  margin: 20px;
+  justify-self: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-gap: 20px;
+}
+
+.c {
+  border-radius: 7px;
+  margin:5px;
+  padding: 20px;
+  text-align: center;
+  align-items: center;
+  box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.1);
+}
+.approve-btn {
+  border: 1px solid black;
+  background-color: #9e9999;
+}
+.green-btn {
+  background-color: #4caf50;
 }

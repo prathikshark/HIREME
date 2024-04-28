@@ -1,15 +1,20 @@
 <%= render partial: "modal" %>
+<h3> Skills </h3>
+<% if current_user.role != 'customer' %>
+   <button type="button" id="myInput" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Add</button>
+<% end %>
 
-<div class="skill-container">
-    <h3> Skills </h3>
-    <button type="button" id="myInput" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Add</button>
+<div class="worker-container">
       <% for worker_skill in @worker.worker_skills%>
-          <div class="skill-data">
+          <div class="c">
           <p><strong><%= worker_skill.skill.skill_type%></strong></p>
           <p>Experience: <%= worker_skill.experience%></p>
           <p>Wage per hour: <%= worker_skill.wage%></p>
           <p>Rating: <%= worker_skill.rating%></p>
-          <%= button_to 'Remove', worker_skill_path(id: worker_skill.id) ,method: :delete ,class: 'btn btn-danger' %><br/>
+          <% if current_user.role != 'customer' %>
+             <%= button_to 'Remove', worker_skill_path(id: worker_skill.id) ,method: :delete ,class: 'btn btn-danger' %><br/>
+             <%= button_to 'Edit', worker_skill_path(id: worker_skill.id) ,method: :delete ,class: 'btn btn-danger' %><br/>
+          <% end %>
           <br/>
           </div>
 
@@ -27,3 +32,22 @@
   })
 
 </script>
+<style>
+
+.worker-container {
+  margin: 20px;
+  justify-self: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-gap: 20px;
+}
+
+.c {
+  border-radius: 7px;
+  padding: 20px;
+  text-align: center;
+  align-items: center;
+  box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.1);
+}
+
+</style>

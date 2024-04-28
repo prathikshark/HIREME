@@ -1,19 +1,17 @@
 <%= render partial: "modal",locals:{data: "Add admin"}  %>
 <h1 class="heading">All Admins</h1>
-<button type="button" id="myInput" class="btn btn-primary add-btn" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Admin</button>
-    <ul class="container">
+<button type="button" id="myInput" class="btn add-admin-btn yellow-btn" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Admin</button>
+
+<div class="worker-container">
       <% @admins.each do |admin| %>
-        
-        <div class="card" style="width: 18rem;">
-            <div class="card-body c">
-                <h5 class="card-title">Admin</h5> 
+          <div class="c">
+               <h5 class="card-title">Admin</h5> 
                 <p class="card-text"><%= admin.name %></p>
                 <p class="card-text"><%= admin.email %></p>
-                <button type="button" id="editbtn" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Edit</button>
+                <button type="button" id="editbtn" class="purple-btn btn" data-bs-toggle="modal" data-bs-target="#exampleModal">Edit</button>
             </div>
-        </div>
       <% end %>
-</ul>
+</div>
 
 
 <script>
@@ -27,3 +25,27 @@
 
 </script>
 
+<style>
+
+
+<style>
+.worker-container{
+}
+
+.worker-container {
+  margin: 20px;
+  justify-self: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-gap: 20px;
+}
+
+.c {
+  border-radius: 7px;
+  padding: 20px;
+  text-align: center;
+  align-items: center;
+  box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.1);
+}
+
+</style>

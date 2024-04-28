@@ -1,15 +1,39 @@
-<div class="row">
+<div class="worker-container">
   <% @workers.each do |worker| %>
-    <div class="col-md-2">
-      <div class="card mb-3">
-        <div class="card-body">
-         
-        <%= render partial: "worker_details",locals: {worker: worker} %>
+    <div class="c">
+ 
+          <%= render partial: "worker_details",locals: {worker: worker} %>
+          <div class="button-row">
+          <%= button_to 'View', worker_path(id: worker.id), method: :get, class: 'btn purple-btn' %>
+          <%= button_to 'Remove', worker_path(id: worker.id), method: :delete, class: 'btn purple-btn' %>
+          <button class='btn approve-btn' data-worker-id="<%= worker.id %>">Approve</button>
 
-          <%= button_to 'View', worker_path(id: worker.id), method: :get, class: 'btn btn-primary' %>
-          <%= button_to 'Remove', worker_path(id: worker.id), method: :delete, class: 'btn btn-danger' %>
+
         </div>
-      </div>
-    </div>
+        </div>
   <% end %>
 </div>
+
+
+
+
+<script>
+$(document).ready(function() {
+  $('.approve-btn').click(function() {
+    var workerId = $(this).data('worker-id');
+    $.ajax({
+      url: '/workers/' + workerId + '/approve',
+      type: 'PATCH',
+      success: function(response) {
+        // Handle success
+        console.log('Worker status updated to approved');
+        // You may want to reload the page or update the UI here
+      },
+      error: function(xhr, status, error) {
+        // Handle error
+        console.error('Error updating worker status:', error);
+      }
+    });
+  });
+});
+</script>

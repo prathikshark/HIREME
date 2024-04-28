@@ -1,20 +1,37 @@
-<h1>All workers</h1>
-<% @workers.each do |worker| %>
-  <div class="card", id= "workers-container">
-    <div class="card-body">
-     
-    <%= render partial: "worker_details",locals: {worker: worker} %>
-    <%= button_to 'View',  worker_path(id: worker.id) ,method: :get,class: 'btn btn-primary' %><br/>
-    <%= button_to 'Add', workers_path ,class: 'btn btn-primary' %>
-    <%= button_to 'Contact', workers_path ,class: 'btn btn-primary' %><br/>
-
-
+<h1 class="worker-heading">All workers</h1>
+<div class="worker-container">
+  <% @workers.each do |worker| %>
+    <div class="c">
+      <%= render partial: "worker_details",locals: {worker: worker} %>
+      <div class="button-row">
+        <%= button_to 'View', worker_path(id: worker.id), method: :get, class: 'btn purple-btn ' %>
+        <%= button_to 'Add', workers_path, class: 'btn purple-btn ' %>
+        <%= button_to 'Contact', workers_path, class: 'btn purple-btn' %>
+      </div>
     </div>
+  <% end %>
 </div>
-<% end %>
+
+
 
 <style>
-  .card{
-    border: 2px solid black;
-  }
+.worker-container {
+  margin: 20px;
+  justify-self: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-gap: 20px;
+}
+
+.c {
+  border-radius: 7px;
+  padding: 20px;
+  text-align: center;
+  align-items: center;
+  box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.1);
+}
+
+
+
+
 </style>

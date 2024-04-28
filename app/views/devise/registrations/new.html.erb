@@ -1,11 +1,28 @@
 <%= javascript_include_tag 'registration' %>
+<style>
+.radio{
+    display :flex;
+    flex-direction:row;
+    position:relative;
+    left: 680px;      
+}
+.radio input[type="radio"] {
+    margin-right: 5px; 
+}
+.radio label{
+    position:relative;
+    top:7px;
+    margin-right: 10px;
+}
+</style>
+
 
 <div class="main">
     <div class="radio">
-        <input type="radio" id="customer"  name="user" value="customer">
-        <label for="html">Customer</label><br>
+        <input type="radio" id="customer" name="user" value="customer" checked>
+        <label for="customer">Customer</label><br>
         <input type="radio" id="worker" name="user" value="worker">
-        <label for="css">Worker</label><br>
+        <label for="worker">Worker</label><br>
     </div>
 
     <div class="container">
@@ -14,15 +31,56 @@
     <h2>Sign up</h2>
 
         
+
+         <div id="worker-form" style="display: none;">
          <%= render partial:"worker_form"%>
+        </div>
 
+
+          <div id="customer-form" style="display: none;">
           <%= render partial:"customer_form"%>
-
+            </div>
         
+            
         <%= render "devise/shared/links" %>
         </div>
     </div>
 </div>
 
+<style>
+
+</style>
 
 
+
+<script>
+
+document.addEventListener('DOMContentLoaded', function() {
+    const workerRadio = document.getElementById('worker');
+    const customerRadio = document.getElementById('customer');
+    const workerForm = document.getElementById('worker-form');
+    const customerForm = document.getElementById('customer-form');
+
+    function showForm(show, hide) {
+      show.style.display = 'block';
+      hide.style.display = 'none';
+    }
+
+    function toggleForms() {
+      if (workerRadio.checked) {
+        showForm(workerForm, customerForm);
+      } else if (customerRadio.checked) {
+        showForm(customerForm, workerForm);
+      }
+    }
+
+    workerRadio.addEventListener('change', toggleForms);
+    customerRadio.addEventListener('change', toggleForms);
+
+    toggleForms();
+});
+
+
+
+
+</script>

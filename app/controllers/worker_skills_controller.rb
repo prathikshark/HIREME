@@ -31,7 +31,7 @@ class WorkerSkillsController < ApplicationController
   end
 
   def destroy
-    @worker_skill=WorkerSkill.find(params[:id]) 
+    @worker_skill = WorkerSkill.find_by(params[:id])
 
     if @worker_skill &&  @worker_skill.destroy
       flash[:notice]="Skill deleted"
@@ -39,6 +39,7 @@ class WorkerSkillsController < ApplicationController
       flash[:alert]="Could not remove skill"
     end
   end
+
 
   private
     def worker_skill_params
@@ -48,8 +49,8 @@ class WorkerSkillsController < ApplicationController
     def check_if_skill_exist(current_user)
       permitted_values = worker_skill_params()
       skill_id = permitted_values[:id]
-      skill_present = WorkerSkill.find_by(skill_id: skill_id)
       worker = Worker.find_by(user_id: current_user.id)
+      skill_present = WorkerSkill.find_by(skill_id: skill_id, worker_id: worker.id)
       if skill_present
         flash[:alert] = "Skill already exists!"
         redirect_to worker_path(id: worker.id)
