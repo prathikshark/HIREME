@@ -9,13 +9,10 @@ Rails.application.routes.draw do
   get 'admins/list', to: 'admins#admin_list'
   resources :admins
 
-  
   get 'workers/by_skill', to: 'workers#by_skill', as: 'workers_by_skill'
   resources :workers do
-    collection do
-       get 'index/:status', action: :index, as: 'index'
-    end
     member do
+       patch 'reject'
        patch 'approve'
     end
    end

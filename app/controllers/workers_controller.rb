@@ -2,17 +2,14 @@ class WorkersController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def index
-    if params[:status] == 'pending'
-      @workers = Worker.joins(:user).where(users: { role: :worker, status: :pending })
-    else
-      @workers = Worker.joins(:user).where(users: { role: :worker })
-    end
+        if params[:status] == 'pending'
+            @pending = true
+            @workers = Worker.includes(:user).where(users: { role: :worker }, status: :pending)
+        else
+            @workers = Worker.includes(:user).where(users: { role: :worker }, status: :approved)
+        end
   end
-  
-    
-    def new
 
-    end
 
     def create
     end
@@ -31,27 +28,40 @@ class WorkersController < ApplicationController
 
     end
 
+    #filter the worker according to user need
     def by_skill
-     id = params[:id]
-     gender = params[:gender]
-     from_date = params[:from_date]
-     to_date = params[:to_date]
-     shift = params[:shift]
-     hour = params[:hour]
-     @workers = Worker.joins(:worker_skills)
-     .where(status: "approved", gender: gender, shift: shift)
-     .where("from_date <= ? AND to_date >= ?", to_date, from_date)
-     .where(worker_skills: { skill_id: id }) 
+      id = params[:id]
+      gender = params[:gender]
+      from_date = params[:from_date]
+      to_date = params[:to_date]
+      shift = params[:shift]
+      hour = params[:hour]
+      @workers = Worker.joins(:worker_skills)
+      .where(status: "approved", gender: gender, shift: shift)
+      .where("from_date <= ? AND to_date >= ?", to_date, from_date)
+      .where(worker_skills: { skill_id: id }) 
     end
 
+    #approve the worker status
     def approve
+
       @worker = Worker.find(params[:id])
-      if @worker.status =='approved' 
-        flash[:alert] = "Worker status already  'approved'"
-      elsif @worker.update(status: "approved")
-        flash[:notice] = "Worker status updated to 'approved'"
+      if @worker.update(status: "approved")
+        flash[:notice] = "Worker is 'approved'"
       else
-        flash[:alert] = "Failed to update worker status"
+        flash[:alert] = "Failed to approve"
+      end
+      redirect_to workers_path
+    end
+
+   #reject the worker status
+    def reject
+
+      @worker = Worker.find(params[:id])
+      if @worker.update(status: "rejected")
+        flash[:notice] = "Worker is'rejected'"
+      else
+        flash[:alert] = "Failed to reject"
       end
       redirect_to workers_path
     end

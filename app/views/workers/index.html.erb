@@ -1,21 +1,54 @@
-<div class="worker-container">
-  <% @workers.each do |worker| %>
-    <div class="c">
- 
-          <%= render partial: "worker_details",locals: {worker: worker} %>
-          <div class="button-row">
-          <%= button_to 'View', worker_path(id: worker.id), method: :get, class: 'btn purple-btn' %>
-          <%= button_to 'Remove', worker_path(id: worker.id), method: :delete, class: 'btn purple-btn' %>
-          <button class='btn approve-btn' data-worker-id="<%= worker.id %>">Approve</button>
+<style>
+.table-container{
+    width: 80vw;
+    margin: 2vw;
+    margin-left: 10vw;
+    border-radius: 5px;
+    box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.1);
+}
 
 
-        </div>
-        </div>
-  <% end %>
+</style>
+
+<div class="table-container">
+    <table class="table">
+        <thead class="thead">
+            <tr>
+            <th scope="col">Sl.No</th>
+            <th scope="col">Name</th>
+            <th scope="col">Gender</th>
+            <th scope="col">Age</th>
+            <% if @pending%>
+                    <th scope="col">Approve</th>
+                    <th scope="col">Reject</th>
+            <% else %>
+                <th scope="col">Remove</th>
+                <th scope="col">View</th>
+            <% end %>
+
+            </tr>
+        </thead>
+        <tbody>
+            <% count=0 %>
+            <% @workers.each do |worker| %>
+            <tr>
+            <th scope="row"><p class="card-text"><b> <%= count+=1 %></b></th>
+            <td> <p class="card-text"><b> <%= worker.user.name %></b></p></td>
+            <td> <p class="card-text"> <%= worker.gender %></p></td>
+            <td> <p class="card-text"><%= worker.age %></p></td>
+            <% if @pending%>
+                <td> <button class='btn approve-btn' data-worker-id="<%= worker.id %>">Approve</button></td>
+                <td> <button class='btn reject-btn' data-worker-id="<%= worker.id %>">Reject</button></td>
+            <% else %>
+                <td> <%= button_to 'Remove', worker_path(id: worker.id), method: :delete, class: 'btn purple-btn' %></td>
+                <td> <%= button_to 'View', worker_path(id: worker.id), method: :get, class: 'btn purple-btn' %></td>
+            <% end %>
+            </tr>
+        <% end %>
+
+        </tbody>
+    </table>
 </div>
-
-
-
 
 <script>
 $(document).ready(function() {
@@ -25,15 +58,37 @@ $(document).ready(function() {
       url: '/workers/' + workerId + '/approve',
       type: 'PATCH',
       success: function(response) {
-        // Handle success
         console.log('Worker status updated to approved');
-        // You may want to reload the page or update the UI here
       },
       error: function(xhr, status, error) {
-        // Handle error
         console.error('Error updating worker status:', error);
       }
     });
   });
 });
+
+
+
+$(document).ready(function() {
+  $('.reject-btn').click(function() {
+    var workerId = $(this).data('worker-id');
+    $.ajax({
+      url: '/workers/' + workerId + '/reject',
+      type: 'PATCH',
+      success: function(response) {
+        console.log('Worker status updated to reject');
+      },
+      error: function(xhr, status, error) {
+        console.error('Error updating worker status:', error);
+      }
+    });
+  });
+});
+
 </script>
+
+
+
+
+
+

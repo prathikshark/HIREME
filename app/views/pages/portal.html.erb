@@ -34,7 +34,8 @@ form .field label{
   left: 5px;
 }
 .home-img{
-    width: 1519px;
+    width: 100vw ;
+    opacity: 0.9;
 }
 .time{
     width: 130px;
@@ -59,10 +60,11 @@ form .field label{
     margin: 20px;
     background-color: #eae6eb;
     height: 300px;
-    width: 1300px ;
+    width: 100vw ;
   }
 
 </style>
+<%= stylesheet_link_tag 'pages'%>
 
 <div class= "image-container">
     <img class="home-img" src="<%= asset_path('home bg.png') %>" alt="Card image cap">

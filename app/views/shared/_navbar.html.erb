@@ -38,13 +38,13 @@
         <% if current_user %>
           <% if current_user.role == "admin"%>
             <li class="nav-item">
-            <%= button_to 'Pending requests', workers_path(status: 'pending'), method: :get, class: "nav-link" %>
+            <%= button_to 'Pending requests', workers_path(status: 'pending'), method: :get, class: "nav-link" ,params: {status: 'pending'}%>
             </li>
             <li class="nav-item">
              <%= button_to 'Admin', admins_path, method: :get, class: "nav-link "%>
             </li>
          <% end %>
-         <% if current_user.role == "worker"%>
+         <% if !current_user.role == "admin"%>
             <li class="nav-item">
             <%= button_to 'Profile', worker_path(id: current_user.worker.id), method: :get, class: "nav-link "%>
             </li>
