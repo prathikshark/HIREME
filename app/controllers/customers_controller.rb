@@ -9,9 +9,12 @@ class CustomersController < ApplicationController
     def create
 
     end
+    
+    def edit
+    end
 
     def show
-    
+      @customer = User.find(params[:id])
     end
     
     def destroy

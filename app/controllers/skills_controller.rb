@@ -11,10 +11,8 @@ class SkillsController < ApplicationController
         @skill=Skill.create(skill_parameter)
         if @skill.save
           flash[:notice]="Skill added"
-          puts "==========================================================="
         else
           flash[:alert]="Could not add skill"
-          puts "------------------------------------------------------------"
         end
     end
     def destroy

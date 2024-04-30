@@ -1,6 +1,6 @@
 <%= render partial: "modal" %>
 <h3> Skills </h3>
-<% if current_user.role != 'customer' %>
+<% if current_user.role == 'worker' %>
    <button type="button" id="myInput" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Add</button>
 <% end %>
 
@@ -11,7 +11,7 @@
           <p>Experience: <%= worker_skill.experience%></p>
           <p>Wage per hour: <%= worker_skill.wage%></p>
           <p>Rating: <%= worker_skill.rating%></p>
-          <% if current_user.role != 'customer' %>
+          <% if current_user.role == 'worker' %>
              <%= button_to 'Remove', worker_skill_path(id: worker_skill.id) ,method: :delete ,class: 'btn btn-danger' %><br/>
              <%= button_to 'Edit', worker_skill_path(id: worker_skill.id) ,method: :delete ,class: 'btn btn-danger' %><br/>
           <% end %>
