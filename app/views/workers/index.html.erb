@@ -20,11 +20,10 @@
             <th scope="col">Age</th>
             <% if @pending%>
                     <th scope="col">Approve</th>
-                    <th scope="col">Reject</th>
-            <% else %>
+            <% end %>
+                <th scope="col">Reject</th>
                 <th scope="col">Remove</th>
                 <th scope="col">View</th>
-            <% end %>
 
             </tr>
         </thead>
@@ -37,12 +36,11 @@
             <td> <p class="card-text"> <%= worker.gender %></p></td>
             <td> <p class="card-text"><%= worker.age %></p></td>
             <% if @pending%>
-                <td> <button class='btn approve-btn purple-btn' data-worker-id="<%= worker.id %>">Approve</button></td>
-                <td> <button class='btn reject-btn purple-btn' data-worker-id="<%= worker.id %>">Reject</button></td>
-            <% else %>
-                <td> <%= button_to 'Remove', worker_path(id: worker.id), method: :delete, class: 'btn purple-btn' %></td>
-                <td> <%= button_to 'View', worker_path(id: worker.id), method: :get, class: 'btn purple-btn' %></td>
+                <td> <button class='btn approve-btn' data-worker-id="<%= worker.id %>">Approve</button></td>
             <% end %>
+                <td> <button class='btn reject-btn' data-worker-id="<%= worker.id %>">Reject</button></td>
+                <td> <%= button_to 'Remove', worker_path(id: worker.id), method: :delete, onclick: 'return confirm("Are you sure?. Delete the worker?")', class: 'btn purple-btn' %></td>
+                <td> <%= button_to 'View', worker_path(id: worker.id), method: :get, class: 'btn purple-btn' %></td>
             </tr>
         <% end %>
 
@@ -86,7 +84,6 @@ $(document).ready(function() {
 });
 
 </script>
-
 
 
 

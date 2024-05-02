@@ -1,5 +1,11 @@
 <%= render partial: "modal" %>
 
+<% if @worker.status == "rejected" %>
+    <div class="alert alert-danger" role="alert">
+         Your profile is rejected. Please provide the right details.
+         <%= button_to 'Send profile', update_status_worker_path(@worker.id), method: :patch, onclick: 'return confirm("Are you sure?")', class: 'btn purple-btn' %>
+         </div>
+<% end %>
 <h1>Profile </h1>
 <% if @worker.profile_picture.attached? %>
     <%= image_tag @worker.profile_picture ,class: "img"%>
@@ -16,5 +22,4 @@
 <p><strong>Available from: </strong> <%= @worker.from_date %> </p>
 <p><strong>Available till: </strong> <%= @worker.to_date %> </p>
 
-<%= button_to 'Edit',edit_worker_path(id: @worker.id), method: :patch %>
 <%= render partial:"worker_skills/all_skills_of_worker"%>

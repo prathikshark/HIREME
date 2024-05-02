@@ -72,10 +72,10 @@ form .field label{
 
 <div class="portal">
 <%= form_with url: workers_by_skill_path, method: :get, id: "filter-form",class: "form", remote: true do |f| %>
-    <div class="field ">
-        <%= f.label :Services  %><br />
-        <%= f.collection_select :id, Skill.all, :id, :skill_type, prompt: true %>
-    </div>
+    <div class="field">
+    <%= f.label :Services %><br />
+    <%= f.collection_select :skill_type, Skill.all, :skill_type, :skill_type, prompt: true %>
+  </div>
     <div class="field">
         <%= f.label :from_date, 'From Date' %><br />
         <%= f.date_field :from_date, class: 'date form-control' %>
@@ -144,7 +144,7 @@ document.getElementById('day_night_select').addEventListener('change', function(
     }
   });
   
-  document.getElementById('hours_per_day_input').addEventListener('input', function() {
+   document.getElementById('hours_per_day_input').addEventListener('input', function() {
     document.getElementById('day_night_select').dispatchEvent(new Event('change'));
   });
 

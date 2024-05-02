@@ -1,0 +1,30 @@
+<div class="c">
+    <h5 class="card-title">Admin</h5> 
+    <p class="card-text"><%= admin.name %></p>
+    <p class="card-text"><%= admin.email %></p>
+    <button type="button" id="editbtn" class="purple-btn btn" data-bs-toggle="modal" data-bs-target="#editmodal">Edit</button>
+ </div>
+
+ <script>
+
+ $(document).ready(function () {
+    $("#editbtn").on("click", function (e) {
+      e.preventDefault();
+      var adminId = $(this).data("admin-id");
+      console.log(adminId)
+      $.ajax({
+        url: "http://localhost:3000/admins/" + adminId + "/edit",
+        method: "GET",
+        dataType: "html",
+        data: { id: adminId },
+        success: function (result) {
+          $("#editmodal .modal-content").html(result);
+        },
+        error: function (xhr, status, error) {
+          console.error(error);
+        },
+      });
+    });
+  });
+  
+</script>

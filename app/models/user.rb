@@ -8,10 +8,11 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
     
-enum role: [:customer, :worker, :admin]
+  enum role: [:customer, :worker, :admin]
 
 
   has_one :worker, inverse_of: :user,dependent: :destroy
+  has_one :customer, inverse_of: :user,dependent: :destroy
   accepts_nested_attributes_for :worker
 
   def set_default_role

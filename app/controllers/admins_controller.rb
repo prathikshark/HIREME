@@ -3,7 +3,7 @@ class AdminsController < ApplicationController
 
     def index
         @admin_count = User.where(role: 'admin').count
-        @worker_count = Worker.where(status: 'approved').count
+        @worker_count = User.where(role: 'worker').count
         @customer_count = User.where(role: 'customer').count
         @skill_count = Skill.count
     end
@@ -14,28 +14,31 @@ class AdminsController < ApplicationController
     end
 
     def new
-
     end
-
 
     def create
-        @admin = User.new(admin_parameters)
+        @admin = User.create(name:params[:name],email:params[:email],password:params[:password],role:2)
         if @admin.save
           flash[:notice] = "Admin added"
-          render partial: 'admin', locals: { admin: @admin } # Render the updated admin card
         else
           flash[:alert] = "Could not add admin"
-          render status: :unprocessable_entity
+        end
+        render partial: "admins/each_admin", locals:{admin:@admin}
+    end
+
+     def edit
+        @admin = Admin.find(params[:id])
+     end
+    
+     def update
+        @admin = Admin.find(params[:id])
+        if @admin.update(admin_parameters)
+          redirect_to @admin, notice: "Admin updated successfully"
+        else
+          render 'edit'
         end
       end
-      
-
-    def edit
-        @admin = User.find(params[:id])
-    end
-    def update
-
-    end
+    
 
     private
     def admin_parameters

@@ -10,7 +10,7 @@
           <%= link_to 'Home',root_path,class:"nav-link" %>
         </li>
         <li class="nav-item">
-          <%= link_to 'Find a Maid',portal_path,class:"nav-link" %>
+          <%= link_to 'Service',portal_path,class:"nav-link" %>
         </li>
         <li class="nav-item">
           <%= link_to 'About Us',aboutus_path,class:"nav-link" %>
@@ -30,7 +30,7 @@
         <% if current_user %>
             <% if current_user.role == "admin" %>
             <li class="nav-item">
-              <%= button_to 'Pending requests', workers_path(status: 'pending'), method: :get, class: "nav-link" %>
+            <%= button_to 'Pending requests', workers_path(status: 'pending'), method: :get, class: "nav-link" ,params: {status: 'pending'}%>
             </li>
             <li class="nav-item">
               <%= button_to 'Admin', admins_path, method: :get, class: "nav-link" %>
@@ -40,6 +40,9 @@
               <%= button_to 'Profile', worker_path(id: current_user.worker.id), method: :get, class: "nav-link" %>
             </li>
           <% elsif current_user.role == "customer" %>
+            <li class="nav-item">
+                <%= button_to 'Your services', cart_path(id: current_user.customer.id), method: :get, class: "nav-link "%>
+            </li>
             <li class="nav-item">
               <%= button_to 'Profile', customer_path(id: current_user.id), method: :get, class: "nav-link" %>
             </li>

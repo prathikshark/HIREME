@@ -21,15 +21,12 @@
 </div>
 
 
-<div class="worker-container">
-      <% @admins.each do |admin| %>
-          <div class="c">
-               <h5 class="card-title">Admin</h5> 
-                <p class="card-text"><%= admin.name %></p>
-                <p class="card-text"><%= admin.email %></p>
-                <button type="button" id="editbtn" class="purple-btn btn" data-bs-toggle="modal" data-bs-target="#editmodal">Edit</button>
-            </div>
+<div class="worker-container", id="all_admin">
+      <% @admins.each do |current_admin| %>
+          <%= render partial: "each_admin",locals:{admin:current_admin}%>
       <% end %>
+
+    
 </div>
 
 <!-- Modal for edit -->
@@ -41,11 +38,11 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">  
-        <div class="form-container">
-            <%= form_for(@user, url: admins_path(@user.id), method: :patch) do |f| %>
-              <%= render partial:"form", locals:{f:f ,data: 'Edit'}%> 
-            <% end %>
-            </div>
+        <div class="form-container">     
+                <%= form_for(@user, url: admins_path, method: :post) do |f| %>
+                   <%= render partial:"form", locals:{f: f ,data: 'Edit'}%>      
+                <% end %>
+         </div>
         </div>
     </div>
     </div>
@@ -55,36 +52,31 @@
 
 <script>
 
-console.log("TEST");
 
 $(document).ready(function () {
   $("#submit-btn").on("click", function (e) {
     e.preventDefault();
-
-    admin_data = {
-      user: {
-        name: $("#name").val(),
-        email: $("#email").val(),
-        password: $("#password").val()
-      },
+    admin = {
+      
+        name: $("#admin-name").val(),
+        email: $("#admin-email").val(),
+        password: $("#admin-password").val(),
+   
     };
 
-    console.log(admin_data);
+    console.log(admin);
     $.ajax({
-      url: "http://localhost:3000/admins/list",
+      url: "http://localhost:3000/admins",
       method: "POST",
-      data: admin_data,
+      data: admin,
       dataType: "html",
       success: function (result) {
         console.log(result);
-        $("#all_users").append(result);
+        $("#all_admin").append(result);
       },
     });
   });
 });
 
+
 </script>
-
-
-
-

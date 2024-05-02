@@ -14,12 +14,18 @@ Rails.application.routes.draw do
     member do
        patch 'reject'
        patch 'approve'
+       patch 'update_status'
+
     end
    end
    
   resources :customers
   resources :skills
   resources :worker_skills
+  resources :carts
+  resources :cart_services
+
+
  
 
 end

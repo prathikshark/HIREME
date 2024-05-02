@@ -1,0 +1,23 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  cart: one
+  worker_id: 1
+  from_date: 2024-05-02
+  to_date: 2024-05-02
+  skill_type: MyString
+  shift: MyString
+  time: MyString
+  hour_per_day: 1
+  wage: 1
+
+two:
+  cart: two
+  worker_id: 1
+  from_date: 2024-05-02
+  to_date: 2024-05-02
+  skill_type: MyString
+  shift: MyString
+  time: MyString
+  hour_per_day: 1
+  wage: 1

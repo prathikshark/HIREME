@@ -2,17 +2,14 @@ class WorkersController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def index
-    if params[:status] == 'pending'
-      @workers = Worker.joins(:user).where(users: { role: :worker, status: :pending })
-    else
-      @workers = Worker.joins(:user).where(users: { role: :worker })
-    end
+        if params[:status] == 'pending'
+            @pending = true
+            @workers = Worker.includes(:user).where(users: { role: :worker }, status: :pending)
+        else
+            @workers = Worker.includes(:user).where(users: { role: :worker }, status: :approved)
+        end
   end
-  
-    
-    def new
 
-    end
 
     def create
     end
@@ -31,30 +28,55 @@ class WorkersController < ApplicationController
 
     end
 
+    #filter the worker according to user need
     def by_skill
-     id = params[:id]
-     gender = params[:gender]
-     from_date = params[:from_date]
-     to_date = params[:to_date]
-     shift = params[:shift]
-     hour = params[:hour]
-     @workers = Worker.joins(:worker_skills)
-     .where(status: "approved", gender: gender, shift: shift)
-     .where("from_date <= ? AND to_date >= ?", to_date, from_date)
-     .where(worker_skills: { skill_id: id }) 
+      gender = params[:gender]
+      @filter_params = { 
+        skill_type: params[:skill_type],
+        from_date: params[:from_date],
+        to_date: params[:to_date],
+        shift: params[:day_night],
+        hours_per_day: params[:hours_per_day].first.to_i,
+        time: params[:timing]
+      }
+
+      @workers = Worker.includes(:worker_skills)
+                      .where(status: "approved", gender: gender, shift: @filter_params[:shift])
+                      .where("from_date <= ? AND to_date >= ?", @filter_params[:to_date], @filter_params[:from_date])
+                      .where(worker_skills: { skill_id: Skill.where(skill_type: @filter_params[:skill_type]).pluck(:id) })
+
+end
+    #approve the worker status
+    def approve
+
+      @worker = Worker.find(params[:id])
+      if @worker.update(status: "approved")
+        flash[:notice] = "Worker is 'approved'"
+      else
+        flash[:alert] = "Failed to approve"
+      end
+      redirect_to workers_path
     end
 
-    def approve
+   #reject the worker status
+    def reject
+
       @worker = Worker.find(params[:id])
-      if @worker.status =='approved' 
-        flash[:alert] = "Worker status already  'approved'"
-      elsif @worker.update(status: "approved")
-        flash[:notice] = "Worker status updated to 'approved'"
+      if @worker.update(status: "rejected")
+        flash[:notice] = "Worker is'rejected'"
       else
-        flash[:alert] = "Failed to update worker status"
+        flash[:alert] = "Failed to reject"
       end
       redirect_to workers_path
     end
     
-  
+    def update_status
+      @worker = Worker.find(params[:id])
+      if @worker.update(status: 'pending')
+        flash.now[:notice] = 'Request sent'
+      else
+        flash.now[:alert] = 'Failed to send request .Please try again.'
+      end
+      render :show
+    end
 end
