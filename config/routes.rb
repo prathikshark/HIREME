@@ -24,6 +24,11 @@ Rails.application.routes.draw do
   resources :worker_skills
   resources :carts
   resources :cart_services
+  resources :booked_services, only: [:edit, :update]
+
+
+
+
 
 
  

@@ -14,7 +14,10 @@ class CustomersController < ApplicationController
     end
 
     def show
-      @customer = User.find(params[:id])
+      user = User.find(params[:id])
+      @customer = user.customer
+      @bookings = @customer.bookings
+
     end
     
     def destroy
