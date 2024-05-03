@@ -44,27 +44,56 @@
             <%= w.label :SSnumber %><br />
             <%= w.text_field :SSnumber, placeholder: 'SSN' %>
         </div>
+
+        <div class="field">
+            <%= w.label :date_of_birth %>
+            <%= w.date_field :date_of_birth, placeholder: 'Date of Birth', max: '2006-01-01' %>
+         </div>
+
         <div class="field">
             <%= w.label :age %><br />
             <%= w.number_field :age, placeholder: 'Age' %>
         </div>
+
         <div class="field">
             <%= w.label :Gender %><br />
             <%= w.select :gender, ['Male', 'Female', 'Other'], prompt: 'Select gender' %>
         </div>
+
         <div class="field">
             <%= w.label :profile_picture, "Profile picture" %><br/>
             <%= w.file_field :profile_picture %>
         </div>
 
         <div class="field">
-            <%= w.label :from_date, 'From Date' %><br />
-            <%= w.date_field :from_date, class: 'date', id: 'worker_from_date' %>
-        </div>
+            <%= w.label :from_date, 'Available from date' %><br />
+            <%= w.date_field :from_date, class: 'date', id: 'worker_from_date', min: Date.today %>
+            </div>
         <div class="field">
-            <%= w.label :to_date, 'To Date' %><br />
-            <%= w.date_field :to_date, class: 'date', id: 'worker_to_date' %>
+            <%= w.label :to_date, 'Available till date' %><br />
+            <%= w.date_field :to_date, class: 'date', id: 'worker_to_date', max: (Date.today + 40) %>
+            </div>
+
+        <div class="field">
+            <%= w.label :shift %><br />
+            <%= w.select :shift, ['Day', 'Night', 'Both'], prompt: 'Select Shift' %>
         </div>
+
+        <div class="field">
+            <%= w.label :educational_qualification %>
+            <%= w.text_field :educational_qualification, placeholder: 'Educational Qualification' %>
+        </div>
+        
+        <div class="field">
+            <%= w.label :marital_status %>
+            <%= w.select :marital_status, ['Married', 'Unmarried', 'Divorced'], prompt: 'Marital status' %>
+        </div>
+        
+        <div class="field">
+            <%= w.label :language %>
+            <%= w.text_area :language, placeholder: 'Language' %>
+        </div>
+        
         <% end %>
 
     </div>            

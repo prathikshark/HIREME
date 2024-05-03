@@ -15,6 +15,7 @@ class SkillsController < ApplicationController
           flash[:alert]="Could not add skill"
         end
     end
+
     def destroy
       @skill=Skill.find(params[:id]) 
       if @skill && @skill.destroy 

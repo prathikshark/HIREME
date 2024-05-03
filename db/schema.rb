@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_02_162526) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_03_060425) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -99,6 +99,14 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_02_162526) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "unavailabilities", force: :cascade do |t|
+    t.date "unavailable_date"
+    t.integer "worker_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["worker_id"], name: "index_unavailabilities_on_worker_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -154,6 +162,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_02_162526) do
   add_foreign_key "cart_services", "carts"
   add_foreign_key "carts", "customers"
   add_foreign_key "customers", "users"
+  add_foreign_key "unavailabilities", "workers"
   add_foreign_key "worker_skills", "skills"
   add_foreign_key "worker_skills", "workers"
   add_foreign_key "workers", "users"

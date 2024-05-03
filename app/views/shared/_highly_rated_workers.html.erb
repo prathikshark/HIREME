@@ -1,0 +1,25 @@
+<div class= "high_rated_worker_container" %>
+    <% workers_with_high_rating.each do |worker| %>
+        <div class="high_rated_worker">
+            <% if worker.profile_picture.attached? %>
+                <%= image_tag worker.profile_picture ,class: "img"%>
+            <% else %>
+                <p>No profile picture available</p>
+            <% end %>
+            <p class="card-text"><b> <%= worker.user.name %></b></p>
+            <p class="card-text"><%= worker.user.address %></p>
+            <p class="card-text"> <%= worker.gender %></p>
+            <p class="card-text"><%= worker.age %></p>
+            <% worker.worker_skills.each do |worker_skill|%>
+                <%= worker_skill.skill.skill_type%>: <%= worker_skill.rating%><br>
+            <% end %>
+        </div>
+    <% end %>
+</div>
+
+
+
+
+
+
+

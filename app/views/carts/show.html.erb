@@ -4,7 +4,7 @@
         
         <% @cart_services.each do |service| %>
             <div class="cart-item">
-            <p><strong>Name:</strong> <%= service.cart.customer.user.name %></p>
+            <p><strong>Name:</strong> <%= service.worker_id %></p>
             <p><strong>From:</strong> <%= service.from_date %></p>
             <p><strong>To:</strong> <%= service.to_date %></p>
             <p><strong>Hours per day:</strong> <%= service.hour_per_day %></p>

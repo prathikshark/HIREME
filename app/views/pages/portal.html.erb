@@ -56,12 +56,6 @@ form .field label{
     color: #ad52b7;
 }
 
-.reviews{
-    margin: 20px;
-    background-color: #eae6eb;
-    height: 300px;
-    width: 100vw ;
-  }
 
 </style>
 <%= stylesheet_link_tag 'pages'%>
@@ -78,11 +72,11 @@ form .field label{
   </div>
     <div class="field">
         <%= f.label :from_date, 'From Date' %><br />
-        <%= f.date_field :from_date, class: 'date form-control' %>
+        <%= f.date_field :from_date, class: 'date form-control' , min: Date.today%>
     </div>
     <div class="field">
         <%= f.label :to_date, 'To Date' %><br />
-        <%= f.date_field :to_date, class: 'date form-control', id: 'worker_to_date' %>
+        <%= f.date_field :to_date, class: 'date form-control', id: 'worker_to_date', max: (Date.today + 30) %>
     </div>
     <div class="field">
         <%= f.label :day_night  %><br />

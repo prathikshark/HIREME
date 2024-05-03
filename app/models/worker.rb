@@ -3,4 +3,5 @@ class Worker < ApplicationRecord
   has_one_attached :profile_picture
   has_many :worker_skills, dependent: :destroy
   has_many :skills , through: :workerSkill
+  has_many :unavailabilities , dependent: :destroy
 end

@@ -50,12 +50,6 @@
 .card-text {
   color: black;
 }
-.reviews {
-  margin: 20px;
-  background-color: #eae6eb;
-  height: 300px;
-  width: 100vw;
-}
 
 .home-img {
   width: 100 vw;
@@ -79,3 +73,25 @@
   top: 68%;
 }
 
+.reviews {
+  margin: 50px;
+  background-color: #b790b6;
+  height: 700px;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  padding: 100px ;
+}
+
+.high_rated_worker_container{
+  width: 40vw;
+  background-color: rgb(237, 230, 230);
+  padding: 20px ;
+  display: flex;
+  justify-content: center;
+}
+
+.high_rated_worker{
+  padding: 10px;
+  
+}

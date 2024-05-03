@@ -194,6 +194,7 @@ nav {
   align-items: center;
   box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.1);
 }
+
 .approve-btn,
 .reject-btn {
   border: 1px solid black;

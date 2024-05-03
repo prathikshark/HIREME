@@ -31,7 +31,7 @@ class WorkersController < ApplicationController
     #filter the worker according to user need
     def by_skill
       gender = params[:gender]
-      @filter_params = { 
+      @filter_params = {
         skill_type: params[:skill_type],
         from_date: params[:from_date],
         to_date: params[:to_date],
@@ -39,16 +39,16 @@ class WorkersController < ApplicationController
         hours_per_day: params[:hours_per_day].first.to_i,
         time: params[:timing]
       }
-
-      @workers = Worker.includes(:worker_skills)
-                      .where(status: "approved", gender: gender, shift: @filter_params[:shift])
-                      .where("from_date <= ? AND to_date >= ?", @filter_params[:to_date], @filter_params[:from_date])
-                      .where(worker_skills: { skill_id: Skill.where(skill_type: @filter_params[:skill_type]).pluck(:id) })
-
-end
+    
+      @available_workers = Worker.includes(:worker_skills)
+                                  .where(status: "approved", gender: gender)
+                                  .where.not(id: unavailable_worker_ids)
+                                  .where(worker_skills: { skill_id: Skill.where(skill_type: @filter_params[:skill_type]).pluck(:id) })
+                                  .where("shift =? OR shift =?", @filter_params[:shift], "Both")
+    end
+    
     #approve the worker status
     def approve
-
       @worker = Worker.find(params[:id])
       if @worker.update(status: "approved")
         flash[:notice] = "Worker is 'approved'"
@@ -60,7 +60,6 @@ end
 
    #reject the worker status
     def reject
-
       @worker = Worker.find(params[:id])
       if @worker.update(status: "rejected")
         flash[:notice] = "Worker is'rejected'"
@@ -79,4 +78,12 @@ end
       end
       render :show
     end
+    
+    private
+    
+    def unavailable_worker_ids
+      Unavailability.where("unavailable_date BETWEEN ? AND ?", @filter_params[:from_date], @filter_params[:to_date])
+                    .pluck(:worker_id)
+    end
 end
+
