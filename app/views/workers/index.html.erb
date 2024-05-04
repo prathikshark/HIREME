@@ -1,14 +1,4 @@
-<style>
-.table-container{
-    width: 80vw;
-    margin: 2vw;
-    margin-left: 10vw;
-    border-radius: 5px;
-    box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.1);
-}
-
-
-</style>
+<%= javascript_include_tag 'handel_workers' %>
 
 <div class="table-container">
     <table class="table">
@@ -48,42 +38,6 @@
     </table>
 </div>
 
-<script>
-$(document).ready(function() {
-  $('.approve-btn').click(function() {
-    var workerId = $(this).data('worker-id');
-    $.ajax({
-      url: '/workers/' + workerId + '/approve',
-      type: 'PATCH',
-      success: function(response) {
-        console.log('Worker status updated to approved');
-      },
-      error: function(xhr, status, error) {
-        console.error('Error updating worker status:', error);
-      }
-    });
-  });
-});
-
-
-
-$(document).ready(function() {
-  $('.reject-btn').click(function() {
-    var workerId = $(this).data('worker-id');
-    $.ajax({
-      url: '/workers/' + workerId + '/reject',
-      type: 'PATCH',
-      success: function(response) {
-        console.log('Worker status updated to reject');
-      },
-      error: function(xhr, status, error) {
-        console.error('Error updating worker status:', error);
-      }
-    });
-  });
-});
-
-</script>
 
 
 

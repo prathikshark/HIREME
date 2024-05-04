@@ -1,0 +1,32 @@
+  .admin-container {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+
+  .card {
+    margin: 20px;
+    width: 26rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .card-body {
+    text-align: center;
+  }
+
+  .card-icon {
+    font-size: 3rem;
+    margin-bottom: 10px;
+  }
+
+  .card-link {
+    margin-top: 10px;
+    text-decoration: none;
+    font-size: 17px;
+    color: #aa0789;
+  }
+
+

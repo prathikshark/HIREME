@@ -1,5 +1,5 @@
 <%= stylesheet_link_tag 'pages'%>
-<%= render partial: "modal" %>
+
 <div class= "image-container">
     <img class="home-img" src="<%= asset_path('home bg.png') %>" alt="Card image cap">
     <p class="inside-img-first-text">Still depending on your watchman to hire a maid?</p>
@@ -16,7 +16,6 @@
     <h5 class="card-title">Cooks</h5>
     <p class="card-text">Choose between basic home-style or fancy cooking at affordable rates!.</p>
     <%= button_to 'Book', portal_path, method: :get, class: "book-btn" %>
-    <button type="button" id="myInput" class="book-btn" data-bs-toggle="modal" data-bs-target="#exampleModalCenter" data-skill-id = "1">Book</button>
    </div>
 
   <div class="card">

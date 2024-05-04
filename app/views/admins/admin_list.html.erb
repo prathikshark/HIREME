@@ -1,3 +1,5 @@
+<%= javascript_include_tag 'handel_admin' %>
+
 <h1 class="heading">All Admins</h1>
 <button type="button" id="myInput" class="btn add-admin-btn yellow-btn" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Admin</button>
 
@@ -25,8 +27,6 @@
       <% @admins.each do |current_admin| %>
           <%= render partial: "each_admin",locals:{admin:current_admin}%>
       <% end %>
-
-    
 </div>
 
 <!-- Modal for edit -->
@@ -38,15 +38,10 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">  
-        <div class="form-container">     
-                <%= form_for(@user, url: admins_path, method: :post) do |f| %>
-                   <%= render partial:"form", locals:{f: f ,data: 'Edit'}%>      
-                <% end %>
-         </div>
+        <div class="form-container">
+       
+            </div>
         </div>
     </div>
     </div>
 </div>
-
-
-
