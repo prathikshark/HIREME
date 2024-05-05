@@ -1,3 +1,4 @@
+<%= javascript_include_tag 'handel_workers' %>
 
 <div class="table-container">
     <table class="table">
@@ -7,13 +8,12 @@
             <th scope="col">Name</th>
             <th scope="col">Gender</th>
             <th scope="col">Age</th>
-            <% if_request_pending(@pending) do%>
+            <% if_request_pending(@pending) do %>
               <th scope="col">Approve</th>
             <% end %>
                 <th scope="col">Reject</th>
                 <th scope="col">Remove</th>
                 <th scope="col">View</th>
-
             </tr>
         </thead>
         <tbody>
@@ -37,36 +37,7 @@
     </table>
 </div>
 
-<script>
-$(document).ready(function() {
-  $('.approve-btn').click(function() {
-    var workerId = $(this).data('worker-id');
-    $.ajax({
-      url: '/workers/' + workerId + '/approve',
-      type: 'PATCH',
-      success: function(response) {
-        console.log('Worker status updated to approved');
-      }
-    });
-  });
-});
 
-
-
-$(document).ready(function() {
-  $('.reject-btn').click(function() {
-    var workerId = $(this).data('worker-id');
-    $.ajax({
-      url: '/workers/' + workerId + '/reject',
-      type: 'PATCH',
-      success: function(response) {
-        console.log('Worker status updated to reject');
-      }
-    });
-  });
-});
-
-</script>
 
 
 

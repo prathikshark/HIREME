@@ -1,4 +1,5 @@
 class AdminsController < ApplicationController
+  skip_before_action :verify_authenticity_token
 
   def index
       @admin_count = User.where(role: 'admin').count

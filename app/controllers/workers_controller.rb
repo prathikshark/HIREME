@@ -1,6 +1,6 @@
 class WorkersController < ApplicationController
+  skip_before_action :verify_authenticity_token
   before_action :check_customer_role, only: :by_skill
-
 
   def index
         if params[:status] == 'pending'
