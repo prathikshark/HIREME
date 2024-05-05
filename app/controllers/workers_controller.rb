@@ -1,5 +1,6 @@
 class WorkersController < ApplicationController
-  skip_before_action :verify_authenticity_token
+  before_action :check_customer_role, only: :by_skill
+
 
   def index
         if params[:status] == 'pending'
@@ -47,28 +48,28 @@ class WorkersController < ApplicationController
                                   .where("shift =? OR shift =?", @filter_params[:shift], "Both")
     end
     
-    #approve the worker status
-    def approve
-      @worker = Worker.find(params[:id])
-      if @worker.update(status: "approved")
-        flash[:notice] = "Worker is 'approved'"
-      else
-        flash[:alert] = "Failed to approve"
+       #approve the worker status
+       def approve
+        @worker = Worker.find(params[:id])
+        if @worker.update(status: "approved")
+          flash[:notice] = "Worker is 'approved'"
+        else
+          flash[:alert] = "Failed to approve"
+        end
+        redirect_to workers_path
       end
-      redirect_to workers_path
-    end
+  
+     #reject the worker status
+      def reject
+        @worker = Worker.find(params[:id])
+        if @worker.update(status: "rejected")
+          flash[:notice] = "Worker is'rejected'"
+        else
+          flash[:alert] = "Failed to reject"
+        end
+        redirect_to workers_path
+      end
 
-   #reject the worker status
-    def reject
-      @worker = Worker.find(params[:id])
-      if @worker.update(status: "rejected")
-        flash[:notice] = "Worker is'rejected'"
-      else
-        flash[:alert] = "Failed to reject"
-      end
-      redirect_to workers_path
-    end
-    
     def update_status
       @worker = Worker.find(params[:id])
       if @worker.update(status: 'pending')
@@ -85,5 +86,17 @@ class WorkersController < ApplicationController
       Unavailability.where("unavailable_date BETWEEN ? AND ?", @filter_params[:from_date], @filter_params[:to_date])
                     .pluck(:worker_id)
     end
+
+    def check_customer_role
+      if current_user.nil? 
+        redirect_to new_user_session_path
+      else
+        unless current_user.role == "customer"
+          flash[:alert] = "Only customers can access this functionality."
+          redirect_to portal_path
+        end
+      end
+    end
+       
 end
 

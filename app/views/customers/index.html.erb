@@ -8,7 +8,6 @@
         <p class="card-text">Phone: <%= user.phone %></p>
         <p class="card-text">Address: <%= user.address %></p>
         <%= button_to 'Remove', customer_path(id: user.id),method: :delete ,class: 'btn btn-danger' %><br/>
-
     </div>
   </div>
 <% end %>

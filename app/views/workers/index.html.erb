@@ -1,4 +1,3 @@
-<%= javascript_include_tag 'handel_workers' %>
 
 <div class="table-container">
     <table class="table">
@@ -8,8 +7,8 @@
             <th scope="col">Name</th>
             <th scope="col">Gender</th>
             <th scope="col">Age</th>
-            <% if @pending%>
-                    <th scope="col">Approve</th>
+            <% if_request_pending(@pending) do%>
+              <th scope="col">Approve</th>
             <% end %>
                 <th scope="col">Reject</th>
                 <th scope="col">Remove</th>
@@ -25,7 +24,7 @@
             <td> <p class="card-text"><b> <%= worker.user.name %></b></p></td>
             <td> <p class="card-text"> <%= worker.gender %></p></td>
             <td> <p class="card-text"><%= worker.age %></p></td>
-            <% if @pending%>
+            <% if_request_pending(@pending) do%>
                 <td> <button class='btn approve-btn' data-worker-id="<%= worker.id %>">Approve</button></td>
             <% end %>
                 <td> <button class='btn reject-btn' data-worker-id="<%= worker.id %>">Reject</button></td>
@@ -38,6 +37,36 @@
     </table>
 </div>
 
+<script>
+$(document).ready(function() {
+  $('.approve-btn').click(function() {
+    var workerId = $(this).data('worker-id');
+    $.ajax({
+      url: '/workers/' + workerId + '/approve',
+      type: 'PATCH',
+      success: function(response) {
+        console.log('Worker status updated to approved');
+      }
+    });
+  });
+});
+
+
+
+$(document).ready(function() {
+  $('.reject-btn').click(function() {
+    var workerId = $(this).data('worker-id');
+    $.ajax({
+      url: '/workers/' + workerId + '/reject',
+      type: 'PATCH',
+      success: function(response) {
+        console.log('Worker status updated to reject');
+      }
+    });
+  });
+});
+
+</script>
 
 
 

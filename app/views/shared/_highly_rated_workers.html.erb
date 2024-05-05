@@ -1,11 +1,15 @@
-<div class= "high_rated_worker_container" %>
+<div class= "high_rated_worker_container">
     <% workers_with_high_rating.each do |worker| %>
         <div class="high_rated_worker">
-            <% if worker.profile_picture.attached? %>
+
+            <% if_profile_picture_attached(worker) do %>
                 <%= image_tag worker.profile_picture ,class: "img"%>
-            <% else %>
+            <% end %>
+
+            <% if_profile_picture_not_attached(worker) do %>
                 <p>No profile picture available</p>
             <% end %>
+
             <p class="card-text"><b> <%= worker.user.name %></b></p>
             <p class="card-text"><%= worker.user.address %></p>
             <p class="card-text"> <%= worker.gender %></p>

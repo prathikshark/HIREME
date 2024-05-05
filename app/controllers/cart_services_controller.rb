@@ -53,7 +53,6 @@ class CartServicesController < ApplicationController
     params.require(:filter_params).permit(:from_date, :to_date, :hour_per_day, :skill_type, :shift, :time)
           .merge(worker_id: params[:worker_id])
   end
-  
-  
-   end
+    
+end
    

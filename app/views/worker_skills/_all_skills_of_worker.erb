@@ -1,6 +1,6 @@
 <%= render partial: "modal" %>
 <h3> Skills </h3>
-<% if current_user.role == 'worker' %>
+<% if_current_user_worker(current_user) do %>
    <button type="button" id="myInput" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Add</button>
 <% end %>
 
@@ -17,9 +17,7 @@
           <% end %>
           <br/>
           </div>
-
-      <% end%>
-
+      <% end %>
 </div>
 
 

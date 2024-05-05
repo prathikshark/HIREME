@@ -1,71 +1,41 @@
-<%= javascript_include_tag 'handel_carts' %>
 <%= stylesheet_link_tag 'carts'%>
-
 <h2>Your services</h2>
-<div class="cart">
-    <% if @cart_services.present? %>
-        
-        <% @cart_services.each do |service| %>
-            <div class="cart-item">
-            <p><strong>Name:</strong> <%= service.worker_id %></p>
-            <p><strong>From:</strong> <%= service.from_date %></p>
-            <p><strong>To:</strong> <%= service.to_date %></p>
-            <p><strong>Hours per day:</strong> <%= service.hour_per_day %></p>
-            <p><strong>Time:</strong> <%= service.time %></p>
-            <p><strong>Shift:</strong> <%= service.shift %></p>
-            <p><strong>Service Type:</strong> <%= service.skill_type %></p>
-            <p><strong>Wage of the worker:</strong> <%= service.wage %></p>
-            <p><%= button_to 'Remove', cart_service_path(id: service.id), method: :delete, class: "btn yellow-btn" %></p>
-
-            </div>
-        <% end %>
-
-
+    <% render_cart_services(@cart_services)  do %> 
+        <div class="cart">
+            <% @cart_services.each do |service| %>
+                <div class="cart-item">
+                    <p><strong>Name:</strong> <%= service.worker_id %></p>
+                    <p><strong>From:</strong> <%= service.from_date %></p>
+                    <p><strong>To:</strong> <%= service.to_date %></p>
+                    <p><strong>Hours per day:</strong> <%= service.hour_per_day %></p>
+                    <p><strong>Time:</strong> <%= service.time %></p>
+                    <p><strong>Shift:</strong> <%= service.shift %></p>
+                    <p><strong>Service Type:</strong> <%= service.skill_type %></p>
+                    <p><strong>Wage of the worker:</strong> <%= service.wage %></p>
+                    <p><%= button_to 'Remove', cart_service_path(id: service.id), method: :delete, class: "btn yellow-btn" %></p>
+                </div>
+            <% end %>
         </div>
+
         <div class = "Book">
-        <button type="button" id="myInput" class="btn add-admin-btn yellow-btn" data-bs-toggle="modal" data-bs-target="#exampleModal">Book</button>
-
-        <!-- Modal for confirm  -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Confirm your service ?</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                    <%= button_to 'Confirm', cart_path(current_user.customer.id), method: :delete, class: 'btn purple-btn', id: 'confirmBtn', 'data-bs-dismiss' => 'modal' %>
-                    </div>
-                </div>s
-            </div>
-        </div>
-
-        <!-- Modal for booking done  -->
-        <div class="modal fade" id="popupModal" tabindex="-1" aria-labelledby="popupModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="popupModalLabel">Booking done!</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        Your booking has been confirmed.
+            <button type="button" id="myInput" class="btn add-admin-btn yellow-btn" data-bs-toggle="modal" data-bs-target="#exampleModal">Book</button>
+            
+            <!-- Modal for confirm  -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Confirm your service ?</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                             <%= button_to 'Confirm', cart_path(current_user.customer.id), method: :delete, class: 'btn purple-btn', id: 'confirmBtn' %>             
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-<% else %>
-       <h2> No services selected :(</h2>
+    <% end %>
+
+<% render_content_if_cart_is_empty (@cart_services)  do %> 
+        <h2> No services selected :(</h2>
 <% end %>
-
-<script>
-    document.getElementById("confirmBtn").addEventListener("click", function() {
-        $('#exampleModal').modal('hide');
-        $('#popupModal').modal('show');
-    });
-</script>
-
-
-</div>
-
-

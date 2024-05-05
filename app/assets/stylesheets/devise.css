@@ -1,0 +1,14 @@
+  .radio{
+    display :flex;
+    flex-direction:row;
+    position:relative;
+    left: 680px;      
+  }
+  .radio input[type="radio"] {
+    margin-right: 5px; 
+  }
+  .radio label{
+    position:relative;
+    top:7px;
+    margin-right: 10px;
+  }

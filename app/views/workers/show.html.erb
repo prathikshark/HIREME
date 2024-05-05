@@ -1,17 +1,20 @@
 <%= render partial: "modal" %>
 
-<% if @worker.status == "rejected" %>
+<% if_status_rejected(@worker) do %>
     <div class="alert alert-danger" role="alert">
          Your profile is rejected. Please provide the right details.
          <%= button_to 'Send profile', update_status_worker_path(@worker.id), method: :patch, onclick: 'return confirm("Are you sure?")', class: 'btn purple-btn' %>
          </div>
 <% end %>
 <h1>Profile </h1>
-<% if @worker.profile_picture.attached? %>
+
+<% if_profile_picture_attached(@worker) do %>
     <%= image_tag @worker.profile_picture ,class: "img"%>
-<% else %>
+<% end %>
+<% if_profile_picture_not_attached(@worker) do %>
     <p>No profile picture available</p>
 <% end %>
+
 <p> <strong> Name:</strong> <%= @worker.user.name %></p>
 <p> <strong> Email:</strong> <%= @worker.user.email %> </p>
 <p> <strong> Address:</strong> <%= @worker.user.address %> </p>

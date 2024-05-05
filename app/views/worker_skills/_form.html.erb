@@ -1,26 +1,25 @@
 
 <div class="form-container">
-<%= form_with  model: worker_skill, url: worker_skills_path, data: {turbo: false}, method: :post do |f| %>
+    <%= form_with  model: worker_skill, url: worker_skills_path, data: {turbo: false}, method: :post do |f| %>
 
-   <div class="field">
-        <%= f.label :skill_id %><br />
-        <%= f.collection_select :id,Skill.all,:id,:skill_type,prompt:true %>
-    </div>
+    <div class="field">
+            <%= f.label :skill_id %><br />
+            <%= f.collection_select :id,Skill.all,:id,:skill_type,prompt:true %>
+        </div>
+        
+        <div class="field">
+            <%= f.label :experience %><br />
+            <%= f.text_field :experience, autofocus: true, autocomplete: "experience" %>
+        </div>
+
+        <div class="field">
+            <%= f.label :wage, "Wage/hour" %><br />
+            <%= f.text_field :wage, autofocus: true, autocomplete: "wage" %>
+        </div>
     
-    <div class="field">
-        <%= f.label :experience %><br />
-        <%= f.text_field :experience, autofocus: true, autocomplete: "experience" %>
-    </div>
+        <div class="actions">
+        <%= f.submit 'Add', "data-bs-dismiss": "modal"%>
+        </div>
 
-    <div class="field">
-        <%= f.label :wage, "Wage/hour" %><br />
-        <%= f.text_field :wage, autofocus: true, autocomplete: "wage" %>
-     </div>
-  
-    <div class="actions">
-    <%= f.submit 'Add', "data-bs-dismiss": "modal"%>
-    </div>
-
-<% end %>
-
+    <% end %>
 </div>

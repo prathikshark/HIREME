@@ -152,3 +152,62 @@ form .field label{
     font-weight: 500;
     color: #ad52b7;
 }
+
+
+.about-us-container {
+  max-width: 800px;
+  margin: 50px auto;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+p {
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+
+.contact-us-container {
+  max-width: 800px;
+  margin: 50px auto;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.contact-us-container h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.contact-us-container label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+.contact-us-container input[type="text"],
+textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+.contact-us-container input[type="submit"] {
+  background-color: #333;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.contact-us-container input[type="submit"]:hover {
+  background-color: #555;
+}
