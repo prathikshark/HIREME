@@ -19,8 +19,8 @@
       <%= f.text_field :phone, autofocus: true, autocomplete: "phone" %>
     </div>
 
-    <div id="worker-fields">
-      <%= f.fields_for :worker, @user.worker || @user.build_worker do |w| %>
+    <div class="worker-fields">
+      <%= f.fields_for :worker, resource.worker do |w| %>
         <div class="field">
           <%= w.label :SSnumber %><br />
           <%= w.text_field :SSnumber, placeholder: 'SSN' %>
@@ -48,12 +48,12 @@
 
         <div class="field">
           <%= w.label :from_date, 'Available from date' %><br />
-          <%= w.date_field :from_date, class: 'date', id: 'worker_from_date', min: Date.today %>
+          <%= w.date_field :from_date, class: 'from-date', min: Date.today %>
         </div>
 
         <div class="field">
           <%= w.label :to_date, 'Available till date' %><br />
-          <%= w.date_field :to_date, class: 'date', id: 'worker_to_date', max: (Date.today + 40) %>
+          <%= w.date_field :to_date, class: 'to-date', max: (Date.today + 40) %>
         </div>
 
         <div class="field">

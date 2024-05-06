@@ -4,20 +4,38 @@
    <button type="button" id="myInput" class="btn purple-btn" data-bs-toggle="modal" data-bs-target="#exampleModal">Add</button>
 <% end %>
 
-<div class="worker-container">
+<div class="worker-container", id="all-skills-of-worker">
       <% for worker_skill in @worker.worker_skills%>
-          <div class="c">
-          <p><strong><%= worker_skill.skill.skill_type%></strong></p>
-          <p>Experience: <%= worker_skill.experience%></p>
-          <p>Wage per hour: <%= worker_skill.wage%></p>
-          <p>Rating: <%= worker_skill.rating%></p>
-          <% if current_user.role == 'worker' %>
-             <%= button_to 'Remove', worker_skill_path(id: worker_skill.id) ,method: :delete ,class: 'btn btn-danger' %><br/>
-             <%= button_to 'Edit', worker_skill_path(id: worker_skill.id) ,method: :delete ,class: 'btn btn-danger' %><br/>
-          <% end %>
-          <br/>
-          </div>
+           <%= render partial: "worker_skills/each_worker_skill",locals:{worker_skill: worker_skill}%>
       <% end %>
 </div>
 
 
+<script>
+
+  
+$(document).ready(function () {
+    $("#add-worker-skill-btn").on("click", function (event) {
+      event.preventDefault();
+
+      worker_skill = {worker_skill: {
+          
+          id: $('#worker_skill_id option:selected').val(),
+          wage: $("#worker-skill-experience").val(),
+          experience: $("#worker-skill-experience").val(),
+     
+      }};
+
+      console.log(worker_skill);
+      $.ajax({
+        url: "http://localhost:3000/worker_skills",
+        method: "POST",
+        data: worker_skill,
+        dataType: "html",
+        success: function (result) {
+          $("#all-skills-of-worker").append(result);
+        },
+      });
+    });
+  });
+</script>

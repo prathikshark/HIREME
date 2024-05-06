@@ -1,4 +1,6 @@
 class WorkerSkillsController < ApplicationController    
+  skip_before_action :verify_authenticity_token
+
   before_action -> { check_if_skill_exist(current_user) }, only: [:create]
 
   def index
@@ -7,18 +9,19 @@ class WorkerSkillsController < ApplicationController
 
   def create 
     permitted_values = worker_skill_params()
+
     worker= Worker.find_by(user_id: current_user.id)
+
     values = {wage:permitted_values[:wage], experience:permitted_values[:experience] , skill_id:permitted_values[:id], worker: worker}
     @worker_skill = WorkerSkill.create(values)
 
     if @worker_skill.save()
       flash[:notice]="Skill added"
+      render partial: "worker_skills/each_worker_skill", locals:{worker_skill: @worker_skill} 
     else
       puts(@worker_skill.errors.full_messages.to_sentence)
       flash[:alert]="Could not add skill"
-      redirect_to worker_path(id: current_user.id)
     end
-
     
   end
 
@@ -33,7 +36,8 @@ class WorkerSkillsController < ApplicationController
   def destroy
     @worker_skill = WorkerSkill.find_by(params[:id])
 
-    if @worker_skill &&  @worker_skill.destroy
+    if @worker_skill 
+      @worker_skill.destroy
       flash[:notice]="Skill deleted"
     else
       flash[:alert]="Could not remove skill"

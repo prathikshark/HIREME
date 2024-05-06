@@ -4,21 +4,21 @@
 
     <div class="field">
             <%= f.label :skill_id %><br />
-            <%= f.collection_select :id,Skill.all,:id,:skill_type,prompt:true %>
+            <%= f.collection_select :id,Skill.all ,:id,:skill_type,prompt:true ,id: "selected-worker-skill"%>
         </div>
         
         <div class="field">
             <%= f.label :experience %><br />
-            <%= f.text_field :experience, autofocus: true, autocomplete: "experience" %>
+            <%= f.text_field :experience, autofocus: true, autocomplete: "experience",id:"worker-skill-experience"%>
         </div>
 
         <div class="field">
             <%= f.label :wage, "Wage/hour" %><br />
-            <%= f.text_field :wage, autofocus: true, autocomplete: "wage" %>
+            <%= f.text_field :wage, autofocus: true, autocomplete: "wage",id:"worker-skill-wage" %>
         </div>
     
         <div class="actions">
-        <%= f.submit 'Add', "data-bs-dismiss": "modal"%>
+        <%= f.submit 'Add', "data-bs-dismiss": "modal",id:"add-worker-skill-btn"%>
         </div>
 
     <% end %>

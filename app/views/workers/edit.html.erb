@@ -37,7 +37,7 @@
     </div>
   
     <div id="worker-fields">
-      <%= f.fields_for :worker, @user.worker || @user.build_worker do |w| %>
+      <%= f.fields_for :worker do |f| %>
         <div class="field">
           <%= w.label :SSnumber %><br />
           <%= w.text_field :SSnumber, placeholder: 'SSN' %>

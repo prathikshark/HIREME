@@ -57,7 +57,7 @@
 
                 <div class="field">
                     <%= w.label :Gender %><br />
-                    <%= w.select :gender, ['Male', 'Female', 'Other'], prompt: 'Select gender' %>
+                    <%= w.select :gender, ['Male', 'Female'], prompt: 'Select gender' %>
                 </div>
 
                 <div class="field">
@@ -97,7 +97,7 @@
            <% end %>
 
         </div>            
-            <div class="actions">
+        <div class="actions">
             <%= f.submit "Sign up" ,id:"submit-btn"%>
         </div>
 <% end %>

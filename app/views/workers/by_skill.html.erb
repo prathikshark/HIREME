@@ -3,13 +3,12 @@
   <select id="wage-filter">
     <option value="all">All</option>
     <option value="low">Low Wage</option>
-    <option value="medium">Medium Wage</option>
     <option value="high">High Wage</option>
   </select>
 </div>
 
-<h1 class="worker-heading">All workers</h1>
-<div class="worker-container">
+<h1 class="worker-heading" >All workers</h1>
+<div class="worker-container", id="available-worker-container">
   <% @available_workers.each do |worker| %>
     <div class="c">
       <%= render partial: "worker_details",locals: {worker: worker} %>
@@ -21,3 +20,34 @@
     </div>
   <% end %>
 </div>
+
+
+
+<script>
+
+$(document).ready(function () {
+    $("#add-worker-skill-btn").on("click", function (event) {
+      event.preventDefault();
+
+      worker_skill = {worker_skill: {
+          
+          id: $('#worker_skill_id option:selected').val(),
+          wage: $("#worker-skill-experience").val(),
+          experience: $("#worker-skill-experience").val(),
+     
+      }};
+
+      console.log(worker_skill);
+      $.ajax({
+        url: "http://localhost:3000/worker_skills",
+        method: "POST",
+        data: worker_skill,
+        dataType: "html",
+        success: function (result) {
+          $("#all-skills-of-worker").append(result);
+        },
+      });
+    });
+  });
+
+</script>

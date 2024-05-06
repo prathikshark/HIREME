@@ -30,6 +30,7 @@ class CartsController < ApplicationController
       
           # Creating BookedService for date range
           booking.booked_services.create(cart_service.attributes.slice('worker_id', 'from_date', 'to_date', 'skill_type', 'shift', 'time', 'hour_per_day', 'wage'))
+          
         end
 
         confirm(cart)

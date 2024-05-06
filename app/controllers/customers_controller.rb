@@ -28,4 +28,4 @@ class CustomersController < ApplicationController
          flash[:alert]="Could not delete customer"
       end
     end
-end
+end  

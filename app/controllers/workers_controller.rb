@@ -67,7 +67,6 @@ class WorkersController < ApplicationController
         else
           flash[:alert] = "Failed to reject"
         end
-        render partial: "workers/workers_table",locals:{workers:@workers}
       end
 
     def update_status
@@ -79,7 +78,12 @@ class WorkersController < ApplicationController
       end
       render :show
     end
+
+
+    def update
+    end
     
+
     private
     
     def unavailable_worker_ids
