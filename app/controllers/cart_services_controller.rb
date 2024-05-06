@@ -20,7 +20,8 @@ class CartServicesController < ApplicationController
   def create
     worker_id = params[:worker_id]
     filter_params = params[:filter_params]
-    if CartService.exists?(skill_type: filter_params[:skill_type])
+    cart = current_user.customer.cart
+    if cart.cart_services.exists?(skill_type: filter_params[:skill_type])
       flash[:alert] = "Service already added"
     else
 
@@ -32,7 +33,8 @@ class CartServicesController < ApplicationController
       
       from_date = Date.parse(filter_params[:from_date])
       to_date = Date.parse(filter_params[:to_date])
-      date_difference = (to_date - from_date).to_i
+      date_difference = (to_date - from_date).to_i 
+
       
       wage = date_difference * worker_wage
 

@@ -9,6 +9,7 @@ class WorkersController < ApplicationController
         else
             @workers = Worker.includes(:user).where(users: { role: :worker }, status: :approved)
         end
+
   end
 
 
@@ -56,7 +57,6 @@ class WorkersController < ApplicationController
         else
           flash[:alert] = "Failed to approve"
         end
-        redirect_to workers_path
       end
   
      #reject the worker status
@@ -67,7 +67,7 @@ class WorkersController < ApplicationController
         else
           flash[:alert] = "Failed to reject"
         end
-        redirect_to workers_path
+        render partial: "workers/workers_table",locals:{workers:@workers}
       end
 
     def update_status

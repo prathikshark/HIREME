@@ -6,6 +6,10 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_up) do |user_params|
     user_params.permit(:name, :phone, :address,:email, :password, :password_confirmation, worker_attributes: [:SSnumber, :age, :gender, :profile_picture, :from_date, :to_date,:shift,:educational_qualification,:marital_status,:language,:date_of_birth])
      end
+     devise_parameter_sanitizer.permit(:account_update) do |user_params|
+      user_params.permit(:name, :phone, :address, :email, :password, :password_confirmation, :current_password, worker_attributes: [:SSnumber, :age, :gender, :profile_picture, :from_date, :to_date, :shift, :educational_qualification, :marital_status, :language, :date_of_birth] )
+    end
+  
   end
   
   

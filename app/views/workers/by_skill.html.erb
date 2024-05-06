@@ -1,3 +1,13 @@
+<div class="filter-section">
+  <label for="wage-filter">Filter by Wage:</label>
+  <select id="wage-filter">
+    <option value="all">All</option>
+    <option value="low">Low Wage</option>
+    <option value="medium">Medium Wage</option>
+    <option value="high">High Wage</option>
+  </select>
+</div>
+
 <h1 class="worker-heading">All workers</h1>
 <div class="worker-container">
   <% @available_workers.each do |worker| %>
@@ -11,4 +21,3 @@
     </div>
   <% end %>
 </div>
-

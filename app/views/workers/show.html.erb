@@ -26,4 +26,5 @@
 <p><strong>Available till: </strong> <%= @worker.to_date %> </p>
 <p><strong> Shift: </strong> <%= @worker.shift %> </p>
 
+<%= button_to 'Edit', edit_user_registration_path(id: @worker.user.id) ,method: :get,class: 'btn purple-btn' %>
 <%= render partial:"worker_skills/all_skills_of_worker"%>

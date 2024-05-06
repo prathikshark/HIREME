@@ -2,9 +2,9 @@
 <h2>Your services</h2>
     <% render_cart_services(@cart_services)  do %> 
         <div class="cart">
-            <% @cart_services.each do |service| %>
+            <% @cart_services.each_with_index do |service, index| %>
                 <div class="cart-item">
-                    <p><strong>Name:</strong> <%= service.worker_id %></p>
+                    <p><strong>Name:</strong> <%= @worker_names[index]%></p>
                     <p><strong>From:</strong> <%= service.from_date %></p>
                     <p><strong>To:</strong> <%= service.to_date %></p>
                     <p><strong>Hours per day:</strong> <%= service.hour_per_day %></p>

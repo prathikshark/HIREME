@@ -5,10 +5,8 @@ $(document).ready(function() {
         url: '/workers/' + workerId + '/approve',
         type: 'PATCH',
         success: function(response) {
+          $("#worker-table-id")
           console.log('Worker status updated to approved');
-        },
-        error: function(xhr, status, error) {
-          console.error('Error updating worker status:', error);
         }
       });
     });
@@ -23,10 +21,8 @@ $(document).ready(function() {
         url: '/workers/' + workerId + '/reject',
         type: 'PATCH',
         success: function(response) {
+          $("#worker-table-id")
           console.log('Worker status updated to reject');
-        },
-        error: function(xhr, status, error) {
-          console.error('Error updating worker status:', error);
         }
       });
     });

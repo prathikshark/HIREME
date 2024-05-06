@@ -5,6 +5,10 @@ class CartsController < ApplicationController
     
     def show
        @cart_services = Customer.find_by(id: params[:id]).cart.cart_services
+       @worker_names = @cart_services.map do |cart_service|
+       worker = Worker.find_by(id: cart_service.worker_id)
+       worker.user.name if worker  
+       end
     end
 
     def create
@@ -27,12 +31,23 @@ class CartsController < ApplicationController
           # Creating BookedService for date range
           booking.booked_services.create(cart_service.attributes.slice('worker_id', 'from_date', 'to_date', 'skill_type', 'shift', 'time', 'hour_per_day', 'wage'))
         end
-      
+
+        confirm(cart)
         # Destroy CartService  after the save
         cart.cart_services.destroy_all
       
         redirect_to request.referer
       end
+
+      #email
+      def confirm(cart)
+        cart.cart_services.each do |cart_service|
+          worker = Worker.find_by(id: cart_service.worker_id)
+          WorkerMailer.confirmation_email(worker).deliver_now if worker
+        end
+      end
+      
+      
 
         
 end
