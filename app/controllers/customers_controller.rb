@@ -27,5 +27,6 @@ class CustomersController < ApplicationController
       else
          flash[:alert]="Could not delete customer"
       end
+         redirect_to request.referer
     end
 end  

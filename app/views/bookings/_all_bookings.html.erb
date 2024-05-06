@@ -4,7 +4,7 @@
       <hr>
       <% booking.booked_services.each do |booked_service| %>
         <div class="booked_service">
-          <p>from_date: <%= booked_service.worker_id %></p>
+          <p>worker_id: <%= booked_service.worker_id %></p>
           <p>from_date: <%= booked_service.from_date %></p>
           <p>to_date: <%= booked_service.to_date %></p>
           <p>skill_type: <%= booked_service.skill_type %></p>

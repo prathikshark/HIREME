@@ -25,8 +25,7 @@ class CartServicesController < ApplicationController
       flash[:alert] = "Service already added"
     else
 
-      #calculate wage of each worker
-      
+      #calculate wage of each worker   
       skill_id = Skill.find_by(skill_type: filter_params[:skill_type]).id
       worker_skill = WorkerSkill.find_by(worker_id: worker_id, skill_id: skill_id)
       worker_wage = worker_skill.wage.to_i
@@ -34,8 +33,6 @@ class CartServicesController < ApplicationController
       from_date = Date.parse(filter_params[:from_date])
       to_date = Date.parse(filter_params[:to_date])
       date_difference = (to_date - from_date).to_i 
-
-      
       wage = date_difference * worker_wage
 
       cart_service = current_user.customer.cart.cart_services.create(cart_service_params.merge(wage: wage))

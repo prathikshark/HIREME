@@ -33,3 +33,28 @@ $(document).ready(function () {
     });
   });
 });
+
+$(document).ready(function () {
+  $("#add-worker-skill-btn").on("click", function (event) {
+    event.preventDefault();
+
+    worker_skill = {
+      worker_skill: {
+        id: $("#worker_skill_id option:selected").val(),
+        wage: $("#worker-skill-experience").val(),
+        experience: $("#worker-skill-experience").val(),
+      },
+    };
+
+    console.log(worker_skill);
+    $.ajax({
+      url: "http://localhost:3000/worker_skills",
+      method: "POST",
+      data: worker_skill,
+      dataType: "html",
+      success: function (result) {
+        $("#all-skills-of-worker").append(result);
+      },
+    });
+  });
+});
