@@ -203,3 +203,17 @@ nav {
 .green-btn {
   background-color: #4caf50;
 }
+#filter-by-wage-btn , #filter-by-rating-btn{
+  width: 100px;
+}
+
+.remember-me-fields{
+  display:flex;
+  flex-direction: row;
+}
+.remember-me-checkbox{
+  width: 15px;
+  position: relative;
+  bottom: 12px;
+  margin: 5px;  
+}

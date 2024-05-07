@@ -10,7 +10,6 @@
           <p>skill_type: <%= booked_service.skill_type %></p>
           <p>shift: <%= booked_service.shift %></p>
           <p>time: <%= booked_service.time %></p>
-          <p>hour_per_day: <%= booked_service.hour_per_day %></p>
           <p>wage: <%= booked_service.wage %></p>
           <%= form_for booked_service, url: booked_service_path(booked_service.id), method: :patch do |f| %>
             <%= render partial: "bookings/each_booking", locals: { f: f, booked_service: booked_service } %>

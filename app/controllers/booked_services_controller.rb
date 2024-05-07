@@ -13,11 +13,11 @@ class BookedServicesController < ApplicationController
         #finding the worker_skill for that skill and updating
         worker_skill = WorkerSkill.find_by(worker_id: @booked_service.worker_id, skill_id: Skill.find_by(skill_type: @booked_service.skill_type).id)
         worker_skill.update(rating: average_rating)
-        
         flash[:notice]= 'Comment and rating updated successfully.'
       else
         render :edit
       end
+      redirect_to request.referer
     end
   
     private

@@ -1,10 +1,15 @@
-<div class="filter-section">
-  <label for="wage-filter">Filter by Wage:</label>
-  <select id="wage-filter">
-    <option value="all">All</option>
-    <option value="low">Low Wage</option>
-    <option value="high">High Wage</option>
-  </select>
+<div class="filter-by-wage-form">
+      <%= form_with url: filter_by_wage_path	 do |f| %>
+        <%= f.select :query, options_for_select([['High to low', 'desc'], ['Low to high', 'aesc']]), { prompt: 'Wage' }, id: 'filter-by-wage', class: 'form-field' %>
+        <%= f.submit "Filter" ,id:"filter-by-wage-btn", class: 'btn btn-yellow'%>
+      <% end %>
+</div>
+
+ <div class="filter-by-rating-form">
+      <%= form_with url: filter_by_rating_path	 do |f| %>
+        <%= f.select :query, options_for_select([['5', 'five'], ['3-4', 'three-four'], ['<3', 'below-three']]), { prompt: 'Rating' }, id: 'filter-by-rating', class: 'form-field' %>
+        <%= f.submit "Filter" ,id:"filter-by-rating-btn", class: 'btn btn-yellow'%>
+      <% end %>
 </div>
 
 <h1 class="worker-heading" >All workers</h1>
@@ -24,6 +29,31 @@
 
 
 <script>
+
+$(document).ready(function () {
+  $("#filter-by-wage-btn").on("click", function (event) {
+    event.preventDefault();
+    const filterval = $("#filter-by-wage").val();
+    filterData = {
+      query: filterval,
+    };
+    $.ajax({
+      url: "http://localhost:3000/filter_wage",
+      type: "GET",
+      data: searchData,
+      success: function (response) {
+        console.log(response);
+        $("#available-worker-container").empty();
+        $("#available-worker-container").html(response);
+      },
+      error: function (xhr, status, error) {
+        console.error("Error:", error); 
+      },
+    });
+  });
+});
+
+
 
 $(document).ready(function () {
     $("#add-worker-skill-btn").on("click", function (event) {

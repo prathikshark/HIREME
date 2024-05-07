@@ -17,7 +17,6 @@ class CustomersController < ApplicationController
       user = User.find(params[:id])
       @customer = user.customer
       @bookings = @customer.bookings
-
     end
     
     def destroy

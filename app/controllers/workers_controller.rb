@@ -2,15 +2,14 @@ class WorkersController < ApplicationController
   skip_before_action :verify_authenticity_token
   before_action :check_customer_role, only: :by_skill
 
-  def index
-        if params[:status] == 'pending'
-            @pending = true
-            @workers = Worker.includes(:user).where(users: { role: :worker }, status: :pending)
-        else
-            @workers = Worker.includes(:user).where(users: { role: :worker }, status: :approved)
-        end
-
-  end
+    def index
+          if params[:status] == 'pending'
+              @pending = true
+              @workers = Worker.includes(:user).where(users: { role: :worker }, status: :pending)
+          else
+              @workers = Worker.includes(:user).where(users: { role: :worker }, status: :approved)
+          end
+    end
 
 
     def create
@@ -27,7 +26,7 @@ class WorkersController < ApplicationController
       else
          flash[:alert]="Could not delete worker"
       end
-
+      redirect_to request.referer
     end
 
     #filter the worker according to user need
@@ -50,39 +49,50 @@ class WorkersController < ApplicationController
     end
     
        #approve the worker status
-       def approve
+    def approve
         @worker = Worker.find(params[:id])
         if @worker.update(status: "approved")
           flash[:notice] = "Worker is 'approved'"
         else
           flash[:alert] = "Failed to approve"
         end
-      end
-  
-     #reject the worker status
-      def reject
+    end
+
+    #reject the worker status
+    def reject
         @worker = Worker.find(params[:id])
         if @worker.update(status: "rejected")
           flash[:notice] = "Worker is'rejected'"
         else
           flash[:alert] = "Failed to reject"
         end
-      end
+    end
 
     def update_status
-      @worker = Worker.find(params[:id])
-      if @worker.update(status: 'pending')
-        flash.now[:notice] = 'Request sent'
-      else
-        flash.now[:alert] = 'Failed to send request .Please try again.'
-      end
-      render :show
+        @worker = Worker.find(params[:id])
+        if @worker.update(status: 'pending')
+          flash.now[:notice] = 'Request sent'
+        else
+          flash.now[:alert] = 'Failed to send request .Please try again.'
+        end
+        render :show
     end
 
-
-    def update
+    def filter_wage
+        
     end
-    
+
+    def filter   
+        if params[:query] == 'asc'
+          order_type = params[:query]
+        else
+          order_type = params[:query]
+        end
+        # debugger
+        @resultant_buildings = PgBuilding.order(name: order_type)
+        
+        render partial: "home/search_results" ,locals:{resultant_buildings:@resultant_buildings}
+    end
 
     private
     
@@ -92,14 +102,14 @@ class WorkersController < ApplicationController
     end
 
     def check_customer_role
-      if current_user.nil? 
-        redirect_to new_user_session_path
-      else
-        unless current_user.role == "customer"
-          flash[:alert] = "Only customers can access this functionality."
-          redirect_to portal_path
+        if current_user.nil? 
+          redirect_to new_user_session_path
+        else
+          unless current_user.role == "customer"
+            flash[:alert] = "Only customers can access this functionality."
+            redirect_to portal_path
+          end
         end
-      end
     end
        
 end

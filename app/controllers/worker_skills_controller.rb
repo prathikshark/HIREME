@@ -42,6 +42,7 @@ class WorkerSkillsController < ApplicationController
     else
       flash[:alert]="Could not remove skill"
     end
+    redirect_to request.referer
   end
 
 
