@@ -1,5 +1,5 @@
 <div class="worker-container">
-<%= form_for(@admin, url: admin_path(id: @admin.id), method: :put) do |f| %>
+    <%= form_for(@admin, url: admin_path(id: @admin.id), method: :put) do |f| %>
 
         <div class="field">
             <%= f.label :name %><br />
@@ -24,10 +24,8 @@
             <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
         </div>
 
-
         <div class="actions">
             <%= f.submit 'Update' , class:'yellow-btn'%>
-        </div>
-        
+        </div>   
     <% end %>
 </div>

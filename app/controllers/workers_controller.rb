@@ -2,6 +2,7 @@ class WorkersController < ApplicationController
   skip_before_action :verify_authenticity_token
   before_action :check_customer_role, only: :by_skill
 
+
     def index
           if params[:status] == 'pending'
               @pending = true
@@ -10,7 +11,6 @@ class WorkersController < ApplicationController
               @workers = Worker.includes(:user).where(users: { role: :worker }, status: :approved)
           end
     end
-
 
     def create
     end
@@ -41,7 +41,7 @@ class WorkersController < ApplicationController
         time: params[:timing]
       }
     
-      @available_workers = Worker.includes(:worker_skills)
+      @sorted_workers = Worker.includes(:worker_skills)
                                   .where(status: "approved", gender: gender)
                                   .where.not(id: unavailable_worker_ids)
                                   .where(worker_skills: { skill_id: Skill.where(skill_type: @filter_params[:skill_type]).pluck(:id) })
@@ -78,24 +78,32 @@ class WorkersController < ApplicationController
         render :show
     end
 
-    def filter_wage
-        
+    def filter   
+        sort = params[:wage_query]
+          @sorted_workers = Worker.order(age: sort)
+
+        render partial: "workers/sorted_workers",locals: {sorted_workers: @sorted_workers}
     end
 
-    def filter   
-        if params[:query] == 'asc'
-          order_type = params[:query]
-        else
-          order_type = params[:query]
-        end
-        # debugger
-        @resultant_buildings = PgBuilding.order(name: order_type)
-        
-        render partial: "home/search_results" ,locals:{resultant_buildings:@resultant_buildings}
+    def edit
+        @worker = Worker.find(params[:id])
+    end
+
+    def update
+      @worker = Worker.find(params[:id])
+      if @worker.update(worker_parameters)
+        flash[:notice] = "Detail was updated"
+      else
+        flash[:alert] = "Could not update"
+      end
+      render :show
     end
 
     private
-    
+    def worker_parameters
+        params.require(:worker).permit(:age,:profile_picture,:from_date,:to_date,:educational_qualification,:marital_status,:language,:shift)
+    end   
+  
     def unavailable_worker_ids
       Unavailability.where("unavailable_date BETWEEN ? AND ?", @filter_params[:from_date], @filter_params[:to_date])
                     .pluck(:worker_id)

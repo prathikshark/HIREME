@@ -14,7 +14,7 @@ class AdminsController < ApplicationController
   end
 
   def create
-      @admin = User.create(name:params[:name],email:params[:email],password:params[:password],role:2)
+      @admin = User.new(name:params[:name],email:params[:email],password:params[:password],role:2)
       if @admin.save
         flash[:notice] = "Admin added"
       else

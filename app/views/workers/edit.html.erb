@@ -1,102 +1,62 @@
-<%= form_for(resource, as: resource_name, url: user_registration_path(resource_name), method: :patch) do |f| %>
-    <%= f.hidden_field :hidden_field, name: "hidden", value: "worker" %>
-  
-    <%= render "devise/shared/error_messages", resource: resource %>
-  
-    <div class="field">
-      <%= f.label :name %><br />
-      <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
-    </div>
-  
-    <div class="field">
-      <%= f.label :address ,class:'input' %><br />
-      <%= f.text_field :address,  autofocus: true, autocomplete: "address" %>
-    </div>
-  
-    <div class="field">
-      <%= f.label :phone %><br />
-      <%= f.text_field :phone, autofocus: true, autocomplete: "phone" %>
-    </div>
-  
-    <div class="field">
-      <%= f.label :email %><br />
-      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-    </div>
-  
-    <div class="field">
-      <%= f.label :password %>
-      <% if @minimum_password_length %>
-        <em>(<%= @minimum_password_length %> characters minimum)</em>
-      <% end %><br />
-      <%= f.password_field :password, autocomplete: "new-password" %>
-    </div>
-  
-    <div class="field">
-      <%= f.label :password_confirmation %><br />
-      <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-    </div>
-  
-    <div id="worker-fields">
-      <%= f.fields_for :worker do |f| %>
-        <div class="field">
-          <%= w.label :SSnumber %><br />
-          <%= w.text_field :SSnumber, placeholder: 'SSN' %>
-        </div>
-  
-        <div class="field">
-          <%= w.label :date_of_birth %>
-          <%= w.date_field :date_of_birth, placeholder: 'Date of Birth', max: '2006-01-01' %>
-        </div>
-  
-        <div class="field">
-          <%= w.label :age %><br />
-          <%= w.number_field :age, placeholder: 'Age' %>
-        </div>
-  
-        <div class="field">
-          <%= w.label :Gender %><br />
-          <%= w.select :gender, ['Male', 'Female', 'Other'], prompt: 'Select gender' %>
-        </div>
-  
-        <div class="field">
-          <%= w.label :profile_picture, "Profile picture" %><br/>
-          <%= w.file_field :profile_picture %>
-        </div>
-  
-        <div class="field">
-          <%= w.label :from_date, 'Available from date' %><br />
-          <%= w.date_field :from_date, class: 'date', id: 'worker_from_date', min: Date.today %>
-        </div>
-  
-        <div class="field">
-          <%= w.label :to_date, 'Available till date' %><br />
-          <%= w.date_field :to_date, class: 'date', id: 'worker_to_date', max: (Date.today + 40) %>
-        </div>
-  
-        <div class="field">
-          <%= w.label :shift %><br />
-          <%= w.select :shift, ['Day', 'Night', 'Both'], prompt: 'Select Shift' %>
-        </div>
-  
-        <div class="field">
-          <%= w.label :educational_qualification %>
-          <%= w.text_field :educational_qualification, placeholder: 'Educational Qualification' %>
-        </div>
-        
-        <div class="field">
-          <%= w.label :marital_status %>
-          <%= w.select :marital_status, ['Married', 'Unmarried', 'Divorced'], prompt: 'Marital status' %>
-        </div>
-        
-        <div class="field">
-          <%= w.label :language %>
-          <%= w.text_area :language, placeholder: 'Language' %>
-        </div>
-      <% end %>
-    </div>
-  
-    <div class="actions">
-      <%= f.submit "Update", id: "submit-btn"%>
-    </div>
-  <% end %>
-  
+<div class="container">   
+    <div class="form-container">
+        <h2>Update</h2>  
+        <%= form_for(@worker, url: worker_path(id: @worker.id), method: :put) do |w| %>
+
+          <div class="field">
+            <%= w.label :date_of_birth %>
+            <%= w.date_field :date_of_birth, placeholder: 'Date of Birth', max: '2006-01-01' %>
+          </div>
+    
+          <div class="field">
+            <%= w.label :age %><br />
+            <%= w.number_field :age, placeholder: 'Age' %>
+          </div>
+    
+          <div class="field">
+            <%= w.label :Gender %><br />
+            <%= w.select :gender, ['Male', 'Female', 'Other'], prompt: 'Select gender' %>
+          </div>
+    
+          <div class="field">
+            <%= w.label :profile_picture, "Profile picture" %><br/>
+            <%= w.file_field :profile_picture %>
+          </div>
+    
+          <div class="field">
+            <%= w.label :from_date, 'Available from date' %><br />
+            <%= w.date_field :from_date, class: 'date', id: 'worker_from_date', min: Date.today %>
+          </div>
+    
+          <div class="field">
+            <%= w.label :to_date, 'Available till date' %><br />
+            <%= w.date_field :to_date, class: 'date', id: 'worker_to_date', max: (Date.today + 40) %>
+          </div>
+    
+          <div class="field">
+            <%= w.label :shift %><br />
+            <%= w.select :shift, ['Day', 'Night', 'Both'], prompt: 'Select Shift' %>
+          </div>
+    
+          <div class="field">
+            <%= w.label :educational_qualification %>
+            <%= w.text_field :educational_qualification, placeholder: 'Educational Qualification' %>
+          </div>
+          
+          <div class="field">
+            <%= w.label :marital_status %>
+            <%= w.select :marital_status, ['Married', 'Unmarried', 'Divorced'], prompt: 'Marital status' %>
+          </div>
+          
+          <div class="field">
+            <%= w.label :language %>
+            <%= w.text_area :language, placeholder: 'Language' %>
+          </div>
+
+      <div class="actions">
+        <%= w.submit "Update", id: "submit-btn"%>
+      </div>
+
+    <% end %>
+ </div>
+</div>

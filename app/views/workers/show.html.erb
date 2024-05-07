@@ -19,14 +19,18 @@
 <p> <strong> Email:</strong> <%= @worker.user.email %> </p>
 <p> <strong> Address:</strong> <%= @worker.user.address %> </p>
 <p> <strong> Phone:</strong> <%= @worker.user.phone %> </p>
+<p> <strong> Date of Birth:</strong> <%= @worker.date_of_birth %> </p>
 <p><strong> Age:</strong>  <%= @worker.age %> </p>
 <p><strong> SSnumber:</strong>  <%= @worker.SSnumber %></p>
 <p><strong> Gender:</strong>  <%= @worker.gender %> </p>
 <p><strong>Available from: </strong> <%= @worker.from_date %> </p>
 <p><strong>Available till: </strong> <%= @worker.to_date %> </p>
+<p><strong> Educational Qualification: </strong> <%= @worker.educational_qualification %> </p>
+<p><strong> Marital status: </strong> <%= @worker.marital_status %> </p>
+<p><strong> Languages known: </strong> <%= @worker.language %> </p>
 <p><strong> Shift: </strong> <%= @worker.shift %> </p>
 
 <% if current_user.role == "worker"%>
-   <%= button_to 'Edit', edit_user_registration_path(id: @worker.user.id) ,method: :get,class: 'btn purple-btn' %>
+   <%= button_to 'Update date', edit_worker_path(id: @worker.id) ,method: :get,class: 'btn purple-btn' %>
 <% end %>
 <%= render partial:"worker_skills/all_skills_of_worker"%>

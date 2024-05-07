@@ -71,3 +71,5 @@ gem 'nested_form'
 gem 'sassc-rails'
 
 gem 'jquery-rails'
+
+gem "noticed", "~> 2.2"

@@ -28,6 +28,11 @@ module ApplicationHelper
             yield  
         end 
     end
+    def if_current_user_customer_or_worker(current_user)
+        if current_user.role != 'admin' 
+            yield  
+        end 
+    end
 
     def if_profile_picture_attached(user)
         if user.profile_picture.attached?

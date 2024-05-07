@@ -18,7 +18,7 @@ class CartsController < ApplicationController
     def destroy
         cart = current_user.customer.cart
         booking = Booking.create(customer_id: current_user.customer.id)
-      
+
         cart.cart_services.each do |cart_service|
             from_date = cart_service.from_date
             to_date = cart_service.to_date
@@ -30,6 +30,11 @@ class CartsController < ApplicationController
             booking.booked_services.create(cart_service.attributes.slice('worker_id', 'from_date', 'to_date', 'skill_type', 'shift', 'time', 'hour_per_day', 'wage'))
         end
 
+        recipients =  User.where(id: Worker.where(id: cart.cart_services.pluck(:worker_id)).pluck(:user_id))
+        notification = BookingNoiifierNotifier.with(message: "You have a new service booking.").deliver(recipients)
+        ActionCable.server.broadcast("booking_channel", notification)
+
+
         confirm(cart)
         # Destroy CartService  after the save
         cart.cart_services.destroy_all
@@ -38,6 +43,7 @@ class CartsController < ApplicationController
 
       #email
       def confirm(cart)
+        
         cart.cart_services.each do |cart_service|
           worker = Worker.find_by(id: cart_service.worker_id)
           WorkerMailer.confirmation_email(worker).deliver_now if worker

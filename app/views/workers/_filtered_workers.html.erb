@@ -1,6 +1,6 @@
 <div class="filter-by-wage-form">
       <%= form_with url: filter_path	,method: :post do |f| %>
-        <%= f.select :wage_query, options_for_select([['High to low', 'desc'], ['Low to high', 'asc']]), { prompt: 'Wage' }, id: 'filter-by-wage', class: 'form-field' %>
+        <%= f.select :wage_query, options_for_select([['High to low', 'desc'], ['Low to high', 'aesc']]), { prompt: 'Wage' }, id: 'filter-by-wage', class: 'form-field' %>
         <%= f.select :rating_query, options_for_select([['5', 'five'], ['3-4', 'three-four'], ['<3', 'below-three']]), { prompt: 'Rating' }, id: 'filter-by-rating', class: 'form-field' %>
 
         <%= f.submit "Filter" ,id:"filter-btn", class: 'btn btn-yellow'%>
@@ -10,7 +10,20 @@
 
 
 <h1 class="worker-heading" >All workers</h1>
-<%= render partial: "workers/sorted_workers", locals: {sorted_workers: @sorted_workers}%> 
+<div class="worker-container", id="available-worker-container">
+  <% filtered_workers.each do |worker| %>
+    <div class="c">
+      <%= render partial: "worker_details",locals: {worker: worker} %>
+      <div class="button-row">
+        <%= button_to 'View', worker_path(id: worker.id), method: :get, class: 'btn purple-btn ' %>
+        <%# <%= button_to 'Add service', cart_services_path(worker_id: worker.id, filter_params: @filter_params), class: 'btn purple-btn', method: :post, id: 'add-service-btn' %> %>
+        <%= button_to 'Contact', workers_path, class: 'btn purple-btn' %>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+
 
 <script>
 
@@ -36,9 +49,6 @@ $(document).ready(function () {
     });
   });
 });
-
-
-
-
+ 
 
 </script>
