@@ -9,9 +9,13 @@
         <li class="nav-item">
           <%= link_to 'Home',root_path,class:"nav-link" %>
         </li>
-        <li class="nav-item">
-          <%= link_to 'Service',portal_path,class:"nav-link" %>
-        </li>
+        <% check_user_present(current_user) do %>
+          <% if_current_user_not_admin do %>
+            <li class="nav-item">
+              <%= link_to 'Service',workers_path,class:"nav-link" %>
+            </li>
+          <% end %>
+        <% end %>
         <li class="nav-item">
           <%= link_to 'About Us',aboutus_path,class:"nav-link" %>
         </li>

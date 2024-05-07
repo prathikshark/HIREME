@@ -98,16 +98,23 @@
 
 .image-container{
   display: flex;
+  height: 70vh;
+  justify-content: center; 
+}
+
+.worker-image-container{
+  display: flex;
+  height: 50vh;
   justify-content: center; 
 }
 
 .form{
     position: absolute;
-    top: 45% ; 
-    width: 85% ;
+    top: 25% ; 
+    width: 95% ;
+    left: 3%;
     display: flex;
     flex-direction: row;
-    transform: translateX(8% );
     flex-wrap: wrap;
     border-radius: 10px;
     background-color: white;
