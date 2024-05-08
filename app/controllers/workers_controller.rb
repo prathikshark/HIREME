@@ -1,19 +1,20 @@
 class WorkersController < ApplicationController
+  before_action :authenticate_user!
   skip_before_action :verify_authenticity_token
   before_action :check_customer_role, only: :by_skill
 
   def index
-    if current_user.role == 'admin'
+     if current_user.role == 'admin'
         if params[:status] == 'pending'
             @pending = true
             @workers = Worker.includes(:user).where(users: { role: :worker }, status: :pending)
         else
             @workers = Worker.includes(:user).where(users: { role: :worker }, status: :approved)
         end
-    else
-            @workers = Worker.all
-    end
-  end
+      else
+            @workers = Worker.where(status: "approved")
+      end
+   end
 
 
     def create
@@ -21,6 +22,7 @@ class WorkersController < ApplicationController
     
     def show
       @worker=Worker.find_by(id: params[:id])
+      @bookings = @worker.bookings      
     end
 
     def destroy
@@ -45,9 +47,12 @@ class WorkersController < ApplicationController
           time: params[:timing]
         }
         @filtered_workers = Worker.includes(:worker_skills)
-                                    .where(status: "approved", gender: gender)
-                                    .where(worker_skills: { skill_id: Skill.where(skill_type: @filter_params[:skill_type]).pluck(:id) })
-                                    .where("shift =? OR shift =?", @filter_params[:shift], "Both")
+        .where(status: "approved", gender: gender)
+        .where(worker_skills: { skill_id: Skill.where(skill_type: @filter_params[:skill_type]).pluck(:id) })
+        .where("shift = ? OR shift = ?", @filter_params[:shift], "Both")
+        .where.not(id: BookedService.select(:worker_id)
+                                  .where("from_date <= :to_date AND to_date >= :from_date", from_date: @filter_params[:to_date], to_date: @filter_params[:from_date]))
+
                                           
 
         # rating and wage 
@@ -148,11 +153,6 @@ class WorkersController < ApplicationController
     def worker_parameters
         params.require(:worker).permit(:age,:profile_picture,:from_date,:to_date,:educational_qualification,:marital_status,:language,:shift)
     end   
-
-    def unavailable_worker_ids
-      # Unavailability.where("unavailable_date BETWEEN ? AND ?", @filter_params[:from_date], @filter_params[:to_date])
-      #               .pluck(:worker_id)
-    end
 
     def check_customer_role
         if current_user.nil? 

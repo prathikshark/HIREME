@@ -25,7 +25,16 @@ Rails.application.routes.draw do
   resources :worker_skills
   resources :carts
   resources :cart_services
-  resources :bookings
+  resources :bookings do
+    member do
+        patch 'reject'
+        patch 'approve'
+        patch 'update_booked'
+      end
+    collection do
+        get 'booking_confirmed'
+    end    
+  end
   resources :booked_services
 
 end

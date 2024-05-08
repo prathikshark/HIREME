@@ -36,3 +36,6 @@
     <%= button_to 'Update date', edit_worker_path(id: @worker.id) ,method: :get,class: 'btn purple-btn' %>
 <% end %>
 <%= render partial:"worker_skills/all_skills_of_worker"%>
+
+<h2> My history </h2>
+<%= render partial: "bookings/all_bookings",locals:{bookings: @bookings} %>
