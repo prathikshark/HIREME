@@ -41,7 +41,7 @@ $(document).ready(function () {
     worker_skill = {
       worker_skill: {
         id: $("#worker_skill_id option:selected").val(),
-        wage: $("#worker-skill-experience").val(),
+        wage: $("#worker-skill-wage").val(),
         experience: $("#worker-skill-experience").val(),
       },
     };

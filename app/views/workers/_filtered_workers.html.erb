@@ -3,7 +3,7 @@
       <%= render partial: "worker_details",locals: {worker: worker} %>
       <div class="button-row">
         <%= button_to 'View', worker_path(id: worker.id), method: :get, class: 'btn purple-btn ' %>
-        <%= button_to 'Add service', cart_services_path(worker_id: worker.id, filter_params: @filter_params), class: 'btn purple-btn', method: :post, id: 'add-service-btn' %>
+        <%= button_to 'Add service', booked_services_path(worker_id: worker.id, filter_params: @filter_params), class: 'btn purple-btn', method: :post, id: 'add-service-btn' %>
       </div>
     </div>
   <% end %>

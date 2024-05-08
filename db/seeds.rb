@@ -8,8 +8,8 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
-u1 = User.create(name: "admin1", email: "admin1@hireme.com", password: "admin1", isadmin: true,role: 2)
-u2 = User.create(name: "admin2", email: "admin2@hireme.com", password: "admin2", isadmin: true,role: 2)
+u1 = User.create(name: "admin1", email: "admin1@hireme.com", password: "admin1",role: 2)
+u2 = User.create(name: "admin2", email: "admin2@hireme.com", password: "admin2",role: 2)
 
 s1=Skill.create(skill_type:"cooking")
 s1=Skill.create(skill_type:"Maid")

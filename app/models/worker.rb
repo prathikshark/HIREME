@@ -3,5 +3,6 @@ class Worker < ApplicationRecord
   has_one_attached :profile_picture
   has_many :worker_skills, dependent: :destroy
   has_many :skills , through: :worker_skills
-  has_many :unavailabilities , dependent: :destroy
+  has_many :booked_services, dependent: :destroy
+  has_many :bookings, through: :booked_services
 end

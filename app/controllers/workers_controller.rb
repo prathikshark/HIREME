@@ -35,44 +35,41 @@ class WorkersController < ApplicationController
 
     #filter the worker according to user need
     def filter
-      gender = params[:gender]
-      @filter_params = {
-        skill_type: params[:skill_type],
-        from_date: params[:from_date],
-        to_date: params[:to_date],
-        shift: params[:day_night],
-        hours_per_day: params[:hours_per_day].first.to_i,
-        time: params[:timing]
-      }
-    
-      @filtered_workers = Worker.includes(:worker_skills)
-                                  .where(status: "approved", gender: gender)
-                                  .where.not(id: unavailable_worker_ids)
-                                  .where(worker_skills: { skill_id: Skill.where(skill_type: @filter_params[:skill_type]).pluck(:id) })
-                                  .where("shift =? OR shift =?", @filter_params[:shift], "Both")
-      # rating and wage 
-      if params[:wage_per_hour].present?
-        wage_range = params[:wage_per_hour]
-        unless wage_range == "All"
-          wage_lower_limit, wage_upper_limit = case wage_range
-                                               when "0-200"
-                                                 [0, 200]
-                                               when "201-500"
-                                                 [201, 500]
-                                               when "501-1000"
-                                                 [501, 1000]
-                                               when "above"
-                                                 [1001, nil] # Use nil to represent no upper limit
-                                               end
-          if wage_upper_limit.nil?
-            @filtered_workers = @filtered_workers.joins(:worker_skills).where("worker_skills.wage >= ?", wage_lower_limit)
-          else
-            @filtered_workers = @filtered_workers.joins(:worker_skills).where("worker_skills.wage BETWEEN ? AND ?", wage_lower_limit, wage_upper_limit)
+        gender = params[:gender]
+        @filter_params = {
+          skill_type: params[:skill_type],
+          from_date: params[:from_date],
+          to_date: params[:to_date],
+          shift: params[:day_night],
+          hours_per_day: params[:hours_per_day].first.to_i,
+          time: params[:timing]
+        }
+        @filtered_workers = Worker.includes(:worker_skills)
+                                    .where(status: "approved", gender: gender)
+                                    .where(worker_skills: { skill_id: Skill.where(skill_type: @filter_params[:skill_type]).pluck(:id) })
+                                    .where("shift =? OR shift =?", @filter_params[:shift], "Both")
+                                          
+
+        # rating and wage 
+        if params[:wage_per_hour].present?
+          wage_range = params[:wage_per_hour]
+          unless wage_range == "All"
+            wage_lower_limit, wage_upper_limit = case wage_range
+                                                when "0-200"
+                                                  [0, 200]
+                                                when "201-500"
+                                                  [201, 500]
+                                                when "501-1000"
+                                                  [501, 1000]
+                                                when "above"
+                                                  [1001, nil] # Use nil to represent no upper limit
+                                                end
+            if wage_upper_limit.nil?
+              @filtered_workers = @filtered_workers.joins(:worker_skills).where("worker_skills.wage >= ?", wage_lower_limit)
+            else
+              @filtered_workers = @filtered_workers.joins(:worker_skills).where("worker_skills.wage BETWEEN ? AND ?", wage_lower_limit, wage_upper_limit)
+            end
           end
-        end
-
-    
-
       end
         
                           
@@ -97,8 +94,7 @@ class WorkersController < ApplicationController
       #       @filtered_workers = @filtered_workers.joins(:worker_skills).where("worker_skills.rating BETWEEN ? AND ?", rating_lower_limit, rating_upper_limit)
       #     end
       #   end
-      # end
-                             
+      # end                    
       render partial: "workers/filtered_workers", locals: { filtered_workers: @filtered_workers }
     end
         
@@ -154,8 +150,8 @@ class WorkersController < ApplicationController
     end   
 
     def unavailable_worker_ids
-      Unavailability.where("unavailable_date BETWEEN ? AND ?", @filter_params[:from_date], @filter_params[:to_date])
-                    .pluck(:worker_id)
+      # Unavailability.where("unavailable_date BETWEEN ? AND ?", @filter_params[:from_date], @filter_params[:to_date])
+      #               .pluck(:worker_id)
     end
 
     def check_customer_role

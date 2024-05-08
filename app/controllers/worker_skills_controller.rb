@@ -50,7 +50,7 @@ class WorkerSkillsController < ApplicationController
 
   private
     def worker_skill_params
-        params.require(:worker_skill).permit(:id, :wage, :experience)
+        params.require(:worker_skill).permit(:id, :experience,:wage)
     end
 
     def check_if_skill_exist(current_user)

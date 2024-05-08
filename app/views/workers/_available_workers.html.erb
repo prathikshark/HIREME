@@ -68,8 +68,8 @@
 $(document).on("submit", "#filter-form", function(e) {
   e.preventDefault();
 
-  const serializedData = $(this).serialize(); // Serialize form data
-  console.log(serializedData); // Log the serialized data
+  const serializedData = $(this).serialize();
+  console.log(serializedData); 
 
   $.ajax({
     url: $(this).attr("action"),

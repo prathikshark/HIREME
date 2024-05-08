@@ -1,6 +1,6 @@
 
 <div class="form-container">
-    <%= form_with  model: worker_skill, url: worker_skills_path, data: {turbo: false}, method: :post do |f| %>
+<%= form_with model: WorkerSkill.new, url: worker_skills_path, method: :post do |f| %>
 
     <div class="field">
             <%= f.label :skill_id %><br />
