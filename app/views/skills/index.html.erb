@@ -1,12 +1,11 @@
+<%= javascript_include_tag "handle_skill" %>
+
 <h1>All Skills</h1>
 <% @skills.each do |skill| %>
-  <div class="card">
-    <div class="card-body">
-      <h5 class="card-title">skill</h5> 
+  <div class="card skill">
 
+      <h5 class="card-title">skill</h5> 
         <p class="card-text">Skill: <%= skill.skill_type %></p>
-        <%= button_to 'Remove', skill_path(id: skill.id),method: :delete ,class: 'btn btn-danger' %><br/>
-     
-    </div>
+        <button class= "remove-skill-btn" class='btn btn-danger' data-skill = <%= skill.id %>> Remove</button>  
   </div>
 <% end %>
