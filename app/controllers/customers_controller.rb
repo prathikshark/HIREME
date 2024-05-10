@@ -16,7 +16,7 @@ class CustomersController < ApplicationController
   def show
     user = User.find(params[:id])
     @customer = user.customer
-    @bookings = @customer.bookings
+    @bookings = @customer.bookings.where(booked: true)
   end
   
   def destroy

@@ -1,3 +1,5 @@
+require "#{Rails.root}/lib/services/admin_service"
+
 class AdminsController < ApplicationController
   skip_before_action :verify_authenticity_token
 
@@ -13,33 +15,33 @@ class AdminsController < ApplicationController
       @user = User.find(current_user.id)
   end
 
-  def create
-      @admin = User.create(name:params[:name],email:params[:email],password:params[:password],role:2)
-      if @admin.save
+    def create
+      admin_service = AdminServices::AdminService.new(params)
+      if admin_service.create_admin
         flash[:notice] = "Admin added"
       else
         flash[:alert] = "Could not add admin"
       end
-      render partial: "admins/each_admin",locals:{admin:@admin}
+      render partial: "admins/each_admin", locals: { admin: @admin }
     end
-    
-  def edit
+  
+    def edit
       @admin = User.find(params[:id])
-  end
-
-  def update
-    @admin = User.find(params[:id])
-    if @admin.update(admin_parameters)
-      flash[:notice] = "Admin was updated"
-    else
-      flash[:alert] = "Could not update"
     end
-    redirect_to admins_list_path
-  end
-
-  private
-  def admin_parameters
-      params.require(:user).permit(:name,:email,:password,:password_confirmation).merge(role: "admin")
-  end    
     
-end
+    def update
+      admin_service = AdminServices::AdminService.new(params)
+      if admin_service.update_admin(params[:id])
+        flash[:notice] = "Admin was updated"
+      else
+        flash[:alert] = "Could not update admin"
+      end
+      redirect_to admins_list_path
+    end
+  
+    private
+  
+    def admin_params
+      params.require(:user).permit(:name, :email, :password, :password_confirmation).merge(role: "admin")
+    end
+  end

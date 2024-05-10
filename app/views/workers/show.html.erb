@@ -37,7 +37,7 @@
 <% end %>
 <%= render partial:"worker_skills/all_skills_of_worker"%>
 
-<% if current_user.role == "worker"%>
+<% if current_user.role == "worker" && @worker.bookings.last.present? && @worker.bookings.last.booked_services.any? %>
     <h2> My history </h2>
     <%= render partial: "bookings/all_bookings",locals:{bookings: @bookings} %>
 <% end %>

@@ -22,7 +22,7 @@ class WorkersController < ApplicationController
     
     def show
       @worker=Worker.find_by(id: params[:id])
-      @bookings = @worker.bookings      
+      @bookings = @worker.bookings.where(booked: true)
     end
 
     def destroy

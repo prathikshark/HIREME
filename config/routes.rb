@@ -4,11 +4,8 @@ Rails.application.routes.draw do
   get 'contactus', to: 'pages#contactus'
   get 'portal', to: 'pages#portal'
 
-  devise_for :users, controllers: {
-    omniauth_callbacks: 'users/omniauth_callbacks',
-    sessions: 'users/sessions',
-    registrations: 'users/registrations'
-  }
+  devise_for :users
+
   get 'admins/list', to: 'admins#admin_list'
   resources :admins
 
@@ -28,7 +25,16 @@ Rails.application.routes.draw do
   resources :worker_skills
   resources :carts
   resources :cart_services
-  resources :bookings
+  resources :bookings do
+    member do
+        patch 'reject'
+        patch 'approve'
+        patch 'update_booked'
+      end
+    collection do
+        get 'booking_confirmed'
+    end    
+  end
   resources :booked_services
 
 end
