@@ -1,31 +1,31 @@
 class CustomersController < ApplicationController
-    def index
-      @users = User.where(role: :customer)
-    end
-    
-    def new
-    end
+  def index
+    @users = User.where(role: :customer)
+  end
+  
+  def new
+  end
 
-    def create
+  def create
 
-    end
-    
-    def edit
-    end
+  end
+  
+  def edit
+  end
 
-    def show
-      user = User.find(params[:id])
-      @customer = user.customer
-      @bookings = @customer.bookings
+  def show
+    user = User.find(params[:id])
+    @customer = user.customer
+    @bookings = @customer.bookings
+  end
+  
+  def destroy
+    @user=User.find(params[:id]) 
+    if @user && @user.destroy 
+       flash[:notice]="Customer deleted"
+    else
+       flash[:alert]="Could not delete customer"
     end
-    
-    def destroy
-      @user=User.find(params[:id]) 
-      if @user && @user.destroy 
-         flash[:notice]="Customer deleted"
-      else
-         flash[:alert]="Could not delete customer"
-      end
-         redirect_to request.referer
-    end
+       redirect_to request.referer
+  end
 end  

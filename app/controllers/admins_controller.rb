@@ -21,20 +21,20 @@ class AdminsController < ApplicationController
         flash[:alert] = "Could not add admin"
       end
       render partial: "admins/each_admin",locals:{admin:@admin}
-  end
+    end
     
   def edit
       @admin = User.find(params[:id])
   end
 
   def update
-      @admin = User.find(params[:id])
-      if @admin.update(admin_parameters)
-        flash[:notice] = "Admin was updated"
-      else
-        flash[:alert] = "Could not update"
-      end
-      redirect_to admins_list_path
+    @admin = User.find(params[:id])
+    if @admin.update(admin_parameters)
+      flash[:notice] = "Admin was updated"
+    else
+      flash[:alert] = "Could not update"
+    end
+    redirect_to admins_list_path
   end
 
   private

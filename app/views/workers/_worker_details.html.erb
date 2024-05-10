@@ -1,19 +1,19 @@
 
-    <% if_profile_picture_attached(worker) do %>
-        <%= image_tag worker.profile_picture ,class: "img"%>
-    <% end %>
-    <% if_profile_picture_not_attached(worker) do %>
-        <p>No profile picture available</p>
-    <% end %>
-    
-    <p class="card-text"><b> <%= worker.user.name %></b></p>
-    <p class="card-text"><%= worker.user.address %></p>
-    <p class="card-text"> <%= worker.gender %></p>
-    <p class="card-text"><%= worker.age %></p>
-    skills:
-    <% worker.worker_skills.each do |worker_skill|%>
-        <%= worker_skill.skill.skill_type %>,
-    <% end %>
+<% if_profile_picture_attached(worker) do %>
+    <%= image_tag worker.profile_picture ,class: "img"%>
+<% end %>
+<% if_profile_picture_not_attached(worker) do %>
+    <p>No profile picture available</p>
+<% end %>
+
+<p class="card-text"><b> <%= worker.user.name %></b></p>
+<p class="card-text"><%= worker.user.address %></p>
+<p class="card-text"> <%= worker.gender %></p>
+<p class="card-text"><%= worker.age %></p>
+skills:
+<% worker.worker_skills.each do |worker_skill|%>
+    <%= worker_skill.skill.skill_type %>,
+<% end %>
 
 
 

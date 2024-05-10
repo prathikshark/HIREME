@@ -36,8 +36,7 @@ class WorkerSkillsController < ApplicationController
   end
 
   def destroy
-    @worker_skill = WorkerSkill.find_by(params[:id])
-
+    @worker_skill = WorkerSkill.find_by(id: params[:id])
     if @worker_skill 
       @worker_skill.destroy
       flash[:notice]="Skill deleted"
@@ -59,5 +58,4 @@ class WorkerSkillsController < ApplicationController
       worker = Worker.find_by(user_id: current_user.id)
       skill_present = WorkerSkill.find_by(skill_id: skill_id, worker_id: worker.id)
     end
-    
 end

@@ -16,31 +16,31 @@
       <img class="card-img" src="<%= asset_path('cook.png') %>" alt="Card image cap">
       <h5 class="card-title">Cooks</h5>
       <p class="card-text">Choose between basic home-style or fancy cooking at affordable rates!.</p>
-      <%= button_to 'Book', root_path, method: :get, class: "book-btn" %>
+      <%= button_to 'Book', workers_path, method: :get, class: "book-btn" %>
     </div>
 
     <div class="card">
       <img class="card-img" src="<%= asset_path('sweep.png') %>" alt="Card image cap">
       <h5 class="card-title">Maids</h5>
       <p class="card-text">Experienced & verified care maid for everyday home cleaning!.</p>
-      <%= button_to 'Book', root_path, method: :get, class: "book-btn" %>
+      <%= button_to 'Book', workers_path, method: :get, class: "book-btn" %>
     </div>
 
     <div class="card">
         <img class="card-img" src="<%= asset_path('caretaker.png') %>" alt="Card image cap">
         <h5 class="card-title">Care taker</h5>
         <p class="card-text">Experienced & verified care takers for everyday home cleaning!.</p>
-        <%= button_to 'Book', root_path, method: :get, class: "book-btn" %>
+        <%= button_to 'Book', workers_path, method: :get, class: "book-btn" %>
       </div>
 
     <div class="card">
         <img class="card-img" src="<%= asset_path('driver.png') %>" alt="Card image cap">
         <h5 class="card-title">Drivers</h5>
         <p class="card-text">Experienced & verified drivers on your ways!</p>
-        <%= button_to 'Book', root_path, method: :get, class: "book-btn" %>
+        <%= button_to 'Book', workers_path, method: :get, class: "book-btn" %>
     </div>
 </div>
 
 <div class="reviews">
-    <%# <%= render partial: "shared/highly_rated_workers", locals: { workers_with_high_rating: @workers_with_high_rating } %> %>
+     <%= render partial: "shared/highly_rated_workers", locals: { workers_with_high_rating: @workers_with_high_rating } %> 
 </div>
