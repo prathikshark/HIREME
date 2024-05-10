@@ -1,5 +1,5 @@
 $(document).ready(function () {
-  $("#submit-btn").on("click", function (e) {
+  $(".submit-btn").on("click", function (e) {
     e.preventDefault();
     admin = {
       name: $("#admin-name").val(),

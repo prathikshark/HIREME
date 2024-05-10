@@ -80,95 +80,94 @@
   width: 100vw;
   display: flex;
   justify-content: center;
-  padding: 100px ;
+  padding: 100px;
 }
 
-.high_rated_worker_container{
+.high_rated_worker_container {
   width: 40vw;
   background-color: rgb(237, 230, 230);
-  padding: 20px ;
+  padding: 20px;
   display: flex;
   justify-content: center;
   border-radius: 5px;
-
 }
 
-.high_rated_worker{
+.high_rated_worker {
   padding: 10px;
   position: relative;
   left: 35%;
 }
-.previous , .next{
+.previous,
+.next {
   text-decoration: none;
   background-color: #882393;
   padding: 6px;
   border-radius: 5px;
 }
 
-.image-container{
+.image-container {
   display: flex;
   height: 70vh;
-  justify-content: center; 
+  justify-content: center;
 }
 
-.worker-image-container{
+.worker-image-container {
   display: flex;
   height: 50vh;
-  justify-content: center; 
+  justify-content: center;
 }
 
-.form{
-    position: absolute;
-    top: 25% ; 
-    width: 95% ;
-    left: 3%;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    border-radius: 10px;
-    background-color: white;
-    justify-content: center;
+.form {
+  position: absolute;
+  top: 25%;
+  width: 95%;
+  left: 3%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  border-radius: 10px;
+  background-color: white;
+  justify-content: center;
 }
 
-.field{
-    margin: 10px;
+.field {
+  margin: 10px;
 }
 
-form .field label{
-    background-color: #6e2381;
-    color: white;
-    border-radius: 5px;
-    padding: 5px;
-    margin: 10px 5px;
+form .field label {
+  background-color: #6e2381;
+  color: white;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 10px 5px;
 }
-.submit-btn{
+.submit-btn {
   position: relative;
   top: 40px;
   left: 5px;
 }
-.home-img{
-    width: 100vw ;
-    opacity: 0.9;
+.home-img {
+  width: 100vw;
+  opacity: 0.9;
 }
-.time{
-    width: 130px;
+.time {
+  width: 130px;
 }
-#timing_scroll{
-    position: relative;
-    bottom: 10px;
+#timing_scroll {
+  position: relative;
+  bottom: 10px;
 }
-.service-dropdown{
-    height: 200px;
-}
-
-.bottom-text{
-    display: flex;
-    justify-content: center; 
-    font-size: 55px;
-    font-weight: 500;
-    color: #ad52b7;
+.service-dropdown {
+  height: 200px;
 }
 
+.bottom-text {
+  display: flex;
+  justify-content: center;
+  font-size: 55px;
+  font-weight: 500;
+  color: #ad52b7;
+}
 
 .about-us-container {
   max-width: 800px;
@@ -187,7 +186,6 @@ p {
   line-height: 1.6;
   margin-bottom: 15px;
 }
-
 
 .contact-us-container {
   max-width: 800px;
@@ -304,100 +302,99 @@ textarea {
 
 .reviews {
   margin: 50px;
-  background-color: #b790b6;
+  background-color: #d0bfcf;
   height: 550px;
   width: 100vw;
   display: flex;
   justify-content: center;
-  padding: 100px ;
+  padding: 100px;
 }
 
-.high_rated_worker_container{
+.high_rated_worker_container {
   width: 40vw;
-  background-color: rgb(237, 230, 230);
-  padding: 20px ;
+  background-color: rgb(237, 230, 236);
+  padding: 20px;
   display: flex;
   justify-content: center;
   border-radius: 5px;
-
 }
 
-.high_rated_worker{
+.high_rated_worker {
   padding: 10px;
   position: relative;
   left: 35%;
 }
-.previous , .next{
+.previous,
+.next {
   text-decoration: none;
   background-color: #882393;
   padding: 6px;
   border-radius: 5px;
 }
 
-.image-container{
+.image-container {
   display: flex;
   height: 70vh;
-  justify-content: center; 
+  justify-content: center;
 }
 
-.worker-image-container{
+.worker-image-container {
   display: flex;
   height: 50vh;
-  justify-content: center; 
+  justify-content: center;
 }
 
-.form{
-    position: absolute;
-    top: 25% ; 
-    width: 95% ;
-    left: 3%;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    border-radius: 10px;
-    background-color: white;
-    justify-content: center;
+.form {
+  position: absolute;
+  top: 25%;
+  width: 95%;
+  left: 3%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  border-radius: 10px;
+  background-color: white;
+  justify-content: center;
 }
 
-.field{
-    margin: 10px;
+.field {
+  margin: 10px;
 }
 
-form .field label{
-    background-color: #6e2381;
-    color: white;
-    border-radius: 5px;
-    padding: 5px;
-    margin: 10px 5px;
+form .field label {
+  background-color: #6e2381;
+  color: white;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 10px 5px;
 }
-.submit-btn{
+.submit-btn {
   position: relative;
   top: 40px;
   left: 5px;
 }
-.home-img{
-    width: 100vw ;
-    opacity: 0.9;
+.home-img {
+  width: 100vw;
+  opacity: 0.9;
 }
-.time{
-    width: 130px;
+.time {
+  width: 130px;
 }
-#timing_scroll{
-    position: relative;
-    bottom: 10px;
+#timing_scroll {
+  position: relative;
+  bottom: 10px;
 }
-.service-dropdown{
-    height: 200px;
-}
-
-.bottom-text{
-    display: flex;
-    justify-content: center; 
-    font-size: 55px;
-    font-weight: 500;
-    color: #ad52b7;
+.service-dropdown {
+  height: 200px;
 }
 
+.bottom-text {
+  display: flex;
+  justify-content: center;
+  font-size: 55px;
+  font-weight: 500;
+  color: #ad52b7;
+}
 
 .about-us-container {
   max-width: 800px;
@@ -416,7 +413,6 @@ p {
   line-height: 1.6;
   margin-bottom: 15px;
 }
-
 
 .contact-us-container {
   max-width: 800px;

@@ -3,7 +3,7 @@
       <i class="fas fa-user-tie card-icon"></i>
       <h5 class="card-title">Admins</h5>
       <p class="card-text">Manage admin users.</p>
-      <p>Number of Admins: <%= @admin_count %></p>
+      <p>Number of Admins: <%= admin_count %></p>
       <%= link_to 'View All Admins', admins_list_path, class: 'card-link' %>
   </div>
 
@@ -11,7 +11,7 @@
       <i class="fas fa-hard-hat card-icon"></i>
       <h5 class="card-title">Workers</h5>
       <p class="card-text">View and manage worker profiles.</p>
-      <p>Number of Workers: <%= @worker_count %></p>
+      <p>Number of Workers: <%= worker_count %></p>
       <%= link_to 'View All Workers', workers_path, class: 'card-link' %>
   </div>
 
@@ -19,7 +19,7 @@
       <i class="fas fa-user card-icon"></i>
       <h5 class="card-title">Customers</h5>
       <p class="card-text">Manage customer accounts.</p>
-      <p>Number of Customers: <%= @customer_count %></p>
+      <p>Number of Customers: <%= customer_count %></p>
       <%= link_to 'View All Customers', customers_path, class: 'card-link' %>
   </div>
 
@@ -27,7 +27,7 @@
       <i class="fas fa-tools card-icon"></i>
       <h5 class="card-title">Skills</h5>
       <p class="card-text">Manage available skills.</p>
-      <p>Number of Skills: <%= @skill_count %></p>
+      <p>Number of Skills: <%= skill_count %></p>
       <%= link_to 'View All Skills', skills_path, class: 'card-link' %>
   </div>
 </div>

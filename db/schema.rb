@@ -64,28 +64,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_08_070752) do
     t.index ["customer_id"], name: "index_bookings_on_customer_id"
   end
 
-  create_table "cart_services", force: :cascade do |t|
-    t.integer "cart_id", null: false
-    t.integer "worker_id"
-    t.date "from_date"
-    t.date "to_date"
-    t.string "skill_type"
-    t.string "shift"
-    t.string "time"
-    t.integer "hour_per_day"
-    t.integer "wage"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["cart_id"], name: "index_cart_services_on_cart_id"
-  end
-
-  create_table "carts", force: :cascade do |t|
-    t.integer "customer_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["customer_id"], name: "index_carts_on_customer_id"
-  end
-
   create_table "customers", force: :cascade do |t|
     t.integer "user_id", null: false
     t.string "profile_picture"
@@ -100,17 +78,12 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_08_070752) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "unavailabilities", force: :cascade do |t|
-    t.date "unavailable_date"
-    t.integer "worker_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["worker_id"], name: "index_unavailabilities_on_worker_id"
-  end
-
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
+    t.string "uid"
+    t.string "avatar_url"
+    t.string "provider"
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -159,10 +132,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_08_070752) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "booked_services", "bookings"
   add_foreign_key "bookings", "customers"
-  add_foreign_key "cart_services", "carts"
-  add_foreign_key "carts", "customers"
   add_foreign_key "customers", "users"
-  add_foreign_key "unavailabilities", "workers"
   add_foreign_key "worker_skills", "skills"
   add_foreign_key "worker_skills", "workers"
   add_foreign_key "workers", "users"

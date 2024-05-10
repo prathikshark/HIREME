@@ -11,6 +11,7 @@ $(document).ready(function () {
           .find(`[data-worker-id = ${workerId}]`)
           .closest(".worker-row")
           .remove();
+        // window.location.reload();
       },
     });
   });
@@ -29,6 +30,7 @@ $(document).ready(function () {
           .find(`[data-worker-id = ${workerId}]`)
           .closest(".worker-row")
           .remove();
+        // window.location.reload();
       },
     });
   });
@@ -54,6 +56,7 @@ $(document).ready(function () {
       dataType: "html",
       success: function (result) {
         $("#all-skills-of-worker").append(result);
+        window.location.reload();
       },
     });
   });

@@ -4,8 +4,11 @@ Rails.application.routes.draw do
   get 'contactus', to: 'pages#contactus'
   get 'portal', to: 'pages#portal'
 
-  devise_for :users
-
+  devise_for :users, controllers: {
+    registrations: 'users/registrations',
+    sessions: 'users/sessions',
+    omniauth_callbacks: 'users/omniauth_callbacks'
+  }
   get 'admins/list', to: 'admins#admin_list'
   resources :admins
 
