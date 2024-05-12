@@ -25,7 +25,6 @@ class ApplicationController < ActionController::Base
       customer = Customer.create(user_id: current_user.id)
       current_user.role = "customer"
       current_user.save
-
     end
   end
 end

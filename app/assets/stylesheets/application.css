@@ -17,8 +17,17 @@ body {
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   width: 400px;
-  margin: 0 auto; /* Center the container horizontally */
+  margin: 0 auto; 
 }
+
+/* .container {
+  margin-top: 20px;
+  justify-self: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-gap: 20px;
+} */
+
 
 h2 {
   color: #333;
@@ -132,14 +141,6 @@ nav {
   background-color: #f44336;
 }
 
-.container {
-  margin-top: 20px;
-  justify-self: center;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  grid-gap: 20px;
-}
-
 .heading {
   position: relative;
   left: 44vw;
@@ -187,8 +188,9 @@ nav {
 }
 
 .c {
+  background-color: #f6eef7;
   border-radius: 7px;
-  margin: 5px;
+  margin: 15px;
   padding: 20px;
   text-align: center;
   align-items: center;
@@ -211,6 +213,7 @@ nav {
   display:flex;
   flex-direction: row;
 }
+
 .remember-me-checkbox{
   width: 15px;
   position: relative;

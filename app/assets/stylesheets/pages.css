@@ -65,6 +65,7 @@
   position: absolute;
   top: 62%;
 }
+
 .inside-img-second-text {
   color: white;
   font-size: 40px;
@@ -76,11 +77,10 @@
 .reviews {
   margin: 50px;
   background-color: #b790b6;
-  height: 550px;
   width: 100vw;
   display: flex;
   justify-content: center;
-  padding: 100px;
+  padding: 80px;
 }
 
 .high_rated_worker_container {
@@ -89,14 +89,13 @@
   padding: 20px;
   display: flex;
   justify-content: center;
+  align-items: center;
   border-radius: 5px;
+  height: 400px;
 }
 
-.high_rated_worker {
-  padding: 10px;
-  position: relative;
-  left: 35%;
-}
+
+
 .previous,
 .next {
   text-decoration: none;
@@ -232,6 +231,9 @@ textarea {
 .card {
   border: none;
   margin: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .top-container {
   margin: 27px;
@@ -276,7 +278,7 @@ textarea {
 }
 .card-text {
   color: black;
-}
+  text-align: center;}
 
 .home-img {
   width: 100 vw;
@@ -302,14 +304,14 @@ textarea {
 
 .reviews {
   margin: 50px;
-  background-color: #d0bfcf;
+  background-color: rgb(145, 107, 145);
   height: 550px;
   width: 100vw;
   display: flex;
   justify-content: center;
   padding: 100px;
 }
-
+ 
 .high_rated_worker_container {
   width: 40vw;
   background-color: rgb(237, 230, 236);
@@ -324,13 +326,14 @@ textarea {
   position: relative;
   left: 35%;
 }
+ 
 .previous,
 .next {
   text-decoration: none;
   background-color: #882393;
   padding: 6px;
   border-radius: 5px;
-}
+} 
 
 .image-container {
   display: flex;
@@ -344,35 +347,6 @@ textarea {
   justify-content: center;
 }
 
-.form {
-  position: absolute;
-  top: 25%;
-  width: 95%;
-  left: 3%;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  border-radius: 10px;
-  background-color: white;
-  justify-content: center;
-}
-
-.field {
-  margin: 10px;
-}
-
-form .field label {
-  background-color: #6e2381;
-  color: white;
-  border-radius: 5px;
-  padding: 5px;
-  margin: 10px 5px;
-}
-.submit-btn {
-  position: relative;
-  top: 40px;
-  left: 5px;
-}
 .home-img {
   width: 100vw;
   opacity: 0.9;

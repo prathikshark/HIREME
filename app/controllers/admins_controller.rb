@@ -1,6 +1,6 @@
 class AdminsController < ApplicationController
-  skip_before_action :verify_authenticity_token
-  before_action :set_admin, only: [:edit, :update]
+    skip_before_action :verify_authenticity_token
+    before_action :set_admin, only: [:edit, :update]
 
     def index
 

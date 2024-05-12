@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <style>
-      /* Email styles need to be inline */
-    </style>
-  </head>
-
-  <body>
-    <%= yield %>
-  </body>
+<head>
+  <title>Booking Confirmation</title>
+</head>
+<body>
+  <p>Hi <%= @worker.user.name %>,</p>
+  <p>Your service has been booked. Here are the details:</p>
+  <ul>
+    <li><strong>From Date:</strong> <%= @from_date %></li>
+    <li><strong>To Date:</strong> <%= @to_date %></li>
+    <li><strong>Skill Type:</strong> <%= @skill_type %></li>
+  </ul>
+  <p>Thank you.</p>
+</body>
 </html>

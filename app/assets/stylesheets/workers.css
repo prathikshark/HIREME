@@ -5,3 +5,36 @@
     border-radius: 5px;
     box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.1);
 }
+.worker-index-img{
+  width: 100vw;
+  height: 50vh;
+}
+.form {
+    position: absolute;
+    top: 25%;
+    width: 95%;
+    left: 3%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    border-radius: 10px;
+    background-color: white;
+    justify-content: center;
+  }
+  
+  .field {
+    margin: 10px;
+  }
+  
+  form .field label {
+    background-color: #6e2381;
+    color: white;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 10px 5px;
+  }
+  .submit-btn {
+    position: relative;
+    top: 40px;
+    left: 5px;
+  }

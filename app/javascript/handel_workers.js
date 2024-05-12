@@ -1,3 +1,4 @@
+// admin accepting the profile
 $(document).ready(function () {
   $(".approve-btn").click(function () {
     var workerId = $(this).data("worker-id");
@@ -17,6 +18,7 @@ $(document).ready(function () {
   });
 });
 
+// admin rejecting the profile
 $(document).ready(function () {
   $(".reject-btn").click(function () {
     var workerId = $(this).data("worker-id");
@@ -36,6 +38,7 @@ $(document).ready(function () {
   });
 });
 
+// adding workerskills
 $(document).ready(function () {
   $("#add-worker-skill-btn").on("click", function (event) {
     event.preventDefault();
@@ -47,7 +50,6 @@ $(document).ready(function () {
         experience: $("#worker-skill-experience").val(),
       },
     };
-
     console.log(worker_skill);
     $.ajax({
       url: "http://localhost:3000/worker_skills",
@@ -63,3 +65,26 @@ $(document).ready(function () {
     });
   });
 });
+
+// filtering and getting filtered workers
+$(document).on("submit", "#filter-form", function(e) {
+  e.preventDefault();
+
+  const serializedData = $(this).serialize();
+  console.log(serializedData); 
+
+  $.ajax({
+    url: $(this).attr("action"),
+    method: $(this).attr("method"),
+    data: serializedData,
+    success: function(response) {
+        console.log(response);
+        $("#available-worker-container").empty();
+        $("#available-worker-container").html(response);
+        },
+        error: function () {
+        console.log("Failed to remove skill.");
+      }
+  });
+});
+

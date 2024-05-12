@@ -1,4 +1,6 @@
 <%= stylesheet_link_tag 'carts'%>
+<%= javascript_include_tag "handle_booked_services" %>
+
 <h2>Your services</h2>
 
 <% render_if_cart_is_empty(@booked_services)  do %> 
@@ -9,14 +11,14 @@
         <div class="cart">
             <% @booked_services.each_with_index do |service, index| %>
                 <div class="cart-item">
-                    <p><strong><%= index + 1 %>. Name:</strong> <%= service.worker.user.name %></p> 
+                    <p><strong> Name:</strong> <%= service.worker.user.name %></p> 
                     <p><strong>From:</strong> <%= service.from_date %></p>
                     <p><strong>To:</strong> <%= service.to_date %></p>
                     <p><strong>Time:</strong> <%= service.time %></p>
                     <p><strong>Shift:</strong> <%= service.shift %></p>
                     <p><strong>Service Type:</strong> <%= service.skill_type %></p>
                     <p><strong>Wage of the worker:</strong> <%= service.wage %></p>
-                    <p><%= button_to 'Remove', booked_service_path(id: service.id), method: :delete, class: "btn yellow-btn" %></p>
+                    <button class= "remove-service-btn btn yellow-btn"  data-service = "<%= service.id %>"> Remove</button>  
                 </div>
             <% end %>
         </div>
@@ -39,4 +41,5 @@
                 </div>
             </div>
     <% end %>
+
 
