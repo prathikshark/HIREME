@@ -79,7 +79,11 @@ $(document).on("submit", "#filter-form", function(e) {
         console.log(response);
         $("#available-worker-container").empty();
         $("#available-worker-container").html(response);
-        }
+        },
+        error: function () {
+        window.location.reload();
+        console.log("Failed to remove skill.");
+      }
   });
 });
 

@@ -1,13 +1,42 @@
 class BookedServicesController < ApplicationController
+  before_action :check_customer_role, only: :create
+  before_action :check_if_booking_present, only: :create
   
+  def index
+    if current_user.customer.bookings.any?
+      if current_user.customer.bookings.last.booked == false
+         @booked_services = current_user.customer.bookings.last.booked_services
+         @current_booking =  current_user.customer.bookings.last
+      end
+    end
+  end
+
   def create
-      worker_id = params[:worker_id]
+      worker_id = params[:worker_id].to_i
       filter_params = params[:filter_params]
+      if check_if_booking_present
+        current_booking = Booking.create(customer_id: current_user.customer.id)
+        current_booking.save
+      else 
+        current_booking = current_user.customer.bookings.last
+      end
+
       if filter_params
-            current_booking = current_user.customer.bookings.last
-            if current_booking.booked == false && current_booking.booked_services.exists?(skill_type: filter_params[:skill_type])
+
+        from_date = filter_params[:from_date].to_date
+        to_date = filter_params[:to_date].to_date
+      
+        booked_services = current_booking.booked_services
+      
+        # Specify the worker ID for which you want to check conflicts
+      
+         if  current_booking.booked_services.exists?(skill_type: filter_params[:skill_type])
               flash[:alert] = "Service already added"
-            else
+         
+         elsif booked_services.any? { |bs| bs.worker_id == worker_id && (bs.from_date <= to_date && bs.to_date >= from_date) }
+                flash[:alert] = "There is a booking conflict for the selected worker and date range."
+         else
+              
               #calculate wage of each worker   
               skill_id = Skill.find_by(skill_type: filter_params[:skill_type]).id
               worker_skill = WorkerSkill.find_by(worker_id: worker_id, skill_id: skill_id)
@@ -74,6 +103,22 @@ class BookedServicesController < ApplicationController
       params.require(:booked_service).permit(:comment, :rating)
     end
 
+    def check_customer_role
+      unless current_user.role == "customer"
+        flash[:alert] = "Only custommer can access this functionality"
+        redirect_to request.referer
+      end
+    end
+    def check_if_booking_present
+      #checking if already cart exist
+         if  current_user.customer.bookings.any?
+            if current_user.customer.bookings.last.booked == true
+                return true
+            end 
+         else
+              return true
+         end
+    end
 end
    
 

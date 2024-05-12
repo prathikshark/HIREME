@@ -5,12 +5,19 @@ module ApplicationHelper
           yield  
         end 
     end
+
     def if_user_not_present(current_user)
         unless current_user
           yield  
         end 
     end
 
+    def if_current_user_not_present_or_not_admin
+        unless current_user.present? && current_user.role == 'admin'
+            yield
+        end
+    end
+    
     def if_current_user_customer(current_user)
         if current_user.role == 'customer' 
           yield  

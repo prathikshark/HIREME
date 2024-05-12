@@ -1,7 +1,6 @@
 class WorkersController < ApplicationController
   before_action :authenticate_user!
   skip_before_action :verify_authenticity_token
-  before_action :check_customer_role, only: :by_skill
 
   def index
      if current_user.role == 'admin'
@@ -12,6 +11,7 @@ class WorkersController < ApplicationController
             @workers = Worker.includes(:user).where(users: { role: :worker }, status: :approved)
         end
       else
+           
             @workers = Worker.where(status: "approved")
       end
    end
@@ -37,6 +37,7 @@ class WorkersController < ApplicationController
 
     #filter the worker according to user need
     def filter
+        customer = current_user.customer  # Assuming you have the customer_id
         gender = params[:gender]
         @filter_params = {
           skill_type: params[:skill_type],
@@ -46,16 +47,20 @@ class WorkersController < ApplicationController
           hours_per_day: params[:hours_per_day].first.to_i,
           time: params[:timing]
         }
+
+
         @filtered_workers = Worker.includes(:worker_skills)
-        .where(status: "approved", gender: gender)
-        .where(worker_skills: { skill_id: Skill.where(skill_type: @filter_params[:skill_type]).pluck(:id) })
-        .where("shift = ? OR shift = ?", @filter_params[:shift], "Both")
-        .where.not(id: BookedService.select(:worker_id)
-                                  .where("from_date <= :to_date AND to_date >= :from_date", from_date: @filter_params[:to_date], to_date: @filter_params[:from_date]))
+    .where(status: "approved", gender: gender)
+    .where(worker_skills: { skill_id: Skill.where(skill_type: @filter_params[:skill_type]).pluck(:id) })
+    .where("shift = ? OR shift = ?", @filter_params[:shift], "Both")
+    .where.not(id: BookedService.joins(:booking)
+      .where("bookings.booked = ?", true)
+      .where("booked_services.from_date <= ? AND booked_services.to_date >= ?", @filter_params[:to_date], @filter_params[:from_date])
+      .select(:worker_id)
+    )
 
-                                          
 
-        # rating and wage 
+ # rating and wage 
         if params[:wage_per_hour].present?
           wage_range = params[:wage_per_hour]
           unless wage_range == "All"
@@ -154,16 +159,5 @@ class WorkersController < ApplicationController
         params.require(:worker).permit(:age,:profile_picture,:from_date,:to_date,:educational_qualification,:marital_status,:language,:shift)
     end   
 
-    def check_customer_role
-        if current_user.nil? 
-          redirect_to new_user_session_path
-        else
-          unless current_user.role == "customer"
-            flash[:alert] = "Only customers can access this functionality."
-            redirect_to portal_path
-          end
-        end
-    end
-       
-
+  
   end

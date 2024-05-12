@@ -1,11 +1,11 @@
 <div class="field">
     <%= f.label :name %><br />
-    <%= f.text_field :name, autofocus: true, autocomplete: "name" ,id: 'admin-name'%>
+    <%= f.text_field :name, autofocus: true, autocomplete: "name" ,class: 'admin-name'%>
 </div>
 
 <div class="field">
     <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email",id:'admin-email' %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email",class:'admin-email' %>
 </div>
 
 <div class="field">
@@ -13,14 +13,8 @@
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password", id: 'admin-password' %>
+    <%= f.password_field :password, autocomplete: "new-password", class: 'admin-password' %>
 </div>
-
-<div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-</div>
-
 
 <div class="actions">
     <%= f.submit data ,class:"submit-btn", "data-bs-dismiss": "modal"%>

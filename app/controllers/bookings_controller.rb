@@ -1,4 +1,5 @@
 class BookingsController < ApplicationController
+  before_action :check_worker_availability, only: :update_booked
 
   def index
   end
@@ -12,16 +13,12 @@ class BookingsController < ApplicationController
   end
 
   def create
-    booking = Booking.create(customer_id: current_user.customer.id)
-    booking.save
+
   end
  
   def update_booked
-     current_booking_id = params[:id]
-     current_booking = Booking.find_by(id: current_booking_id)
-     current_booking.update(booked: true)
-     create
-     redirect_to  booking_confirmed_bookings_path
+      Booking.find_by(id: params[:id]).update(booked: true)
+      redirect_to  booking_confirmed_bookings_path
   end
 
   def booking_confirmed
@@ -36,4 +33,28 @@ class BookingsController < ApplicationController
     end
   end    
 
+  private
+  def check_worker_availability
+    booking = Booking.find_by(id: params[:id])
+
+    booked_services = booking.booked_services
+  
+    booked_services.each do |booked_service|
+      worker = booked_service.worker
+      from_date = booked_service.from_date
+      to_date = booked_service.to_date
+
+      if Booking.joins(:booked_services)
+                .where(booked: true, 'booked_services.worker_id': worker.id)
+                .where('booked_services.from_date <= ?', to_date)
+                .where('booked_services.to_date >= ?', from_date)
+                .exists?
+        flash[:alert] = " #{worker.user.name} is already booked for the specified date range. Please select other worker."
+        redirect_back(fallback_location: root_path)
+        return
+      end
+    end
+  end
+  
+  
 end

@@ -1,0 +1,29 @@
+<a class= "navbar-bran" href="<%= admins_path %>"> Hire<span id="me">Me</span> </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav me-auto">
+
+        <li class="nav-item">
+          <%= link_to 'Dashboard',admins_path,class:"nav-link" %>
+        </li>
+
+        <li class="nav-item">
+        <%= button_to 'Pending requests', workers_path(status: 'pending'), method: :get, class: "nav-link" ,params: {status: 'pending'}%>
+        </li>
+
+      </ul>
+      <ul class="navbar-nav">
+          <li class="nav-item">
+                <%= button_to 'Log Out', destroy_user_session_path, method: :delete, class: "nav-link log-btn", data: { confirm: 'Are you sure you want to log out?' } %>
+           </li>
+
+          <% if_user_not_present(current_user) do %>
+            <li class="nav-item">
+                <%= link_to 'Login',new_user_session_path,class:"nav-link log-btn" %>
+            </li>
+          <% end %>
+      </ul>
+    </div>
+  

@@ -56,8 +56,10 @@ $(document).ready(function () {
       dataType: "html",
       success: function (result) {
         $("#all-skills-of-worker").append(result);
-        window.location.reload();
-      },
+      }, error: function () {
+        // window.location.reload();
+        console.log("Failed to remove skill.");
+      }
     });
   });
 });

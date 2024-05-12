@@ -1,15 +1,15 @@
 <%= stylesheet_link_tag 'carts'%>
 <h2>Your services</h2>
 
-<% render_content_if_cart_is_empty (@current_cart_services)  do %> 
+<% render_if_cart_is_empty(@booked_services)  do %> 
     <h2> No services selected :(</h2>
 <% end %>
 
-    <% render_cart_services(@current_cart_services)  do %> 
+    <%  render_if_cart_is_not_empty(@booked_services) do %> 
         <div class="cart">
-            <% @current_cart_services.each_with_index do |service, index| %>
+            <% @booked_services.each_with_index do |service, index| %>
                 <div class="cart-item">
-                    <p><strong>Name:</strong> <%= service.worker.user.name %></p> 
+                    <p><strong><%= index + 1 %>. Name:</strong> <%= service.worker.user.name %></p> 
                     <p><strong>From:</strong> <%= service.from_date %></p>
                     <p><strong>To:</strong> <%= service.to_date %></p>
                     <p><strong>Time:</strong> <%= service.time %></p>

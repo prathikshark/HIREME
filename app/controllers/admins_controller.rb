@@ -1,18 +1,18 @@
 class AdminsController < ApplicationController
-  include AdminHelper
   skip_before_action :verify_authenticity_token
+  before_action :set_admin, only: [:edit, :update]
 
     def index
-       
-    end
 
+    end
+    
     def admin_list
         @admins = User.where(role: :admin)
-        @user = User.find(current_user.id)
+        @user = User.new()
     end
 
     def create
-        @admin = User.create(name:params[:name],email:params[:email],password:params[:password],role:2)
+        @admin = User.create(admin_parameters)
         if @admin.save
           flash[:notice] = "Admin added"
         else
@@ -22,7 +22,7 @@ class AdminsController < ApplicationController
     end
       
     def edit
-        @admin = User.find(params[:id])
+      
     end
 
     def update
@@ -36,6 +36,10 @@ class AdminsController < ApplicationController
 
     private
     def admin_parameters
-        params.require(:user).permit(:name,:email,:password,:password_confirmation).merge(role: "admin")
-    end   
+        params.require(:user).permit(:name,:email,:password).merge(role:"admin")
+    end  
+    
+    def set_admin
+        @admin = User.find(params[:id])
+    end
 end

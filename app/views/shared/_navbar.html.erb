@@ -1,75 +1,68 @@
 <nav class="navbar navbar-expand-lg navbar-light fixed-top ">
   <div class="container-fluid">
-    <a class= "navbar-bran" href="<%= root_path %>"> Hire<span id="me">Me</span> </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav me-auto">
-        <li class="nav-item">
-          <%= link_to 'Home',root_path,class:"nav-link" %>
-        </li>
-        <% check_user_present(current_user) do %>
-          <% if_current_user_not_admin do %>
+
+  <% check_user_present(current_user) do %>
+    <% if_current_user_admin(current_user) do %>
+      <%= render partial: "admins/admin_navbar" %>
+    <% end %>
+  <% end %>
+
+  <% if_current_user_not_present_or_not_admin do %>
+        <a class= "navbar-bran" href="<%= root_path %>"> Hire<span id="me">Me</span> </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav me-auto">
             <li class="nav-item">
-              <%= link_to 'Service',workers_path,class:"nav-link" %>
+              <%= link_to 'Home',root_path,class:"nav-link" %>
             </li>
-          <% end %>
-        <% end %>
-        <li class="nav-item">
-          <%= link_to 'About Us',aboutus_path,class:"nav-link" %>
-        </li>
-        <li class="nav-item">
-          <%= link_to 'Contact Us',contactus_path,class:"nav-link" %>
-        </li>
-        <!-- 
-        <% if !current_user %>
-        <li class="nav-item">
-          <%= link_to 'Apply for Job',new_user_registration_path,  params: {apply_for_job: true}, class:"nav-link", id:"apply-for-job" %>
-        </li>
-        <% end %>
-        -->
-
-      </ul>
-      <ul class="navbar-nav">
-
-        <% check_user_present(current_user) do %>
-              <% if_current_user_admin(current_user)  do %> 
-                  <li class="nav-item">
-                  <%= button_to 'Pending requests', workers_path(status: 'pending'), method: :get, class: "nav-link" ,params: {status: 'pending'}%>
-                  </li>
-                  <li class="nav-item">
-                    <%= button_to 'Admin', admins_path, method: :get, class: "nav-link" %>
-                  </li>
+            <% check_user_present(current_user) do %>
+              <% if_current_user_customer(current_user) do %>
+                <li class="nav-item">
+                  <%= link_to 'Service',workers_path,class:"nav-link" %>
+                </li>
               <% end %>
-
-              <% if_current_user_worker(current_user)  do %> 
-                  <li class="nav-item">
-                    <%= button_to 'Profile', worker_path(id: current_user.worker.id), method: :get, class: "nav-link" %>
-                  </li>
-              <% end %>
-               
-              <% if_current_user_customer(current_user)  do %> 
-                  <li class="nav-item">
-                      <%= button_to 'Your services', booking_path(id: current_user.customer.bookings.last.id), method: :get, class: "nav-link " %>
-                  </li>
-                  <li class="nav-item">
-                    <%= button_to 'Profile', customer_path(id: current_user.id), method: :get, class: "nav-link" %>
-                  </li>
-              <% end %>
-        
-              <li class="nav-item">
-              <%= button_to 'Log Out', destroy_user_session_path, method: :delete, class: "nav-link log-btn", data: { confirm: 'Are you sure you want to log out?' } %>
-              </li>
-          <% end %>
-
-          <% if_user_not_present(current_user) do %>
+            <% end %>
             <li class="nav-item">
-                <%= link_to 'Login',new_user_session_path,class:"nav-link log-btn" %>
+              <%= link_to 'About Us',aboutus_path,class:"nav-link" %>
             </li>
-          <% end %>
+            <li class="nav-item">
+              <%= link_to 'Contact Us',contactus_path,class:"nav-link" %>
+            </li>
 
-      </ul>
-    </div>
-  </div>
-</nav>
+          </ul>
+          <ul class="navbar-nav">
+
+            <% check_user_present(current_user) do %>
+                  <% if_current_user_worker(current_user)  do %> 
+                      <li class="nav-item">
+                        <%= button_to 'Profile', worker_path(id: current_user.worker.id), method: :get, class: "nav-link" %>
+                      </li>
+                  <% end %>
+                  
+                  <% if_current_user_customer(current_user)  do %> 
+                      <li class="nav-item">
+                          <%= button_to 'Your services', booked_services_path, method: :get, class: "nav-link " %>
+                      </li>
+                      <li class="nav-item">
+                        <%= button_to 'Profile', customer_path(id: current_user.id), method: :get, class: "nav-link" %>
+                      </li>
+                  <% end %>
+            
+                  <li class="nav-item">
+                  <%= button_to 'Log Out', destroy_user_session_path, method: :delete, class: "nav-link log-btn", data: { confirm: 'Are you sure you want to log out?' } %>
+                  </li>
+              <% end %>
+
+              <% if_user_not_present(current_user) do %>
+                <li class="nav-item">
+                    <%= link_to 'Login',new_user_session_path,class:"nav-link log-btn" %>
+                </li>
+              <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      </div>
+  </nav>

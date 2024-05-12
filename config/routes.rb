@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     sessions: 'users/sessions',
     omniauth_callbacks: 'users/omniauth_callbacks'
   }
+  
   get 'admins/list', to: 'admins#admin_list'
   resources :admins
 
@@ -26,8 +27,6 @@ Rails.application.routes.draw do
   resources :customers
   resources :skills
   resources :worker_skills
-  resources :carts
-  resources :cart_services
   resources :bookings do
     member do
         patch 'reject'
