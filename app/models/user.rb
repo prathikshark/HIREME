@@ -1,9 +1,9 @@
 class User < ApplicationRecord
   after_initialize :set_default_role, :if => :new_record?
 
-  # validates :name, presence: true
-  # validates :address, presence: true
-  # validates :phone, presence: true, numericality: { only_integer: true }, format: { with: /\A\d{10}\z/, message: "Phone number must be a 10-digit number" }
+  validates :name, presence: true
+  validates :address, presence: true
+  validates :phone, presence: true, numericality: { only_integer: true }, format: { with: /\A\d{10}\z/, message: "Phone number must be a 10-digit number" }
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
