@@ -8,6 +8,7 @@ class SkillsController < ApplicationController
   end
 
   def create
+    debugger
       @skill=Skill.create(skill_parameter)
       if @skill.save
         flash[:notice]="Skill added"

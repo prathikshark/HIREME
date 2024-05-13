@@ -10,7 +10,7 @@
         </li>
 
         <li class="nav-item">
-        <%= button_to 'Pending requests', workers_path(status: 'pending'), method: :get, class: "nav-link" ,params: {status: 'pending'}%>
+          <%= button_to 'Pending requests', workers_path, method: :get, class: "nav-link" ,params: {status: 'pending'}%>
         </li>
 
       </ul>

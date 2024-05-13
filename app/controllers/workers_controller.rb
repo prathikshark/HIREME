@@ -23,7 +23,7 @@ class WorkersController < ApplicationController
       else
           flash[:alert]="Could not delete worker"
       end
-      redirect_to request.referer
+      redirect_to workers_path
     end
 
     #approve the worker status

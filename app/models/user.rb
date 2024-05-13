@@ -5,6 +5,9 @@ class User < ApplicationRecord
   validates :address, presence: true
   validates :phone, presence: true, numericality: { only_integer: true }, format: { with: /\A\d{10}\z/, message: "Phone number must be a 10-digit number" }
 
+  has_one :worker, dependent: :destroy
+  has_one :customer, dependent: :destroy
+  accepts_nested_attributes_for :worker
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -21,11 +24,6 @@ class User < ApplicationRecord
   end
   
   enum role: [:customer, :worker, :admin]
-
-
-  has_one :worker, dependent: :destroy
-  has_one :customer, inverse_of: :user, dependent: :destroy
-  accepts_nested_attributes_for :worker
 
   def set_default_role
     self.role ||= :customer if new_record?
