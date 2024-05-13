@@ -22,7 +22,6 @@ class WorkerSkillsController < ApplicationController
 
   def destroy
     worker_skill = WorkerSkill.find_by(id: params[:id]).destroy
-    redirect_to request.referer
   end
 
 
