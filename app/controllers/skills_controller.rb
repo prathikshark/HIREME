@@ -1,4 +1,5 @@
 class SkillsController < ApplicationController
+  skip_before_action :verify_authenticity_token
   def index
     @skills = Skill.all
   end
@@ -8,9 +9,8 @@ class SkillsController < ApplicationController
   end
 
   def create
-    debugger
-      @skill=Skill.create(skill_parameter)
-      if @skill.save
+      skill=Skill.create(skill_parameter)
+      if skill.save
         flash[:notice]="Skill added"
       else
         flash[:alert]="Could not add skill"
@@ -18,12 +18,13 @@ class SkillsController < ApplicationController
   end
 
   def destroy
-    @skill=Skill.find(params[:id]) 
-    if @skill && @skill.destroy 
-        flash[:notice]="Skill deleted"
-    else
-        flash[:alert]="Could not delete skill"
-    end
+    skill=Skill.find(params[:id]) 
+    skill.destroy
+    # if skill.destroy 
+    #     flash[:notice]="Skill deleted"
+    # else
+    #     flash[:alert]="Could not delete skill"
+    # end
   end
 
   private

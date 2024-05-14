@@ -38,6 +38,7 @@ class WorkersController < ApplicationController
 
     def update_status
       if @worker.update(status: 'pending')
+        
         flash.now[:notice] = 'Request sent'
       else
         flash.now[:alert] = 'Failed to send request .Please try again.'

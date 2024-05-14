@@ -1,9 +1,9 @@
 FactoryBot.define do
   factory :user do
-    name { "Aman" }
+    name {  Faker::Company.name  }
+    email {Faker::Internet.email}
     address { "marathalli" }
     phone { "1234567819" }
-    email { "aman@gmail.com" } 
     password { "password123" } 
 
     trait :worker do

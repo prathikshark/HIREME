@@ -1,31 +1,36 @@
 class CustomersController < ApplicationController
+  skip_before_action :verify_authenticity_token
+  before_action :set_user, only: [:show, :destroy]
+
   def index
     @users = User.where(role: :customer)
   end
-  
+
   def new
   end
 
   def create
-
   end
-  
+
   def edit
   end
 
   def show
-    user = User.find(params[:id])
-    @customer = user.customer
     @bookings = @customer.bookings.where(booked: true)
   end
-  
+
   def destroy
-    @user=User.find(params[:id]) 
-    if @user && @user.destroy 
-       flash[:notice]="Customer deleted"
+    if @customer.destroy
+      flash[:notice] = "Customer deleted"
     else
-       flash[:alert]="Could not delete customer"
+      flash[:alert] = "Could not delete customer"
+      redirect_to customers_path
     end
-       redirect_to request.referer
   end
-end  
+
+  private
+
+  def set_user
+    @customer = Customer.find(params[:id])
+  end
+end

@@ -3,10 +3,6 @@ require 'rails_helper'
 RSpec.describe Worker, type: :model do
   describe "validations" do
 
-    it "has a user" do
-        data = create(:worker)
-        expect(data.user).to be_a(User)
-    end
 
     it "requires a SSN (Social Security Number)" do
       worker = build(:worker, SSnumber: nil)

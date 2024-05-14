@@ -73,6 +73,7 @@ RSpec.configure do |config|
   end
   # spec/rails_helper.rb
 require 'rails_helper'
+require 'faker'
 
 RSpec.configure do |config|
   config.include Devise::Test::IntegrationHelpers, type: :controller

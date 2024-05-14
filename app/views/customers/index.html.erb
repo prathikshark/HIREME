@@ -1,3 +1,5 @@
+<%= javascript_include_tag "handle_customers" %>
+
 <h1>All Customers</h1>
 <% @users.each do |user| %>
   <div class="card">
@@ -7,7 +9,7 @@
         <p class="card-text">Email: <%= user.email %></p>
         <p class="card-text">Phone: <%= user.phone %></p>
         <p class="card-text">Address: <%= user.address %></p>
-        <%= button_to 'Remove', customer_path(id: user.id),method: :delete ,class: 'btn btn-danger' %><br/>
+        <button class= "remove-customer-btn btn btn-danger"  data-customer = <%= user.customer.id %>> Remove</button>  
     </div>
   </div>
 <% end %>

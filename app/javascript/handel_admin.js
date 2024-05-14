@@ -1,6 +1,9 @@
+
 $(document).ready(function () {
   $(".submit-btn").on("click", function (e) {
-    e.preventDefault();
+    e.preventDefault(e);
+        console.log($(".submit-btn"));
+
     let admin = {
       user: {
         name: $(".admin-name").val(),
@@ -9,7 +12,6 @@ $(document).ready(function () {
       }
     };
 
-    console.log(admin);
     $.ajax({
       url: "http://localhost:3000/admins",
       method: "POST",

@@ -7,6 +7,6 @@ FactoryBot.define do
         to_date {"11-11-2024"}
         shift {"Day"}
         date_of_birth {"31-10-2002"}
-        association :user, factory: [:user, :worker]
+        user_id {build(:user).id}
     end
 end

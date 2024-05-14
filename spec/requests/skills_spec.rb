@@ -1,16 +1,46 @@
 require 'rails_helper'
 
 RSpec.describe "Skills", type: :request do
-  describe "POST/create" do
-    it "Creates the skill by redirecting to skill#create" do
-      Rails.application.load_seed
-      user = User.find_by(email: "admin1@hireme.com")
-      puts user.email
-      sign_in user
-      puts user.email
-      user = post skills_path, params: { skill: { skill_type: "cooking" } }
-      expect(response).to have_http_status(302)  
-      # puts user.name
+  
+  describe "DELETE /skills/:id" do
+    let!(:skill) { create(:skill) }
+
+    it "destroys the requested skill" do
+      expect {
+        delete skill_path(skill)
+      }.to change(Skill, :count).by(-1)
     end
   end
+
+  context "with valid parameters" do
+    it "creates a new skill" do
+      expect {
+        post :create, params: { skill: { name: "Ruby on Rails" } }
+      }.to change(Skill, :count).by(1)
+    end
+
+    it "redirects to the skills list" do
+      post :create, params: { skill: { name: "Ruby on Rails" } }
+      expect(response).to redirect_to(skills_url)
+    end
+
+    it "sets the flash notice" do
+      post :create, params: { skill: { name: "Ruby on Rails" } }
+      expect(flash[:notice]).to eq("Skill added")
+    end
+  end
+
+  context "with invalid parameters" do
+    it "does not create a new skill" do
+      expect {
+        post :create, params: { skill: { name: nil } }
+      }.not_to change(Skill, :count)
+    end
+
+    it "sets the flash alert" do
+      post :create, params: { skill: { name: nil } }
+      expect(flash[:alert]).to eq("Could not add skill")
+    end
+  end
+
 end

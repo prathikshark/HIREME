@@ -2,8 +2,8 @@ class User < ApplicationRecord
   after_initialize :set_default_role, :if => :new_record?
 
   validates :name, presence: true
-  validates :address, presence: true
-  validates :phone, presence: true, numericality: { only_integer: true }, format: { with: /\A\d{10}\z/, message: "Phone number must be a 10-digit number" }
+  validates :address, presence: true, unless: -> { admin? }
+  validates :phone, presence: true, numericality: { only_integer: true }, format: { with: /\A\d{10}\z/, message: "Phone number must be a 10-digit number" }, unless: -> { admin? }
 
   has_one :worker, dependent: :destroy
   has_one :customer, dependent: :destroy
