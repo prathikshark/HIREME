@@ -2,13 +2,14 @@ class ApplicationController < ActionController::Base
   before_action :configure_sanitized_params, if: :devise_controller? 
   after_action :set_role_from_hidden_param, if: :devise_controller?
 
+
   def after_sign_in_path_for(resource)
-    if current_user.is_a?(User) && current_user.role == "admin"
+    if resource.admin?
       admins_path
     else
       root_path
-    end
   end
+end
 
   private
 

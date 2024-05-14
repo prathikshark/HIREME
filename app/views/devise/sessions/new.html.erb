@@ -6,9 +6,6 @@
 
     <h2>Log in</h2>
  
-    <%= link_to 'Login as employe?', new_user_session_path(role: 'worker'), method: :get, id: 'login-worker-link' %>
-    <%= link_to 'Login as customer?', new_user_session_path(role: 'customer'), method: :get, id: 'login-customer-link', style: 'display: none;' %>
-
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <div class="field">
         <%= f.label :email %><br />

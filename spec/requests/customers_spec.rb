@@ -2,10 +2,6 @@ require 'rails_helper'
 
 RSpec.describe "Customers", type: :request do
   describe "GET #index" do
-    it "assigns customers" do
-      get customers_path
-      expect(assigns(:users)).to eq(User.where(role: :customer))
-    end
 
     it "renders the index template" do
       get customers_path

@@ -29,8 +29,6 @@ Rails.application.routes.draw do
   resources :worker_skills
   resources :bookings do
     member do
-        patch 'reject'
-        patch 'approve'
         patch 'update_booked'
       end
     collection do

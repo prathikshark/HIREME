@@ -6,22 +6,22 @@
 
         <div class="field">
             <%= f.label :name %><br />
-            <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
+            <%= f.text_field :name, autofocus: true, autocomplete: "name", id: "worker_name" %>
         </div>
 
         <div class="field">
             <%= f.label :address ,class:'input' %><br />
-            <%= f.text_field :address,  autofocus: true, autocomplete: "address" %>
+            <%= f.text_field :address,  autofocus: true, autocomplete: "address", id: "worker_address" %>
         </div>
 
         <div class="field">
             <%= f.label :phone %><br />
-            <%= f.text_field :phone, autofocus: true, autocomplete: "phone" %>
+            <%= f.text_field :phone, autofocus: true, autocomplete: "phone" ,id: "worker_phone" %>
         </div>
 
         <div class="field">
             <%= f.label :email %><br />
-            <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+            <%= f.email_field :email, autofocus: true, autocomplete: "email" ,id: "worker_email"%>
         </div>
 
         <div class="field">
@@ -29,12 +29,12 @@
             <% if @minimum_password_length %>
             <em>(<%= @minimum_password_length %> characters minimum)</em>
             <% end %><br />
-            <%= f.password_field :password, autocomplete: "new-password" %>
+            <%= f.password_field :password, autocomplete: "new-password" ,id: "worker-password"%>
         </div>
 
         <div class="field">
             <%= f.label :password_confirmation %><br />
-            <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+            <%= f.password_field :password_confirmation, autocomplete: "new-password",id: "worker-confirmation-password" %>
         </div>
 
 
@@ -68,7 +68,8 @@
                 <div class="field">
                     <%= w.label :from_date, 'Available from date' %><br />
                     <%= w.date_field :from_date, class: 'date', id: 'worker_from_date', min: Date.today %>
-                    </div>
+                </div>
+
                 <div class="field">
                     <%= w.label :to_date, 'Available till date' %><br />
                     <%= w.date_field :to_date, class: 'date', id: 'worker_to_date', max: (Date.today + 40) %>
@@ -98,6 +99,6 @@
 
         </div>            
         <div class="actions">
-            <%= f.submit "Sign up" ,id:"submit-btn"%>
+            <%= f.submit "Sign up" ,id:"worker-submit-btn"%>
         </div>
 <% end %>

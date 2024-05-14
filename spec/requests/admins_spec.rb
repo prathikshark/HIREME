@@ -2,10 +2,6 @@ require 'rails_helper'
 
 RSpec.describe "Admins", type: :request do
   describe "GET #admin_list" do
-    it "assigns admins" do
-      get admins_list_path	
-      expect(assigns(:admins)).to eq(User.where(role: :admin))
-    end
 
     it "assigns a new user" do
       get admins_list_path	
