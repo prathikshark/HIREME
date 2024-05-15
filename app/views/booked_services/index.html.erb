@@ -18,7 +18,7 @@
                     <p><strong>Shift:</strong> <%= service.shift %></p>
                     <p><strong>Service Type:</strong> <%= service.skill_type %></p>
                     <p><strong>Wage of the worker:</strong> <%= service.wage %></p>
-                    <button class= "remove-service-btn btn yellow-btn"  data-service = "<%= service.id %>"> Remove</button>  
+                    <button class= "remove-service-btn btn yellow-btn" , data-service = "<%= service.id %>"> Remove</button>  
                 </div>
             <% end %>
         </div>
@@ -35,7 +35,7 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                        <%= button_to 'Confirm', update_booked_booking_path(@current_booking.id), method: :patch, class: 'btn purple-btn', id: 'confirmBtn', 'data-bs-dismiss': "modal", 'aria-label': "Close" %>
+                        <%= button_to 'Confirm', update_booked_booking_path(@current_booking.id), method: :patch, class: 'btn purple-btn', id: 'confirmBtn','data-booking-id'=> @current_booking.id, 'data-bs-dismiss': "modal", 'aria-label': "Close" %>
                         </div>
                     </div>
                 </div>

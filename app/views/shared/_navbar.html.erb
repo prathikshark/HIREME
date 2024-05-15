@@ -43,7 +43,7 @@
                   
                   <% if_current_user_customer(current_user)  do %> 
                       <li class="nav-item">
-                          <%= button_to 'Your services', booked_services_path, method: :get, class: "nav-link " %>
+                          <%= button_to 'My services', booked_services_path, method: :get, class: "nav-link " %>
                       </li>
                       <li class="nav-item">
                         <%= button_to 'Profile', customer_path(id: current_user.customer.id), method: :get, class: "nav-link" %>
