@@ -38,12 +38,11 @@ class WorkersController < ApplicationController
 
     def update_status
       if @worker.update(status: 'pending')
-        
         flash.now[:notice] = 'Request sent'
       else
         flash.now[:alert] = 'Failed to send request .Please try again.'
       end
-      render :show
+        redirect_to worker_path(@worker)
     end
 
     def edit
@@ -53,10 +52,11 @@ class WorkersController < ApplicationController
     def update
       if @worker.update(worker_parameters)
         flash[:notice] = "Detail was updated"
+        redirect_to worker_path(@worker)
       else
         flash[:alert] = "Could not update"
+        render :edit
       end
-      render :show
     end
 
     #filter the worker according to user need

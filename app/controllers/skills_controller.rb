@@ -20,11 +20,6 @@ class SkillsController < ApplicationController
   def destroy
     skill=Skill.find(params[:id]) 
     skill.destroy
-    # if skill.destroy 
-    #     flash[:notice]="Skill deleted"
-    # else
-    #     flash[:alert]="Could not delete skill"
-    # end
   end
 
   private

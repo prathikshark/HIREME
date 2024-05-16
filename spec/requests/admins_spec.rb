@@ -39,22 +39,18 @@ RSpec.describe "Admins", type: :request do
       sign_in user
     end
   
-    context "with valid parameters" do
-        it "updates the admin's details" do
-          patch admin_path(user), params: { user: { name: "NEW ADMIN" } }
-          user.reload
-          expect(user.name).to eq("NEW ADMIN")
-          expect(response).to have_http_status(302)
-        end
-      end
-  
-      context "with invalid parameters" do
-        it "does not update the admin's details" do
-          patch admin_path(user), params: { user: { email: nil } }
-          user.reload
-          expect(user.email).not_to be_nil
-          expect(response).to render_template(:edit)
-        end
+    it "updates the admin's details" do
+      patch admin_path(user), params: { user: { name: "NEW ADMIN" } }
+      user.reload
+      expect(user.name).to eq("NEW ADMIN")
+      expect(response).to have_http_status(302)
+    end
+
+      it "does not update the admin's details" do
+        patch admin_path(user), params: { user: { email: nil } }
+        user.reload
+        expect(user.email).not_to be_nil
+        expect(response).to render_template(:edit)
       end
     end
 

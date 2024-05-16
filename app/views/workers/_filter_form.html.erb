@@ -24,10 +24,7 @@
         <%= f.label :wage  %><br />
         <%= select_tag :wage_per_hour, options_for_select(["All", "0-200", "201-500","501-1000","above"], nil), class: "form-control", id: "wage_select" %>
       </div>
-    <div class="field">
-        <%= f.label :rating  %><br />
-        <%= select_tag :rating, options_for_select(["All", "5-4", "3-2","below"]), class: "form-control", id: "rating_select" %>
-    </div>
+   
     <div class="field">
         <%= label :hours_per_day, "Hours per Day" %><br />
         <%= number_field :hours_per_day, nil, class: "form-control", min: 1, id: "hours_per_day_input", placeholder: "hours per day" , required: true%>

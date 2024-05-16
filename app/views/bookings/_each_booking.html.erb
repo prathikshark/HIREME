@@ -7,5 +7,5 @@
     <%= f.label :rating %><br>
     <%= f.number_field :rating, in: 1..5, class: "rating" %>
     
-    <%= f.submit 'Add Comment and Rating', class: 'btn btn-primary feedback-submit-btn' %>
+    <%= f.submit 'Add Comment and Rating', class: 'btn btn-primary feedback-submit-btn', data: { serviceId: booked_service.id } %>
 <% end %> 

@@ -21,7 +21,7 @@ class WorkerSkillsController < ApplicationController
   end
 
   def destroy
-    worker_skill = WorkerSkill.find_by(id: params[:id]).destroy
+    WorkerSkill.find_by(id: params[:id]).destroy
   end
 
 
