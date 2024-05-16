@@ -76,7 +76,7 @@ class WorkersController < ApplicationController
 
     private
     def worker_parameters
-        params.require(:worker).permit(:age,:profile_picture,:from_date,:to_date,:educational_qualification,:marital_status,:language,:shift)
+      params.require(:worker).permit(:age, :profile_picture, :date_of_birth, :from_date, :to_date, :educational_qualification, :marital_status, :language, :shift, :gender)
     end 
  
     def set_worker

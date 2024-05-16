@@ -160,7 +160,6 @@ GEM
     multi_xml (0.7.1)
       bigdecimal (~> 3.1)
     mutex_m (0.2.0)
-    mysql2 (0.5.6)
     nested_form (0.3.2)
     net-http (0.4.1)
       uri
@@ -356,7 +355,6 @@ DEPENDENCIES
   importmap-rails
   jbuilder
   jquery-rails
-  mysql2
   nested_form
   omniauth
   omniauth-google-oauth2
