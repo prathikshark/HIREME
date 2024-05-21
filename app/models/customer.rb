@@ -1,4 +1,4 @@
 class Customer < ApplicationRecord
-  belongs_to :user, dependent: :destroy
+  belongs_to :user
   has_many :bookings ,dependent: :destroy
 end
