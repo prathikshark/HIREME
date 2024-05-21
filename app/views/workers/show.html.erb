@@ -22,7 +22,6 @@
         <p class="worker-field"> <strong> Email:</strong> <%= @worker.user.email %> </p>
         <p class="worker-field"> <strong> Address:</strong> <%= @worker.user.address %> </p>
         <p class="worker-field"> <strong> Phone:</strong> <%= @worker.user.phone %> </p>
-        <p class="worker-field"> <strong> Date of Birth:</strong> <%= @worker.date_of_birth %> </p>
         <p class="worker-field"><strong> Age:</strong>  <%= @worker.age %> </p>
         <p class="worker-field"><strong> SSnumber:</strong>  <%= @worker.SSnumber %></p>
         <p class="worker-field"><strong> Gender:</strong>  <%= @worker.gender %> </p>
@@ -40,5 +39,4 @@
         <h2> My history </h2>
         <%= render partial: "bookings/all_bookings",locals:{bookings: @bookings} %>
     <% end %>
-
 </div>

@@ -46,13 +46,8 @@
                 </div>
 
                 <div class="field">
-                    <%= w.label :date_of_birth %>
-                    <%= w.date_field :date_of_birth, placeholder: 'Date of Birth', max: '2006-01-01' %>
-                </div>
-
-                <div class="field">
                     <%= w.label :age %><br />
-                    <%= w.number_field :age, placeholder: 'Age' %>
+                    <%= w.number_field :age, placeholder: 'Age',min: 18 %>
                 </div>
 
                 <div class="field">
@@ -78,16 +73,6 @@
                 <div class="field">
                     <%= w.label :shift %><br />
                     <%= w.select :shift, ['Day', 'Night', 'Both'], prompt: 'Select Shift' %>
-                </div>
-
-                <div class="field">
-                    <%= w.label :educational_qualification %>
-                    <%= w.text_field :educational_qualification, placeholder: 'Educational Qualification' %>
-                </div>
-                
-                <div class="field">
-                    <%= w.label :marital_status %>
-                    <%= w.select :marital_status, ['Married', 'Unmarried', 'Divorced'], prompt: 'Marital status' %>
                 </div>
                 
                 <div class="field">

@@ -3,7 +3,7 @@ class User < ApplicationRecord
 
   validates :name, presence: true
   validates :address, presence: true, unless: -> { admin? }
-  validates :phone, presence: true, numericality: { only_integer: true }, format: { with: /\A\d{10}\z/, message: "Phone number must be a 10-digit number" }, unless: -> { admin? }
+  validates :phone, presence: true, uniqueness: true, numericality: { only_integer: true }, format: { with: /\A\d{10}\z/, message: "Phone number must be a 10-digit number" }, unless: -> { admin? }
 
   has_one :worker, dependent: :destroy
   has_one :customer, dependent: :destroy

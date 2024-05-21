@@ -6,15 +6,6 @@ class CustomersController < ApplicationController
     @users = User.where(role: :customer)
   end
 
-  def new
-  end
-
-  def create
-  end
-
-  def edit
-  end
-
   def show
     @bookings = @customer.bookings.where(booked: true)
   end

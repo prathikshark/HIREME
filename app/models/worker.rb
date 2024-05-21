@@ -6,12 +6,5 @@ class Worker < ApplicationRecord
   has_many :booked_services, dependent: :destroy
   has_many :bookings, through: :booked_services
 
-  validates :SSnumber, presence: true, numericality: { only_integer: true }, format: { with: /\A\d{9}\z/, message: "SSnumber number must be a 9-digit number" }
-  validates :gender, presence: true
-  validates :age, presence: true
-  validates :from_date, presence: true
-  validates :to_date, presence: true
-  validates :shift, presence: true
-  validates :date_of_birth, presence: true
-
+  validates :SSnumber, numericality: { only_integer: true }, format: { with: /\A\d{9}\z/, message: "SSnumber number must be a 9-digit number" }
 end
