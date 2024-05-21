@@ -1,10 +1,14 @@
+<%= stylesheet_link_tag 'customer'%>
+
 <h2>Profile </h2>
-<p> <strong> Name:</strong> <%= @customer.user.name %></p>
-<p> <strong> Email:</strong> <%= @customer.user.email %> </p>
-<p> <strong> Address:</strong> <%= @customer.user.address %> </p>
-<p> <strong> Phone:</strong> <%= @customer.user.phone %> </p>
+<div class= "customer-fields"
+   <p class ="customer-field"> <strong> Name:</strong> <%= @customer.user.name %></p>
+   <p class ="customer-field">  <strong> Email:</strong> <%= @customer.user.email %> </p>
+   <p class ="customer-field">  <strong> Address:</strong> <%= @customer.user.address %> </p>
+   <p class ="customer-field">  <strong> Phone:</strong> <%= @customer.user.phone %> </p>
+</div>
 
-
+</hr>
 <div class = "booking-container" >
     <h2><%= @customer.user.name %>'s Booking History</h2>
     <%= render partial: "bookings/all_bookings",locals:{bookings: @bookings} %>

@@ -1,43 +1,44 @@
+<%= stylesheet_link_tag 'workers'%>
 <%= render partial: "modal" %>
 
-<% if_status_rejected(@worker) do %>
-    <div class="alert alert-danger send-request-container" role="alert">
-         Your profile is rejected. Please provide the right details.
-         <%= button_to 'Send profile', update_status_worker_path(@worker.id), method: :patch, onclick: 'return confirm("Are you sure?")', class: 'btn purple-btn' %>
+<div class = "profile">
+    <% if_status_rejected(@worker) do %>
+        <div class="alert alert-danger send-request-container" role="alert">
+            Your profile is rejected. Please provide the right details.
+            <%= button_to 'Send profile', update_status_worker_path(@worker.id), method: :patch, onclick: 'return confirm("Are you sure?")', class: 'btn purple-btn' %>
+        </div>
+    <% end %>
+    <h2>Profile </h2>
+
+    <% if_profile_picture_attached(@worker) do %>
+        <h2><%= image_tag @worker.profile_picture ,class: "img"%></h2>
+    <% end %>
+    <% if_profile_picture_not_attached(@worker) do %>
+        <h2>No profile picture available</h2>
+    <% end %>
+
+    <div class= "worker-fields">
+        <p class="worker-field"> <strong> Name:</strong> <%= @worker.user.name %></p>
+        <p class="worker-field"> <strong> Email:</strong> <%= @worker.user.email %> </p>
+        <p class="worker-field"> <strong> Address:</strong> <%= @worker.user.address %> </p>
+        <p class="worker-field"> <strong> Phone:</strong> <%= @worker.user.phone %> </p>
+        <p class="worker-field"> <strong> Date of Birth:</strong> <%= @worker.date_of_birth %> </p>
+        <p class="worker-field"><strong> Age:</strong>  <%= @worker.age %> </p>
+        <p class="worker-field"><strong> SSnumber:</strong>  <%= @worker.SSnumber %></p>
+        <p class="worker-field"><strong> Gender:</strong>  <%= @worker.gender %> </p>
+        <p class="worker-field"><strong>Available from: </strong> <%= @worker.from_date %> </p>
+        <p class="worker-field"><strong>Available till: </strong> <%= @worker.to_date %> </p>
+        <p class="worker-field"><strong> Languages known: </strong> <%= @worker.language %> </p>
+        <p class="worker-field"><strong> Shift: </strong> <%= @worker.shift %> </p>
     </div>
-<% end %>
-<h1>Profile </h1>
+    <% if current_user.role == "worker"%>
+        <%= button_to 'Update date', edit_worker_path(id: @worker.id) ,method: :get,class: 'btn purple-btn' %>
+    <% end %>
+    <%= render partial:"worker_skills/all_skills_of_worker"%>
 
-<% if_profile_picture_attached(@worker) do %>
-    <%= image_tag @worker.profile_picture ,class: "img"%>
-<% end %>
-<% if_profile_picture_not_attached(@worker) do %>
-    <p>No profile picture available</p>
-<% end %>
+    <% if current_user.role == "worker" && @worker.bookings.last.present? && @worker.bookings.last.booked_services.any? %>
+        <h2> My history </h2>
+        <%= render partial: "bookings/all_bookings",locals:{bookings: @bookings} %>
+    <% end %>
 
-
-<p> <strong> Name:</strong> <%= @worker.user.name %></p>
-<p> <strong> Email:</strong> <%= @worker.user.email %> </p>
-<p> <strong> Address:</strong> <%= @worker.user.address %> </p>
-<p> <strong> Phone:</strong> <%= @worker.user.phone %> </p>
-<p> <strong> Date of Birth:</strong> <%= @worker.date_of_birth %> </p>
-<p><strong> Age:</strong>  <%= @worker.age %> </p>
-<p><strong> SSnumber:</strong>  <%= @worker.SSnumber %></p>
-<p><strong> Gender:</strong>  <%= @worker.gender %> </p>
-<p><strong>Available from: </strong> <%= @worker.from_date %> </p>
-<p><strong>Available till: </strong> <%= @worker.to_date %> </p>
-<p><strong> Educational Qualification: </strong> <%= @worker.educational_qualification %> </p>
-<p><strong> Marital status: </strong> <%= @worker.marital_status %> </p>
-<p><strong> Languages known: </strong> <%= @worker.language %> </p>
-<p><strong> Shift: </strong> <%= @worker.shift %> </p>
-
-
-<% if current_user.role == "worker"%>
-    <%= button_to 'Update date', edit_worker_path(id: @worker.id) ,method: :get,class: 'btn purple-btn' %>
-<% end %>
-<%= render partial:"worker_skills/all_skills_of_worker"%>
-
-<% if current_user.role == "worker" && @worker.bookings.last.present? && @worker.bookings.last.booked_services.any? %>
-    <h2> My history </h2>
-    <%= render partial: "bookings/all_bookings",locals:{bookings: @bookings} %>
-<% end %>
+</div>

@@ -38,3 +38,13 @@
     top: 40px;
     left: 5px;
   }
+
+  .worker-fields{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  
+    }
+    .worker-field{
+      margin: 20px;
+    }

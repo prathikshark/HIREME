@@ -6,17 +6,16 @@
       <% booking.booked_services.each do |booked_service| %>
         <div class="booked_service">
           <% if_current_user_customer(current_user) do %>
-            <p>worker_name: <%= booked_service.worker.user.name %></p>
+            <p><strong> worker_name: </strong> <%= booked_service.worker.user.name %></p>
           <% end %>
           <% if_current_user_worker(current_user) do %>
-            <p>customer_name: <%= booked_service.booking.customer.user.name %></p>
+            <p><strong> customer_name: </strong> <%= booked_service.booking.customer.user.name %></p>
           <% end %>
-          <p>from_date: <%= booked_service.from_date %></p>
-          <p>to_date: <%= booked_service.to_date %></p>
-          <p>skill_type: <%= booked_service.skill_type %></p>
-          <p>shift: <%= booked_service.shift %></p>
-          <p>time: <%= booked_service.time %></p>
-          <p>wage: <%= booked_service.wage %></p>
+          <p><strong>from_date:</strong> <%= booked_service.from_date %></p>
+          <p><strong>to_date: </strong> <%= booked_service.to_date %></p>
+          <p><strong>skill_type: </strong> <%= booked_service.skill_type %></p>
+          <p><strong>shift: </strong> <%= booked_service.shift %></p>
+          <p><strong>wage: </strong> <%= booked_service.wage %></p>
           <% if_current_user_customer(current_user) do %>
                 <% check_if_rating_is_not_present(booked_service) do %>
                      <%= render partial: "bookings/each_booking", locals: {booked_service: booked_service } %>
@@ -26,7 +25,7 @@
           <% check_if_rating_is_present(booked_service) do %>
            <%=  render partial: "bookings/each_review",locals: { booked_service: booked_service } %>
           <% end %>
-
+          </hr>
         </div>
       <% end %>
     </li>

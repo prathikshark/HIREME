@@ -1,11 +1,11 @@
 <%= form_for booked_service, url: booked_service_path(booked_service.id), method: :patch do |f| %>
-    <p>
+    <p><strong> 
     <%= f.label :comment %><br>
     <%= f.text_field :comment, class: "comment" %>
     </p>
     <p>
     <%= f.label :rating %><br>
     <%= f.number_field :rating, in: 1..5, class: "rating" %>
-    
+    </strong> 
     <%= f.submit 'Add Comment and Rating', class: 'btn btn-primary feedback-submit-btn', data: { serviceId: booked_service.id } %>
 <% end %> 

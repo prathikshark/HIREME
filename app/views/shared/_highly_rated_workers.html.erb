@@ -5,23 +5,23 @@
       <div class="carousel-item <%= index == 0? 'active' : '' %>">
         <div class="high_rated_worker">
             <% if_profile_picture_attached(worker) do %>
-              <%= image_tag worker.profile_picture, class: "img"%>
+              <p class="card-text"> <%= image_tag worker.profile_picture, class: "img"%></p>
             <% end %>
 
             <% if_profile_picture_not_attached(worker) do %>
-              <p>No profile picture available</p>
+              <p class="card-text">No profile picture available</p>
             <% end %>
             <p class="card-text"><b> <%= worker.user.name %></b></p>
             <p class="card-text"><%= worker.age %></p>
             <% worker.worker_skills.each do |worker_skill| %>
               <% if worker_skill.rating && worker_skill.rating >= 4 %>
-                <p><%= worker_skill.skill.skill_type %> - <%= worker_skill.rating %></p>
+              <p class="card-text"><%= worker_skill.skill.skill_type %> - <%= worker_skill.rating %></p>
               <% end %>
             <% end %>
         </div>  
       </div>
     <% end %>
-  </div>
+  </div>P
   <a class="carousel-control-prev previous-box" href="#carouselExampleIndicators" role="button" data-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
     <span class="sr-only previous">Previous</span>

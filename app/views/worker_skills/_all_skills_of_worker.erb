@@ -1,9 +1,9 @@
-<%= javascript_include_tag 'handel_workers' %>
+<%= javascript_include_tag 'handle_workers' %>
 <%= render partial: "modal" %>
 
-<h3> Skills </h3>
+<h2> Skills </h2>
 <% if_current_user_worker(current_user) do %>
-   <button type="button" id="myInput" class="btn purple-btn" data-bs-toggle="modal" data-bs-target="#exampleModal">Add</button>
+   <h2><button type="button" id="myInput" class="btn purple-btn" data-bs-toggle="modal" data-bs-target="#exampleModal">Add</button></h2>
 <% end %>
 
 <div class="worker-container", id="all-skills-of-worker">

@@ -301,39 +301,6 @@ textarea {
   top: 68%;
 }
 
-.reviews {
-  margin: 50px;
-  background-color: rgb(145, 107, 145);
-  height: 550px;
-  width: 100vw;
-  display: flex;
-  justify-content: center;
-  padding: 100px;
-}
-
-.high_rated_worker_container {
-  width: 40vw;
-  background-color: rgb(237, 230, 236);
-  padding: 20px;
-  display: flex;
-  justify-content: center;
-  border-radius: 5px;
-}
-
-.high_rated_worker {
-  padding: 10px;
-  position: relative;
-  left: 35%;
-}
-
-.previous,
-.next {
-  text-decoration: none;
-  background-color: #882393;
-  padding: 6px;
-  border-radius: 5px;
-}
-
 .image-container {
   display: flex;
   height: 70vh;

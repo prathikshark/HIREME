@@ -6,7 +6,6 @@
     <p>Wage per hour: <%= worker_skill.wage%></p>
     <p>Rating: <%= worker_skill.rating%></p>
     <% if current_user.role == 'worker' %>
-        <%= button_to 'Edit', worker_skill_path(id: worker_skill.id) ,method: :delete ,class: 'btn btn-danger' %><br/>
         <button class="remove-worker-skill-btn btn btn-danger" data-ws="<%= worker_skill.id %>">Remove</button>
     <% end %>
     <br/>

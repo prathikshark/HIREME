@@ -26,10 +26,6 @@ RSpec.describe "Admins", type: :request do
       expect(response).to render_template("admins/_each_admin")
     end
 
-    # it "does not create a new admin with invalid parameters" do
-    #   post admins_path, params: { user: { name: nil, email: "invalid_email", password: "" } }
-    #   expect(response).to render_template(:new)
-    # end
   end
 
   describe "PATCH /admins/:id" do

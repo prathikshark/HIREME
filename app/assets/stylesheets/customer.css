@@ -1,0 +1,9 @@
+.customer-fields{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  
+ }
+.customer-field{
+    margin: 20px;
+ }

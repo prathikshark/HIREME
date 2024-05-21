@@ -10,9 +10,10 @@
 <p class="card-text"><%= worker.user.address %></p>
 <p class="card-text"> <%= worker.gender %></p>
 <p class="card-text"><%= worker.age %></p>
+
 skills:
 <% worker.worker_skills.each do |worker_skill|%>
-    <%= worker_skill.skill.skill_type %>,
+    <%= worker_skill.skill.skill_type %> 
 <% end %>
 
 
