@@ -16,13 +16,12 @@ RSpec.describe "Skills", type: :request do
   end
 
   describe "DELETE /destroy" do
-    let(:skill) { FactoryBot.create(:skill) }
-   
-    # debugger
+
     it "deletes the skill succesfully" do
-      delete skill_path(skill)
-      expect(response.body).to eq("deleted")
-      
+      skill = FactoryBot.create(:skill)
+      expect  { delete skill_path(skill) }.to change(Skill, :count).by(-1)
+      expect(response).to have_http_status(:success)
     end
+
   end
 end
