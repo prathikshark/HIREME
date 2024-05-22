@@ -85,7 +85,7 @@ RSpec.describe "Admins", type: :request do
     end
 
 
-    it "successfull updation" do 
+    it "unsuccessfull updation" do 
       #edit name
       patch admin_path(
         user,

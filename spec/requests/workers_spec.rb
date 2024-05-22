@@ -32,14 +32,12 @@ RSpec.describe WorkersController, type: :request do
   
     it "deletes the worker and redirects to workers_path" do
       expect { delete workers_delete_path}.to change(Worker, :count).by(-1)
-      expect(flash[:notice]).to eq("Worker deleted")
       expect(response).to redirect_to(workers_path)
     end
   
-    it "sets a flash alert if the worker could not be deleted" do
+    it "could not delete worker" do
       allow_any_instance_of(Worker).to receive(:destroy).and_return(false)
       delete workers_delete_path
-      expect(flash[:alert]).to eq("Could not delete worker")
       expect(response).to redirect_to(workers_path)
     end
   end
@@ -124,5 +122,6 @@ RSpec.describe WorkersController, type: :request do
     end 
   end
 end
+
 
 

@@ -1,6 +1,6 @@
 
 class BookingsController < ApplicationController
-  before_action :check_worker_availability, only: [:update_booked]
+  before_action :check_worker_availability, only: [:update]
 
   def index
   end
@@ -8,7 +8,7 @@ class BookingsController < ApplicationController
   def create
   end
 
-  def update_booked
+  def update
     booking = Booking.find_by(id: params[:id])
     if booking.update(booked: true)
       Services::BookingManager.mail(booking)

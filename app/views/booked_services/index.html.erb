@@ -34,11 +34,12 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                        <%= button_to 'Confirm', update_booked_booking_path(@current_booking.id), method: :patch, class: 'btn purple-btn', id: 'confirmBtn','data-booking-id'=> @current_booking.id, 'data-bs-dismiss': "modal", 'aria-label': "Close" %>
+                        <%= button_to 'Confirm', booking_path(@current_booking.id), method: :patch, class: 'btn purple-btn', id: 'confirmBtn','data-booking-id'=> @current_booking.id, 'data-bs-dismiss': "modal", 'aria-label': "Close" %>
                         </div>
                     </div>
                 </div>
             </div>
     <% end %>
+
 
 

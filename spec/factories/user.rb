@@ -5,6 +5,5 @@ FactoryBot.define do
     address { "marathalli" }
     phone { "1234567819" }
     password { "password123" } 
-
   end
 end
