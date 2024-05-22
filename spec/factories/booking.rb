@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :booking do
-    booked { true }
+    booked { false }
     customer_id {build(:customer).id}
   end
 end
