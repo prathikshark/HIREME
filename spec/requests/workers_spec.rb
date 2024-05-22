@@ -21,7 +21,7 @@ RSpec.describe WorkersController, type: :request do
     end
   end
     
-    describe "DELETE /destroy" do
+  describe "DELETE /destroy" do
     let(:user) { create(:user) }
     let!(:worker) { create(:worker, user: user) }
     let(:workers_delete_path) { "/workers/#{worker.id}" }
