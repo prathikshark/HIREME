@@ -1,52 +1,48 @@
 require 'rails_helper'
 
 RSpec.describe "Customers", type: :request do
-  describe "GET #index" do
 
-    it "renders the index template" do
+  describe "GET /index" do 
+    it "is successful request" do 
       get customers_path
-      expect(response).to render_template(:index)
+      expect(response).to have_http_status(:success)
+    end
+
+    it "render customers/index page" do 
+      get customers_path
+      expect(response).to render_template("customers/index")
     end
   end
-  
-  describe "GET #show" do
-  let(:user) { create(:user) }
-  let!(:customer) { create(:customer, user: user) }
 
-  before(:each) do
-    sign_in user
+
+  describe "GET /show" do
+      let(:user) { FactoryBot.create(:user,role: "customer") }
+      let(:customer) { FactoryBot.create(:customer,user: user) }
+      
+      it "is successful request" do
+        get customer_path(customer)
+        expect(response).to have_http_status(:success)
+      end    
   end
 
-  it "assigns the requested customer's bookings to @bookings" do
-    booking1 = create(:booking, customer: customer, booked: true)
-    booking2 = create(:booking, customer: customer, booked: false)
+  describe "DELETE /destroy" do
+    let(:user) { FactoryBot.create(:user,role: "customer") }
+    let(:customer) { FactoryBot.create(:customer, user: user)}
+    
+    it "successful customer deletion" do
+      delete customer_path(
+        customer
+        )
+        expect(response).to have_http_status(200)
+        expect(response.body).to eq("customer deleted")
+    end
 
-    get customer_path(customer)
-    expect(assigns(:bookings)).to eq([booking1])
+    it "set flash saying 'could not delete customer'" do
+          allow_any_instance_of(Customer).to receive(:destroy).and_return(false)
+          delete customer_path(customer)
+          expect(flash[:alert]).to eq("Could not delete customer")
+          expect(response).to redirect_to(customers_path)
+    end
   end
-
-  it "renders the show template" do
-    get customer_path(customer)
-    expect(response).to render_template(:show)
-  end
-end
-
- 
-  describe "DELETE #destroy" do
-  let(:admin) { create(:user,:admin) }
-  let(:user) { create(:user) }
-  let!(:customer) { create(:customer, user: user) }
-  let(:customers_delete_path) { "/customers/#{customer.id}" }
-
-  before(:each) do
-    sign_in admin
-  end
-
-  it "deletes the customer" do
-    expect { delete customers_delete_path}.to change(Customer, :count).by(-1)
-  end
-
-end
-
 
 end

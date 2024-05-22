@@ -13,6 +13,7 @@ class CustomersController < ApplicationController
   def destroy
     if @customer.destroy
       flash[:notice] = "Customer deleted"
+      render plain:"customer deleted"
     else
       flash[:alert] = "Could not delete customer"
       redirect_to customers_path
@@ -20,7 +21,6 @@ class CustomersController < ApplicationController
   end
 
   private
-
   def set_user
     @customer = Customer.find(params[:id])
   end

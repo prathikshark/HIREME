@@ -21,7 +21,7 @@ RSpec.describe WorkersController, type: :request do
     end
   end
     
-    describe "DELETE #destroy" do
+    describe "DELETE /destroy" do
     let(:user) { create(:user) }
     let!(:worker) { create(:worker, user: user) }
     let(:workers_delete_path) { "/workers/#{worker.id}" }
@@ -45,7 +45,7 @@ RSpec.describe WorkersController, type: :request do
   end
 
 
-    describe "PATCH #approve" do
+    describe "PATCH /approve" do
         let(:user) { create(:user) }
         let(:worker) { create(:worker, user: user) }
 
@@ -59,7 +59,7 @@ RSpec.describe WorkersController, type: :request do
         end
   end
 
-  describe "PATCH #reject" do
+  describe "PATCH /reject" do
     let(:user) { create(:user) }
     let(:worker) { create(:worker, user: user) }
 
@@ -73,7 +73,7 @@ RSpec.describe WorkersController, type: :request do
     end
  end
 
-  describe "PATCH #update_status" do
+  describe "PATCH /update_status" do
     let(:user) { create(:user) }
     let(:worker) { create(:worker, user: user) }
 
@@ -103,12 +103,11 @@ RSpec.describe WorkersController, type: :request do
         expect(response).to have_http_status(302)
       end
 
-      # it "does not update the worker's details" do
-      #   patch worker_path(worker), params: { worker: { shift: nil } }
-      #   worker.reload
-      #   expect(response).to render_template("workers/edit")
-      # end
-
+      it "does not update the worker's details" do
+        patch worker_path(worker), params: { worker: { shift: nil } }
+        worker.reload
+        expect(response).to redirect_to(worker_path(worker))
+      end
    end
   
   describe "POST /workers/filter" do

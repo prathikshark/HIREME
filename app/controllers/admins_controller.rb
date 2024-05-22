@@ -13,12 +13,14 @@ class AdminsController < ApplicationController
 
   def create
       @admin = User.create(admin_parameters)
+      # debugger
       if @admin.save
         flash[:notice] = "Admin added"
         render partial: "admins/each_admin",locals:{admin:@admin}
       else
+        # debugger
         flash[:alert] = "Could not add admin. "
-        render :new
+        render plain:"admin not created"
       end
   end
     
@@ -27,6 +29,7 @@ class AdminsController < ApplicationController
 
   def update
     if @admin.update(admin_parameters)
+      # debugger
       flash[:notice] = "Admin was updated"
       redirect_to admins_list_path
     else
